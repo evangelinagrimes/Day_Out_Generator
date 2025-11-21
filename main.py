@@ -54,6 +54,7 @@ header_dinner_label = ttk.Label(master= dinner_column,
                             text= "Activity 1", 
                             font= HEADER_FONT)
 header_dinner_label.pack(pady=(5, 0))
+
 output_dinner_string= tk.StringVar()
 output_dinner_label= ttk.Label(master= dinner_column, 
                          text= 'Dinner', 
@@ -64,29 +65,33 @@ dinner_column.pack(side=tk.LEFT, padx=5)
 
 # Activity Column
 activity_column = ttk.Frame(master= output_frame)
+header_activity_label = ttk.Label(master= activity_column,
+                            text= "Activity 2", 
+                            font= HEADER_FONT)
+header_activity_label.pack(pady=(5, 0))
+
 output_activity_string = tk.StringVar()
 output_activity_label = ttk.Label(master= activity_column, 
                          text= 'Activity', 
                          font= OUTPUT_FONT, 
                          textvariable= output_activity_string)
-output_activity_label.pack(side= 'bottom', pady= 15, padx= 5)
-header_activity_label = ttk.Label(master= activity_column,
-                            text= "Activity 2", 
-                            font= HEADER_FONT)
-header_activity_label.pack(side= tk.LEFT, padx= 5, pady= 5)
+output_activity_label.pack(pady=(0, 15))
+activity_column.pack(side=tk.LEFT, padx=5)
 
 # Desert Column
 desert_column= ttk.Frame(master= output_frame)
+header_desert_label= ttk.Label(master= activity_column,
+                            text= "Activity 3", 
+                            font= HEADER_FONT)
+header_desert_label.pack(pady=(5, 0))
+
 output_desert_string= tk.StringVar()
 output_desert_label= ttk.Label(master= activity_column, 
                          text= 'output', 
                          font= OUTPUT_FONT, 
                          textvariable= output_desert_string)
-header_desert_label= ttk.Label(master= activity_column,
-                            text= "Activity 3", 
-                            font= HEADER_FONT)
-output_desert_label.pack(side= 'bottom', pady= 15, padx= 5)
-header_desert_label.pack(side= tk.RIGHT, padx= 5, pady= 5)
+output_desert_label.pack(pady=(0, 15))
+desert_column.pack(side=tk.LEFT, padx=5)
 output_frame.pack()
 
 # === RUN ===
