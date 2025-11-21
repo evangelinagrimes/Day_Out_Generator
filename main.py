@@ -12,11 +12,11 @@ Notes:
 def trigger_generate_activities():
     zip = zipcode_int.get()
 
-    # generate_activities()
+    activityList = generate_activities()
 
     output_dinner_string.set('Restaurant')
     output_activity_string.set('Activity')
-    output_desert_string.set('Desert')
+    output_dessert_string.set('Dessert')
 
 # === WINDOW ===
 window = tk.Tk()
@@ -78,20 +78,21 @@ output_activity_label = ttk.Label(master= activity_column,
 output_activity_label.pack(pady=(0, 15))
 activity_column.pack(side=tk.LEFT, padx=5)
 
-# Desert Column
-desert_column= ttk.Frame(master= output_frame)
-header_desert_label= ttk.Label(master= activity_column,
+# Dessert Column
+dessert_column= ttk.Frame(master= output_frame)
+header_dessert_label= ttk.Label(master= dessert_column,
                             text= "Activity 3", 
                             font= HEADER_FONT)
-header_desert_label.pack(pady=(5, 0))
+header_dessert_label.pack(pady=(5, 0))
 
-output_desert_string= tk.StringVar()
-output_desert_label= ttk.Label(master= activity_column, 
+output_dessert_string= tk.StringVar()
+output_dessert_label= ttk.Label(master= dessert_column, 
                          text= 'output', 
                          font= OUTPUT_FONT, 
-                         textvariable= output_desert_string)
-output_desert_label.pack(pady=(0, 15))
-desert_column.pack(side=tk.LEFT, padx=5)
+                         textvariable= output_dessert_string)
+output_dessert_label.pack(pady=(0, 15))
+dessert_column.pack(side=tk.LEFT, padx=5)
+
 output_frame.pack()
 
 # === RUN ===
