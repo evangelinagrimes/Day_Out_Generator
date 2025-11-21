@@ -1,4 +1,17 @@
-from google_apis import create_service
+from google_api import create_service
+import datetime
+
+
+def generate_activities(time, day, zip, mile_limit, region, activityList):
+    timeOfDay = time
+    dayOfWeek = day
+    zipcode = zip #Convert to long/lat values
+    mileLimit = mile_limit
+    region = region
+    restaurantBool = True
+    activityBool = True
+    desertBool = True 
+    return None
 
 client_secret_file = 'client_secret.json'
 API_NAME = 'places'
@@ -6,6 +19,9 @@ API_VERSION = 'v1'
 SCOPES = ['https://www.googleapis.com/auth/cloud-platform']
 
 service = create_service(client_secret_file, API_NAME, API_VERSION, SCOPES)
+
+# Raw Inputs
+
 
 query = 'ramen'
 request_body = {
