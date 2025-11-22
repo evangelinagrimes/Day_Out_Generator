@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage
 from generate_activities import generate_activities
+from Event import *
 
 # ==================| MAIN WINDOW |==================
 window = tk.Tk()
@@ -17,15 +18,21 @@ STOP_Y_POS = 10
 INFO_SUB_LABEL_POS = (5, 0)
 
 selectedStop_str = tk.StringVar(value="")
-selectedType_str = tk.StringVar()
-selectedBusiness_str = tk.StringVar()
-selectedAddress_str = tk.StringVar()
-selectedWebsite_str = tk.StringVar()
-selectedPrice_str = tk.StringVar()
-selectedTopReview_str = tk.StringVar()
+
+event_list = []
+
+selectedType_str = tk.StringVar(value="Default value")
+selectedBusiness_str = tk.StringVar(value="Default value")
+selectedAddress_str = tk.StringVar(value="Default value")
+selectedWebsite_str = tk.StringVar(value="Default value")
+selectedPrice_str = tk.StringVar(value="Default value")
+selectedTopReview_str = tk.StringVar(value="Default value")
 zipcode_int = tk.IntVar()
 
 selectedFirstStop_list = []
+selectedSecondStop_list = []
+selectedFinalStop_list = []
+
 activity_toggle_states = {}
 dayOfWeek_toggle_states = {}
 isSetToDay = True
@@ -35,7 +42,23 @@ traceID = ""
 
 # HELPER FUNCTIONS
 def generate_helper():
+    global selectedFirstStop_list
+    global selectedSecondStop_list
+    global selectedFinalStop_list
     print("Calling Google API...")
+
+    # TEST INPUT DATA
+    event_list.append( 
+        {Event("Restaurant", "RockLovers", "223 Forthcoming St", "https://RockLover.com", "Expensive", "Love this place!"), 
+         Event("Activity", "PartyLovers", "124 AppleBlossom St", "https://PartyLovers.com", "Cheap", "Yeah.. it was ok"),
+         Event("Dessert", "BerriesAndCream", "444 Dairy Way", "https://BerriesAndCream.com", "Medium", "WOOO WOULD TOTALLY GO BACK")
+         })
+    
+    # @TODO: Update with event objects
+    selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
+    selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
+    selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
+    print(f'Updated selected Lists... \nFirst: {str(selectedFirstStop_list)}\nSecond: {str(selectedSecondStop_list)}\nFinal: {str(selectedFinalStop_list)}')
     
     # Update the output frame to display activities
     updateOutputFrame()
@@ -95,6 +118,7 @@ def switchDayButton():
 
 def switchThemeButton():
     global isThemeActive
+
     if isThemeActive: 
         theme_button.config(image=theme)
         # print("Switch to RANDOM THEME")
@@ -112,6 +136,9 @@ def updateOutputFrame():
     global isSetToDay
     global traceID
     global activities
+    global selectedFirstStop_list   
+    global selectedSecondStop_list  
+    global selectedFinalStop_list  
 
     # Clear existing content_FRAME widgets
     for widget in content_FRAME.winfo_children():
@@ -138,9 +165,10 @@ def updateOutputFrame():
         subFirstStop_label.config(text="Activity")
 
         # @TODO:                vvv   REPLACE WITH GENERATED VALUES    vvv
-        selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
+        # selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+        print(f"First at Enumeration: {str(selectedFirstStop_list)}")
         for i, option_text in enumerate(selectedFirstStop_list):
             radButt = tk.Radiobutton(firstStopRadioSelection_FRAME, 
                         text=option_text, 
@@ -188,7 +216,7 @@ def updateOutputFrame():
         subSecondStop_label.config(text="Restaurant")
 
         # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
-        selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
+        # selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         for i, option_text in enumerate(selectedSecondStop_list):
             radButt = tk.Radiobutton(secondStopRadioSelection_FRAME, 
@@ -234,7 +262,7 @@ def updateOutputFrame():
 
     if activity_toggle_states["Dessert"]: 
         # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
-        selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
+        # selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         for i, option_text in enumerate(selectedFinalStop_list):
             radButt = tk.Radiobutton(finalStopRadioSelection_FRAME, 
@@ -359,6 +387,9 @@ def updateOutputFrame():
 
         if selection: 
             infoTitle_label.config(text=selection)
+            activityType_label.config(text= type)
+            businessName_label.config(text=business)
+            address_label.config(text=address)
             
         else:
             # Reset label values
@@ -369,9 +400,7 @@ def updateOutputFrame():
             websiteLink_label.config(text= "")
             priceLevel_label.config(text= "")
             topReview_label.config(text= "")
-            
-
-        
+              
     traceID = selectedStop_str.trace('w', update_info_label)
     info_FRAME.pack(side= 'right')
 # - - - - - - - - - - - - - - - - - - - -
