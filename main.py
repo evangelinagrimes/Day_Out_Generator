@@ -39,10 +39,10 @@ def create_toggle_button(parent, text, width, height, key, start_state, state_di
         state_dictionary[key] = not state_dictionary[key]
         if state_dictionary[key]:
             btn.config(relief=tk.SUNKEN, bg="darkgrey")
-            print(f"{str(key)} state toggled ON" )
+            # print(f"{str(key)} state toggled ON" )
         else:
             btn.config(relief=tk.RAISED, bg="SystemButtonFace")
-            print(f"{str(key)} state toggled OFF" )
+            # print(f"{str(key)} state toggled OFF" )
     
     if start_state: 
         btn = tk.Button(parent, text=text, command=toggle, 
@@ -57,10 +57,10 @@ def switchDayButton():
     global isSetToDay
     if isSetToDay: 
         day_button.config(image=night)
-        print("Switched to NIGHT")
+        # print("Switched to NIGHT OUT")
     else:
         day_button.config(image=day)
-        print("Switched to DAY")
+        # print("Switched to DAY OUT")
         
     isSetToDay = not isSetToDay
 
@@ -68,10 +68,10 @@ def switchThemeButton():
     global isThemeActive
     if isThemeActive: 
         theme_button.config(image=theme)
-        print("Switch to RANDOM THEME")
+        # print("Switch to RANDOM THEME")
     else:
         theme_button.config(image=noTheme)
-        print("Switched to NO THEME")
+        # print("Switched to NO THEME")
         
     isThemeActive = not isThemeActive
 
@@ -121,7 +121,7 @@ day_button = tk.Button(dayNight_ROW, image=day, bd=0, command=switchDayButton)
 
 theme = PhotoImage(file="assets/THEME.png")
 noTheme = PhotoImage(file="assets/NO_THEME.png")
-theme_button = tk.Button(dayNight_ROW, image=theme, bd=0, command=switchThemeButton)
+theme_button = tk.Button(dayNight_ROW, image=noTheme, bd=0, command=switchThemeButton)
 
 day_button.pack(side='left')
 theme_button.pack(side='left')
