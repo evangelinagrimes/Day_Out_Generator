@@ -2,99 +2,40 @@ import tkinter as tk
 from tkinter import ttk
 from generate_activities import generate_activities
 
-# Tutorial referenced https://www.youtube.com/watch?v=mop6g-c5HEY 
-"""
-Notes: 
-# Keep in mind what widgets are dependent on what
-# Use .pack() to officially add the widget to the base
-"""
-
-def trigger_generate_activities():
-    zip = zipcode_int.get()
-
-    activityList = generate_activities()
-
-    output_dinner_string.set('Restaurant')
-    output_activity_string.set('Activity')
-    output_dessert_string.set('Dessert')
-
-# === WINDOW ===
+# ==================| MAIN WINDOW |==================
 window = tk.Tk()
-window.title("Date Night Generator")
-window.geometry('500x300')
+window.title("Day Out Generator")
+window.geometry('1200x700')
 
-# === TITLE ===
-title_label = ttk.Label(master= window, text = "Date Night Generator", font = 'Calibri 24')
-title_label.pack()
-
-# === INPUT FIELDS ===
-input_frame = ttk.Frame(master= window)
-zipcode_int = tk.IntVar()
-zipcode = ttk.Entry(master= input_frame, textvariable= zipcode_int)
-button = ttk.Button(master= input_frame, text= 'Generate', command = trigger_generate_activities)
-zipcode.pack(side= 'left', padx = 10)
-button.pack(side= 'left')
-input_frame.pack(pady = 10)
-
-# === OUTPUT ===
-
-# Header settings
+# INPUT FIELDS / VARIABLES
 HEADER_FONT = 'Calibri 15'
 HEADER_SIDE = 'left'
-
-# Output settings
 OUTPUT_FONT = 'Calibri 12'
+zipcode_int = tk.IntVar()
 
-# Variables and Labels
-output_frame= ttk.Frame(master= window)
+# ==================| INPUT FRAME |==================
+input_frame = ttk.Frame(master= window)
 
-# Dinner Column
-dinner_column = ttk.Frame(master= output_frame)
-header_dinner_label = ttk.Label(master= dinner_column,
-                            text= "Activity 1", 
+# ------ zipcode frame ------
+zipcode_ROW = ttk.Frame(master= input_frame)
+zipcode_label = ttk.Label(master= zipcode_ROW,
+                            text= "ZIPCODE: ", 
                             font= HEADER_FONT)
-header_dinner_label.pack(pady=(5, 0))
+zipcode_field = ttk.Entry(master= zipcode_ROW, textvariable= zipcode_int)
+zipcode_field.pack()
+zipcode_ROW.pack(side= 'left', padx= 5)
 
-output_dinner_string= tk.StringVar()
-output_dinner_label= ttk.Label(master= dinner_column, 
-                         text= 'Dinner', 
-                         font= OUTPUT_FONT, 
-                         textvariable= output_dinner_string)
-output_dinner_label.pack(pady=(0, 15))
-dinner_column.pack(side=tk.LEFT, padx=5)
+# ------ activity preference frame ------
+# ------ day of week ------
+# ------ theme ------
+# ------ generate button ------
 
-# Activity Column
-activity_column = ttk.Frame(master= output_frame)
-header_activity_label = ttk.Label(master= activity_column,
-                            text= "Activity 2", 
-                            font= HEADER_FONT)
-header_activity_label.pack(pady=(5, 0))
+input_frame.pack(side='left')
+# ==================| OUTPUT FRAME |==================
+# output_frame = ttk.Frame(master= window)
 
-output_activity_string = tk.StringVar()
-output_activity_label = ttk.Label(master= activity_column, 
-                         text= 'Activity', 
-                         font= OUTPUT_FONT, 
-                         textvariable= output_activity_string)
-output_activity_label.pack(pady=(0, 15))
-activity_column.pack(side=tk.LEFT, padx=5)
+# ------------------| CONTENT FRAME |------------------
 
-# Dessert Column
-dessert_column= ttk.Frame(master= output_frame)
-header_dessert_label= ttk.Label(master= dessert_column,
-                            text= "Activity 3", 
-                            font= HEADER_FONT)
-header_dessert_label.pack(pady=(5, 0))
-
-output_dessert_string= tk.StringVar()
-output_dessert_label= ttk.Label(master= dessert_column, 
-                         text= 'output', 
-                         font= OUTPUT_FONT, 
-                         textvariable= output_dessert_string)
-output_dessert_label.pack(pady=(0, 15))
-dessert_column.pack(side=tk.LEFT, padx=5)
-
-output_frame.pack()
 
 # === RUN ===
 window.mainloop()
-
