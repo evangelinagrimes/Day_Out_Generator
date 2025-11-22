@@ -212,8 +212,30 @@ def updateOutputFrame():
 
     # > ------ final stop ------
     finalStop_FRAME = ttk.Frame(master= selection_FRAME)
+    finalStop_label = ttk.Label(finalStop_FRAME, text= "Final Stop: ", font = HEADER_FONT)
+    subFinalStop_label = ttk.Label(finalStop_FRAME, text="Dessert", font = SUBHEADING_FONT)
+
+    finalStopRadioSelection_FRAME = ttk.Frame(master= finalStop_FRAME)
+
+    # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
+    selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
+    #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    for i, option_text in enumerate(selectedFinalStop_list):
+        radButt = tk.Radiobutton(finalStopRadioSelection_FRAME, 
+                    text=option_text, 
+                    variable=selectedStop_str, 
+                    value=option_text, 
+                    command=on_radio_select_stop,
+                    )
+        radButt.pack()
+        print(f"Second Stop: Generating selection RESTAURANT ... {str(selectedStop_str)}")
+
+    finalStop_label.pack(anchor='w')
+    subFinalStop_label.pack()
+    finalStopRadioSelection_FRAME.pack()
 
     finalStop_FRAME.pack(side= 'top')
+
     selection_FRAME.pack(side= 'left')
 
     # - - - - - - - - - - | INFO FRAME | - - - - - - - - - 
