@@ -12,9 +12,34 @@ HEADER_FONT = 'Calibri 15'
 HEADER_SIDE = 'left'
 OUTPUT_FONT = 'Calibri 12'
 zipcode_int = tk.IntVar()
+activity_toggle_states = {}
+
+# HELPER FUNCTIONS
+def create_toggle_button(parent, text, key):
+    '''
+    Creates a toggle button and implements the toggle feature
+    
+    :param parent: The parent frame the button should be attached to (tk.Frame)
+    :param text: The text that appears on the button (string)
+    :param key: The button identifier (string)
+
+    :return: A button object
+    '''
+    activity_toggle_states[key] = True
+    
+    def toggle():
+        activity_toggle_states[key] = not activity_toggle_states[key]
+        if activity_toggle_states[key]:
+            btn.config(relief=tk.SUNKEN, bg="darkgrey")
+        else:
+            btn.config(relief=tk.RAISED, bg="SystemButtonFace")
+    
+    btn = tk.Button(parent, text=text, command=toggle, 
+                    width=10, height=1, relief=tk.SUNKEN, bg="darkgrey")
+    return btn
 
 # ==================| INPUT FRAME |==================
-input_FRAME = ttk.Frame(master= window, width=400, height=700, relief="solid")
+input_FRAME = ttk.Frame(master= window, width=400, height=700, relief="ridge")
 
 # > ------ zipcode frame ------
 zipcode_ROW = ttk.Frame(master= input_FRAME)
@@ -24,22 +49,28 @@ zipcode_label = ttk.Label(master= zipcode_ROW,
 zipcode_field = ttk.Entry(master= zipcode_ROW, textvariable= zipcode_int)
 zipcode_label.pack(side= 'left')
 zipcode_field.pack(side= 'left')
-zipcode_ROW.pack(side= 'left', padx= 5)
+zipcode_ROW.pack()
 
 # > ------ activity preference frame ------
+# NOTE: 
 activityPref_ROW = ttk.Frame(master= input_FRAME)
+activities = ["Restaurant", "Activity", "Dessert"]
 
-activityPref_ROW.pack(side= 'left')
+for i, activity in enumerate(activities):
+    btn = create_toggle_button(activityPref_ROW, activity, activity)
+    btn.grid(row=0, column=i, padx=5, pady=5)
+
+activityPref_ROW.pack()
 
 # > ------ day of week ------
 dayOfWeek_ROW = ttk.Frame(master= input_FRAME)
 
-dayOfWeek_ROW.pack(side= 'left')
+dayOfWeek_ROW.pack()
 
 # > ------ theme ------
 theme_ROW = ttk.Frame(master= input_FRAME)
 
-theme_ROW.pack(side= 'left')
+theme_ROW.pack()
 
 # > ------ generate button ------
 #@TODO: Button can just be linked to input_FRAME
@@ -47,7 +78,7 @@ theme_ROW.pack(side= 'left')
 input_FRAME.pack(side='left')
 
 # ==================| OUTPUT FRAME |==================
-output_FRAME = ttk.Frame(master= window, width=800, height=700, relief="solid")
+output_FRAME = ttk.Frame(master= window, width=800, height=700, relief="ridge")
 
 # ------------------| CONTENT FRAME |-----------------
 content_FRAME = ttk.Frame(master= output_FRAME)
@@ -76,23 +107,23 @@ info_FRAME = ttk.Frame(master= content_FRAME, width=500, height=500 )
 # > ------ activity type display ------
 activityType_ROW = ttk.Frame(master= info_FRAME)
 
-activityType_ROW.pack(side='left')
+activityType_ROW.pack()
 # > ------ company name display ------
 companyName_ROW = ttk.Frame(master= info_FRAME)
 
-companyName_ROW.pack(side='left')
+companyName_ROW.pack()
 # > ------ website link display ------
 websiteLink_ROW = ttk.Frame(master= info_FRAME)
 
-websiteLink_ROW.pack(side='left')
+websiteLink_ROW.pack()
 # > ------ price level display ------
 priceLevel_ROW = ttk.Frame(master= info_FRAME)
 
-priceLevel_ROW.pack(side='left')
+priceLevel_ROW.pack()
 # > ------ top review display ------
 topReview_ROW = ttk.Frame(master= info_FRAME)
 
-topReview_ROW.pack(side='left')
+topReview_ROW.pack()
 
 
 info_FRAME.pack(side= 'right')
