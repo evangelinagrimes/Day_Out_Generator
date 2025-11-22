@@ -76,6 +76,7 @@ for i, activity in enumerate(activities):
 activityPref_ROW.pack()
 
 # > ------ day of week ------
+# NOTE: button values are stored in dayOfWeek_toggle_states
 dayOfWeek_ROW = ttk.Frame(master= input_FRAME)
 dayOfWeek = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
 
@@ -84,6 +85,11 @@ for i, day in enumerate(dayOfWeek):
     btn.grid(row=0, column=i, padx=5, pady=5)
 
 dayOfWeek_ROW.pack()
+
+# > ------ Day / Night ------
+dayNight_ROW = ttk.Frame(master= input_FRAME)
+
+
 
 # > ------ theme ------
 theme_ROW = ttk.Frame(master= input_FRAME)
