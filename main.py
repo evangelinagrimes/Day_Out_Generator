@@ -13,7 +13,7 @@ window.geometry('1200x700')
 # INPUT FIELDS / VARIABLES
 HEADER_FONT = 'Calibri 15'
 SUBHEADING_FONT = 'Calibri 13'
-OUTPUT_FONT = 'Calibri 12'
+PARAGRAPH_FONT = 'Calibri 12'
 STOP_Y_POS = 10
 INFO_SUB_LABEL_POS = (5, 0)
 
@@ -139,6 +139,10 @@ def updateOutputFrame():
     global selectedFirstStop_list   
     global selectedSecondStop_list  
     global selectedFinalStop_list  
+
+    global HEADER_FONT
+    global SUBHEADING_FONT
+    global PARAGRAPH_FONT
 
     # Clear existing content_FRAME widgets
     for widget in content_FRAME.winfo_children():
@@ -306,20 +310,27 @@ def updateOutputFrame():
     activityType_label = ttk.Label(master= activityType_ROW, 
                                 text= "", 
                                 font= SUBHEADING_FONT)
+    activityType_output_label = ttk.Label(master= activityType_ROW,
+                                          text="",
+                                          font= PARAGRAPH_FONT)
     
-    activityType_label.pack()
-
+    activityType_label.pack(side='left')
+    activityType_output_label.pack(side='left')
     activityType_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
     
     # > ------ business name display ------
-    businessName_ROW = ttk.Frame(master= info_FRAME)
-
-    businessName_label = ttk.Label(master= businessName_ROW, 
+    business_ROW = ttk.Frame(master= info_FRAME)
+    
+    business_label = ttk.Label(master= business_ROW, 
                                 text= "", 
                                 font= SUBHEADING_FONT)
+    business_output_label = ttk.Label(master= business_ROW,
+                                          text="",
+                                          font= PARAGRAPH_FONT)
 
-    businessName_label.pack()
-    businessName_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+    business_label.pack(side='left')
+    business_output_label.pack(side='left')
+    business_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
 
     # > ------ address name display ------
     address_ROW = ttk.Frame(master= info_FRAME)
@@ -327,19 +338,22 @@ def updateOutputFrame():
     address_label = ttk.Label(master= address_ROW, 
                                 text= "", 
                                 font= SUBHEADING_FONT)
-
-    address_label.pack()
+    address_output_label = ttk.Label(master= address_ROW,
+                                          text="",
+                                          font= PARAGRAPH_FONT)
+    address_label.pack(side='left')
+    address_output_label.pack(side='left')
     address_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
     
     # > ------ website link display ------
-    websiteLink_ROW = ttk.Frame(master= info_FRAME)
+    website_ROW = ttk.Frame(master= info_FRAME)
 
-    websiteLink_label = ttk.Label(master= websiteLink_ROW, 
+    website_label = ttk.Label(master= website_ROW, 
                                 text= "", 
                                 font= SUBHEADING_FONT)
 
-    websiteLink_label.pack()
-    websiteLink_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+    website_label.pack()
+    website_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
     
     # > ------ price level display ------
     priceLevel_ROW = ttk.Frame(master= info_FRAME)
@@ -377,6 +391,7 @@ def updateOutputFrame():
         selectedTopReview_str = tk.StringVar()
 
         '''
+        # OUTPUT data
         selection = selectedStop_str.get()
         type = selectedType_str.get()
         business = selectedBusiness_str.get()
@@ -386,18 +401,31 @@ def updateOutputFrame():
         review = selectedTopReview_str.get()
 
         if selection: 
+            # Show title
             infoTitle_label.config(text=selection)
-            activityType_label.config(text= type)
-            businessName_label.config(text=business)
-            address_label.config(text=address)
+
+            #Show labels
+            activityType_label.config(text= "Type: ")
+            business_label.config(text="Business: ")
+            address_label.config(text="Address: ")
+            website_label.config(text="Website: ")
+            priceLevel_label.config(text="Price: ")
+            topReview_label.config(text="Top Review: ")
+
+            #Show output
+            activityType_output_label.config(text=type)
+            business_output_label.config(text=business)
+            address_output_label.config(text=address)
+            
+
             
         else:
             # Reset label values
             infoTitle_label.config(text= "Select to see more information")
             activityType_label.config(text= "")
-            businessName_label.config(text= "")
+            business_label.config(text= "")
             address_label.config(text= "")
-            websiteLink_label.config(text= "")
+            website_label.config(text= "")
             priceLevel_label.config(text= "")
             topReview_label.config(text= "")
               
