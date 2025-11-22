@@ -16,6 +16,7 @@ zipcode_int = tk.IntVar()
 activity_toggle_states = {}
 dayOfWeek_toggle_states = {}
 isSetToDay = True
+isThemeActive = True
 
 # HELPER FUNCTIONS
 def create_toggle_button(parent, text, width, height, key, start_state, state_dictionary, ):
@@ -52,14 +53,28 @@ def create_toggle_button(parent, text, width, height, key, start_state, state_di
     
     return btn
 
-def switch(): 
+def switchDayButton(): 
     global isSetToDay
     if isSetToDay: 
         day_button.config(image=night)
+        print("Switched to NIGHT")
     else:
         day_button.config(image=day)
+        print("Switched to DAY")
         
     isSetToDay = not isSetToDay
+
+def switchThemeButton():
+    global isThemeActive
+    if isThemeActive: 
+        theme_button.config(image=theme)
+        print("Switch to RANDOM THEME")
+    else:
+        theme_button.config(image=noTheme)
+        print("Switched to NO THEME")
+        
+    isThemeActive = not isThemeActive
+
 
 # ==================| INPUT FRAME |==================
 input_FRAME = ttk.Frame(master= window, width=400, height=700, relief="ridge")
@@ -97,20 +112,20 @@ for i, day in enumerate(dayOfWeek):
 
 dayOfWeek_ROW.pack()
 
-# > ------ Day / Night ------
+# > ------ day/night AND theme  ------
 dayNight_ROW = ttk.Frame(master= input_FRAME)   
 
 day = PhotoImage(file="assets/switchDAY.png")
 night = PhotoImage(file="assets/switchNIGHT.png")
-day_button = tk.Button(dayNight_ROW, image=day, bd=0, command=switch)
+day_button = tk.Button(dayNight_ROW, image=day, bd=0, command=switchDayButton)
 
-day_button.pack()
+theme = PhotoImage(file="assets/THEME.png")
+noTheme = PhotoImage(file="assets/NO_THEME.png")
+theme_button = tk.Button(dayNight_ROW, image=theme, bd=0, command=switchThemeButton)
+
+day_button.pack(side='left')
+theme_button.pack(side='left')
 dayNight_ROW.pack()
-
-# > ------ theme ------
-theme_ROW = ttk.Frame(master= input_FRAME)
-
-theme_ROW.pack()
 
 # > ------ generate button ------
 #@TODO: Button can just be linked to input_FRAME
