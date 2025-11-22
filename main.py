@@ -276,28 +276,62 @@ def updateOutputFrame():
     activityType_ROW = ttk.Frame(master= info_FRAME)
 
     activityType_label = ttk.Label(master= activityType_ROW, 
-                                text= "Test Default", 
+                                text= "", 
                                 font= SUBHEADING_FONT)
     
     activityType_label.pack()
 
     activityType_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
-    # > ------ company name display ------
-    companyName_ROW = ttk.Frame(master= info_FRAME)
+    
+    # > ------ business name display ------
+    businessName_ROW = ttk.Frame(master= info_FRAME)
 
-    companyName_ROW.pack()
+    businessName_label = ttk.Label(master= businessName_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+
+    businessName_label.pack()
+    businessName_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+
+    # > ------ address name display ------
+    address_ROW = ttk.Frame(master= info_FRAME)
+
+    address_label = ttk.Label(master= address_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+
+    address_label.pack()
+    address_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+    
     # > ------ website link display ------
     websiteLink_ROW = ttk.Frame(master= info_FRAME)
 
-    websiteLink_ROW.pack()
+    websiteLink_label = ttk.Label(master= websiteLink_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+
+    websiteLink_label.pack()
+    websiteLink_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+    
     # > ------ price level display ------
     priceLevel_ROW = ttk.Frame(master= info_FRAME)
 
-    priceLevel_ROW.pack()
+    priceLevel_label = ttk.Label(master= priceLevel_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+
+    priceLevel_label.pack()
+    priceLevel_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+    
     # > ------ top review display ------
     topReview_ROW = ttk.Frame(master= info_FRAME)
 
-    topReview_ROW.pack()
+    topReview_label = ttk.Label(master= topReview_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+
+    topReview_label.pack()
+    topReview_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
 
     def update_info_label(*args):
         '''
@@ -305,16 +339,37 @@ def updateOutputFrame():
         radio button
 
         Needs to be beneath the labels to update
+
+        selectedStop_str = tk.StringVar(value="")
+        selectedType_str = tk.StringVar()
+        selectedBusiness_str = tk.StringVar()
+        selectedAddress_str = tk.StringVar()
+        selectedWebsite_str = tk.StringVar()
+        selectedPrice_str = tk.StringVar()
+        selectedTopReview_str = tk.StringVar()
+
         '''
         selection = selectedStop_str.get()
+        type = selectedType_str.get()
+        business = selectedBusiness_str.get()
+        address = selectedAddress_str.get() 
+        website = selectedWebsite_str.get()
+        price = selectedPrice_str.get()
+        review = selectedTopReview_str.get()
+
         if selection: 
             infoTitle_label.config(text=selection)
             
-            
         else:
-            # Reset values
-            infoTitle_label.config(text="Select to see more information")
-            activityType_label.config(text="")
+            # Reset label values
+            infoTitle_label.config(text= "Select to see more information")
+            activityType_label.config(text= "")
+            businessName_label.config(text= "")
+            address_label.config(text= "")
+            websiteLink_label.config(text= "")
+            priceLevel_label.config(text= "")
+            topReview_label.config(text= "")
+            
 
         
     traceID = selectedStop_str.trace('w', update_info_label)
