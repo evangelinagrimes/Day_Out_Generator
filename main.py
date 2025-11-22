@@ -13,7 +13,7 @@ window.geometry('1200x700')
 HEADER_FONT = 'Calibri 15'
 SUBHEADING_FONT = 'Calibri 13'
 OUTPUT_FONT = 'Calibri 12'
-selectedFirstStop_str = tk.StringVar(value="")
+selectedStop_str = tk.StringVar(value="")
 selectedFirstStop_list = []
 zipcode_int = tk.IntVar()
 activity_toggle_states = {}
@@ -29,13 +29,24 @@ def generate_helper():
     # Update the output frame to display activities
     updateOutputFrame()
 
-def on_radio_select(var_name):
+def on_radio_select_stop():
     '''
-    Updates the given variable to the current state of the radio button
+    Updates the currently selected stop to the current state of the radio button
+    '''
+    global selectedStop_str
+    selected = selectedStop_str.get()
+    print(f"Selected: {selected}")
+        
+
+# def update_info_display(*args):
+#     selection = selectedFirstStop_str.get()
     
-    :param var_name: Radio button variable
-    '''
-    print(f"Selected: {var_name.get()}")
+#     # Update multiple labels or do calculations
+#     response_label.config(text=f"Selected: {selection}")
+#     price_label.config(text=f"Price: ${calculate_price(selection)}")
+#     detail_label.config(text=f"Details: {get_details(selection)}")
+
+# selectedFirstStop_str.trace('w', update_info_display)
 
 def create_toggle_button(parent, text, width, height, key, start_state, state_dictionary, ):
     '''
@@ -94,7 +105,10 @@ def switchThemeButton():
     isThemeActive = not isThemeActive
 
 def updateOutputFrame(): 
-
+    '''
+    Updates the output content frame to display the activities pulled from the 
+    data collected with the Google Places API call
+    '''
     # Clear existing content_FRAME widgets
     for widget in content_FRAME.winfo_children():
         widget.destroy()
@@ -119,13 +133,14 @@ def updateOutputFrame():
         restaurant_label.pack(padx=(0,150))
 
         for i, option_text in enumerate(selectedFirstStop_list):
-            tk.Radiobutton(restSelection_FRAME, 
+            radButt = tk.Radiobutton(restSelection_FRAME, 
                         text=option_text, 
-                        variable=selectedFirstStop_str, 
+                        variable=selectedStop_str, 
                         value=option_text, 
-                        command=lambda v=selectedFirstStop_str: on_radio_select(v)
-                        ).pack(padx=(0, 100))
-            print(f"Current selection: {str(selectedFirstStop_str)}")
+                        command=on_radio_select_stop,
+                        )
+            radButt.pack(padx=(0, 100))
+            print(f"Generating selection... {str(selectedStop_str)}")
 
         restSelection_FRAME.pack()
 
@@ -144,12 +159,17 @@ def updateOutputFrame():
     finalStop_FRAME = ttk.Frame(master= selection_FRAME)
 
     finalStop_FRAME.pack(side= 'top')
-    selection_FRAME.pack(side= 'left')
+    selection_FRAME.pack(side= 'left', padx=(100, 0))
 
     # - - - - - - - - - - | INFO FRAME | - - - - - - - - - 
     info_FRAME = ttk.Frame(master= content_FRAME, width=500, height=550 )
     info_FRAME.pack_propagate(False)
-    #@TODO: Create a title label for this frame, doesn't need to be its own frame
+
+    infoTitle_label = ttk.Label(master= info_FRAME, 
+                                text= "Select to see more information", 
+                                font= HEADER_FONT)
+    
+    infoTitle_label.pack(pady=25)
 
     # > ------ activity type display ------
     activityType_ROW = ttk.Frame(master= info_FRAME)
@@ -172,13 +192,28 @@ def updateOutputFrame():
 
     topReview_ROW.pack()
 
+    def update_info_label(*args):
+        '''
+        Updates the info labels to match the selected
+        radio button
 
+        Needs to be beneath the labels to update
+        '''
+        selection = selectedStop_str.get()
+        if selection: 
+            infoTitle_label.config(text=selection)
+        else:
+            infoTitle_label.config(text="Select to see more information")
+
+        
+    selectedStop_str.trace('w', update_info_label)
     info_FRAME.pack(side= 'right')
 # - - - - - - - - - - - - - - - - - - - -
 
 # ==================| INPUT FRAME |==================
 input_FRAME = ttk.Frame(master= window, width=400, height=700)
-s.configure('TFrame', background='red')
+input_FRAME.pack_propagate(False)
+# s.configure('TFrame', background='red')
 
 # > ------ zipcode frame ------
 zipcode_ROW = ttk.Frame(master= input_FRAME)
@@ -234,11 +269,11 @@ dayNight_ROW.pack()
 generate = PhotoImage(file="assets/GENERATE.png")
 generate_button = tk.Button(master= input_FRAME,  image=generate, bd=0, command=generate_helper)
 
-generate_button.pack(side='bottom', pady=(350, 20))
-input_FRAME.pack(side='left')
+generate_button.pack(side='bottom')
+input_FRAME.pack(side='left', pady=50)
 
 # !#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#
-#           Show AFTER API has been called 
+#        DISPLAYS CONTENT BEFORE API IS CALLED
 # !#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#
 
 # ==================| OUTPUT FRAME |==================
@@ -253,7 +288,7 @@ outputCover_label = ttk.Label(master= content_FRAME, text= "Generate your day ou
 outputCover_label.pack(padx=100, pady= 100)
 
 # @TODO: Add "Make my selection" Button HERE (Content_FRAME)
-content_FRAME.pack(side='top')
+content_FRAME.pack(side='top', pady=(50, 0))
 # ---------------------------------------
 output_FRAME.pack(side='right')
 # =======================================
