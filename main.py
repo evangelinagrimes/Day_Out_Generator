@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage
 from generate_activities import generate_activities
+from Event import *
 
 # ==================| MAIN WINDOW |==================
 window = tk.Tk()
@@ -13,12 +14,25 @@ window.geometry('1200x700')
 HEADER_FONT = 'Calibri 15'
 SUBHEADING_FONT = 'Calibri 13'
 OUTPUT_FONT = 'Calibri 12'
-# INFO_LABEL_POS = (0,150)
+STOP_Y_POS = 10
 INFO_SUB_LABEL_POS = (5, 0)
 
 selectedStop_str = tk.StringVar(value="")
-selectedFirstStop_list = []
+
+event_list = []
+
+selectedType_str = tk.StringVar(value="Default value")
+selectedBusiness_str = tk.StringVar(value="Default value")
+selectedAddress_str = tk.StringVar(value="Default value")
+selectedWebsite_str = tk.StringVar(value="Default value")
+selectedPrice_str = tk.StringVar(value="Default value")
+selectedTopReview_str = tk.StringVar(value="Default value")
 zipcode_int = tk.IntVar()
+
+selectedFirstStop_list = []
+selectedSecondStop_list = []
+selectedFinalStop_list = []
+
 activity_toggle_states = {}
 dayOfWeek_toggle_states = {}
 isSetToDay = True
@@ -28,7 +42,23 @@ traceID = ""
 
 # HELPER FUNCTIONS
 def generate_helper():
+    global selectedFirstStop_list
+    global selectedSecondStop_list
+    global selectedFinalStop_list
     print("Calling Google API...")
+
+    # TEST INPUT DATA
+    event_list.append( 
+        {Event("Restaurant", "RockLovers", "223 Forthcoming St", "https://RockLover.com", "Expensive", "Love this place!"), 
+         Event("Activity", "PartyLovers", "124 AppleBlossom St", "https://PartyLovers.com", "Cheap", "Yeah.. it was ok"),
+         Event("Dessert", "BerriesAndCream", "444 Dairy Way", "https://BerriesAndCream.com", "Medium", "WOOO WOULD TOTALLY GO BACK")
+         })
+    
+    # @TODO: Update with event objects
+    selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
+    selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
+    selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
+    print(f'Updated selected Lists... \nFirst: {str(selectedFirstStop_list)}\nSecond: {str(selectedSecondStop_list)}\nFinal: {str(selectedFinalStop_list)}')
     
     # Update the output frame to display activities
     updateOutputFrame()
@@ -88,6 +118,7 @@ def switchDayButton():
 
 def switchThemeButton():
     global isThemeActive
+
     if isThemeActive: 
         theme_button.config(image=theme)
         # print("Switch to RANDOM THEME")
@@ -104,6 +135,10 @@ def updateOutputFrame():
     '''
     global isSetToDay
     global traceID
+    global activities
+    global selectedFirstStop_list   
+    global selectedSecondStop_list  
+    global selectedFinalStop_list  
 
     # Clear existing content_FRAME widgets
     for widget in content_FRAME.winfo_children():
@@ -112,7 +147,7 @@ def updateOutputFrame():
     try:
         selectedStop_str.trace_remove('write', traceID)
     except:
-        print("Could not remove existing Trace ID")
+        print("             Could not remove existing Trace ID")
 
     # - - - - - - - -  | SELECTION FRAME | - - - - - - - -
     selection_FRAME = ttk.Frame(master= content_FRAME, width=300, height=550, relief="groove")
@@ -120,19 +155,20 @@ def updateOutputFrame():
 
     # > ------ first stop ------
     firstStop_FRAME = ttk.Frame(master= selection_FRAME)
-    firstStop_label = ttk.Label(firstStop_FRAME, text= "First Stop: ", font = HEADER_FONT)
+    firstStop_label = ttk.Label(firstStop_FRAME, text= "FIRST STOP ", font = HEADER_FONT)
     subFirstStop_label = ttk.Label(firstStop_FRAME, text="", font = SUBHEADING_FONT)
 
     firstStopRadioSelection_FRAME = ttk.Frame(master= firstStop_FRAME)
     
-    if isSetToDay: 
+    if isSetToDay and activity_toggle_states["Activity"]: 
         # >> - - - dynamic button selection RESTAURANT- - -
         subFirstStop_label.config(text="Activity")
 
         # @TODO:                vvv   REPLACE WITH GENERATED VALUES    vvv
-        selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
+        # selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+        print(f"First at Enumeration: {str(selectedFirstStop_list)}")
         for i, option_text in enumerate(selectedFirstStop_list):
             radButt = tk.Radiobutton(firstStopRadioSelection_FRAME, 
                         text=option_text, 
@@ -143,7 +179,7 @@ def updateOutputFrame():
             radButt.pack()
             print(f"First Stop: Generating selection ACTIVITY... {str(selectedStop_str)}")
 
-    else: 
+    elif not isSetToDay and activity_toggle_states["Restaurant"]: 
         # >> - - - dynamic button selection ACTIVITY - - -
         subFirstStop_label.config(text="Restaurant")
 
@@ -159,25 +195,28 @@ def updateOutputFrame():
                         )
             radButt.pack()
             print(f"First Stop: Generating selection RESTAURANT ... {str(selectedStop_str)}")
+    else:
+        print(f"                SKIPPED because {activities[0]} or {activities[1]} was false")
+        firstStop_label.config(text= "")
 
     firstStop_label.pack(anchor='w')
     subFirstStop_label.pack()
     firstStopRadioSelection_FRAME.pack()
 
-    firstStop_FRAME.pack(side= 'top')
+    firstStop_FRAME.pack(side= 'top', pady= STOP_Y_POS)
 
     # > ------ second stop ------
     secondStop_FRAME = ttk.Frame(master= selection_FRAME)
-    secondStop_label = ttk.Label(secondStop_FRAME, text= "Second Stop: ", font = HEADER_FONT)
+    secondStop_label = ttk.Label(secondStop_FRAME, text= "SECOND STOP ", font = HEADER_FONT)
     subSecondStop_label = ttk.Label(secondStop_FRAME, text="", font = SUBHEADING_FONT)
 
     secondStopRadioSelection_FRAME = ttk.Frame(master= secondStop_FRAME)
 
-    if isSetToDay: 
+    if isSetToDay and activity_toggle_states["Restaurant"]: 
         subSecondStop_label.config(text="Restaurant")
 
         # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
-        selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
+        # selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         for i, option_text in enumerate(selectedSecondStop_list):
             radButt = tk.Radiobutton(secondStopRadioSelection_FRAME, 
@@ -188,7 +227,7 @@ def updateOutputFrame():
                         )
             radButt.pack()
             print(f"Second Stop: Generating selection RESTAURANT ... {str(selectedStop_str)}")
-    else: 
+    elif not isSetToDay and activity_toggle_states["Activity"]: 
         subSecondStop_label.config(text="Activity")
 
         # @TODO:                vvv    REPLACE WITH GENERATED VALUES     vvv
@@ -204,42 +243,55 @@ def updateOutputFrame():
             radButt.pack()
             print(f"Second Stop: Generating selection ACTIVITY ... {str(selectedStop_str)}")
 
+    else: 
+        print(f"                SKIPPED because {activities[0]} or {activities[1]} was false")
+        secondStop_label.config(text= "")
+
     secondStop_label.pack(anchor='w')
     subSecondStop_label.pack()
     secondStopRadioSelection_FRAME.pack()
     
-    secondStop_FRAME.pack(side= 'top')
+    secondStop_FRAME.pack(side= 'top', pady= STOP_Y_POS)
 
     # > ------ final stop ------
     finalStop_FRAME = ttk.Frame(master= selection_FRAME)
-    finalStop_label = ttk.Label(finalStop_FRAME, text= "Final Stop: ", font = HEADER_FONT)
+    finalStop_label = ttk.Label(finalStop_FRAME, text= "FINAL STOP ", font = HEADER_FONT)
     subFinalStop_label = ttk.Label(finalStop_FRAME, text="Dessert", font = SUBHEADING_FONT)
 
     finalStopRadioSelection_FRAME = ttk.Frame(master= finalStop_FRAME)
 
-    # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
-    selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
-    #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    for i, option_text in enumerate(selectedFinalStop_list):
-        radButt = tk.Radiobutton(finalStopRadioSelection_FRAME, 
-                    text=option_text, 
-                    variable=selectedStop_str, 
-                    value=option_text, 
-                    command=on_radio_select_stop,
-                    )
-        radButt.pack()
-        print(f"Second Stop: Generating selection RESTAURANT ... {str(selectedStop_str)}")
+    if activity_toggle_states["Dessert"]: 
+        # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
+        # selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
+        #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        for i, option_text in enumerate(selectedFinalStop_list):
+            radButt = tk.Radiobutton(finalStopRadioSelection_FRAME, 
+                        text=option_text, 
+                        variable=selectedStop_str, 
+                        value=option_text, 
+                        command=on_radio_select_stop,
+                        )
+            radButt.pack()
+            print(f"Final Stop: Generating selection DESSERT ... {str(selectedStop_str)}")
+    else:
+        print(f"                SKIPPED because {activities[2]} was false")
+        finalStop_label.config(text= "")
+        subFinalStop_label.config(text="")
 
     finalStop_label.pack(anchor='w')
     subFinalStop_label.pack()
     finalStopRadioSelection_FRAME.pack()
 
-    finalStop_FRAME.pack(side= 'top')
+    finalStop_FRAME.pack(side= 'top', pady= STOP_Y_POS)
 
     selection_FRAME.pack(side= 'left')
 
     # - - - - - - - - - - | INFO FRAME | - - - - - - - - - 
-    info_FRAME = ttk.Frame(master= content_FRAME, width=500, height=550 )
+
+    INFO_ROW_Y_SPACING = 5
+    INFO_ROW_X_SPACING = 25
+
+    info_FRAME = ttk.Frame(master= content_FRAME, width=500, height=550, relief="groove")
     info_FRAME.pack_propagate(False)
 
     infoTitle_label = ttk.Label(master= info_FRAME, 
@@ -251,23 +303,63 @@ def updateOutputFrame():
     # > ------ activity type display ------
     activityType_ROW = ttk.Frame(master= info_FRAME)
 
-    activityType_ROW.pack()
-    # > ------ company name display ------
-    companyName_ROW = ttk.Frame(master= info_FRAME)
+    activityType_label = ttk.Label(master= activityType_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+    
+    activityType_label.pack()
 
-    companyName_ROW.pack()
+    activityType_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+    
+    # > ------ business name display ------
+    businessName_ROW = ttk.Frame(master= info_FRAME)
+
+    businessName_label = ttk.Label(master= businessName_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+
+    businessName_label.pack()
+    businessName_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+
+    # > ------ address name display ------
+    address_ROW = ttk.Frame(master= info_FRAME)
+
+    address_label = ttk.Label(master= address_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+
+    address_label.pack()
+    address_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+    
     # > ------ website link display ------
     websiteLink_ROW = ttk.Frame(master= info_FRAME)
 
-    websiteLink_ROW.pack()
+    websiteLink_label = ttk.Label(master= websiteLink_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+
+    websiteLink_label.pack()
+    websiteLink_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+    
     # > ------ price level display ------
     priceLevel_ROW = ttk.Frame(master= info_FRAME)
 
-    priceLevel_ROW.pack()
+    priceLevel_label = ttk.Label(master= priceLevel_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+
+    priceLevel_label.pack()
+    priceLevel_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+    
     # > ------ top review display ------
     topReview_ROW = ttk.Frame(master= info_FRAME)
 
-    topReview_ROW.pack()
+    topReview_label = ttk.Label(master= topReview_ROW, 
+                                text= "", 
+                                font= SUBHEADING_FONT)
+
+    topReview_label.pack()
+    topReview_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
 
     def update_info_label(*args):
         '''
@@ -275,14 +367,40 @@ def updateOutputFrame():
         radio button
 
         Needs to be beneath the labels to update
+
+        selectedStop_str = tk.StringVar(value="")
+        selectedType_str = tk.StringVar()
+        selectedBusiness_str = tk.StringVar()
+        selectedAddress_str = tk.StringVar()
+        selectedWebsite_str = tk.StringVar()
+        selectedPrice_str = tk.StringVar()
+        selectedTopReview_str = tk.StringVar()
+
         '''
         selection = selectedStop_str.get()
+        type = selectedType_str.get()
+        business = selectedBusiness_str.get()
+        address = selectedAddress_str.get() 
+        website = selectedWebsite_str.get()
+        price = selectedPrice_str.get()
+        review = selectedTopReview_str.get()
+
         if selection: 
             infoTitle_label.config(text=selection)
+            activityType_label.config(text= type)
+            businessName_label.config(text=business)
+            address_label.config(text=address)
+            
         else:
-            infoTitle_label.config(text="Select to see more information")
-
-        
+            # Reset label values
+            infoTitle_label.config(text= "Select to see more information")
+            activityType_label.config(text= "")
+            businessName_label.config(text= "")
+            address_label.config(text= "")
+            websiteLink_label.config(text= "")
+            priceLevel_label.config(text= "")
+            topReview_label.config(text= "")
+              
     traceID = selectedStop_str.trace('w', update_info_label)
     info_FRAME.pack(side= 'right')
 # - - - - - - - - - - - - - - - - - - - -
