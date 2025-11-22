@@ -13,29 +13,41 @@ HEADER_SIDE = 'left'
 OUTPUT_FONT = 'Calibri 12'
 zipcode_int = tk.IntVar()
 activity_toggle_states = {}
+dayOfWeek_toggle_states = {}
 
 # HELPER FUNCTIONS
-def create_toggle_button(parent, text, key):
+def create_toggle_button(parent, text, width, height, key, start_state, state_dictionary, ):
     '''
     Creates a toggle button and implements the toggle feature
     
     :param parent: The parent frame the button should be attached to (tk.Frame)
     :param text: The text that appears on the button (string)
+    :param width: The desired width of the button (int)
+    :param height: The desired height of the button (int)
     :param key: The button identifier (string)
+    :param start_state: The state of the button upon create (On/Off) (Boolean)
+    :param state_dictionary: A dictionary that stores the state of each button in the frame (dict)
 
     :return: A button object
     '''
-    activity_toggle_states[key] = True
+    state_dictionary[key] = start_state
     
     def toggle():
-        activity_toggle_states[key] = not activity_toggle_states[key]
-        if activity_toggle_states[key]:
+        state_dictionary[key] = not state_dictionary[key]
+        if state_dictionary[key]:
             btn.config(relief=tk.SUNKEN, bg="darkgrey")
+            print(f"{str(key)} state toggled ON" )
         else:
             btn.config(relief=tk.RAISED, bg="SystemButtonFace")
+            print(f"{str(key)} state toggled OFF" )
     
-    btn = tk.Button(parent, text=text, command=toggle, 
-                    width=10, height=1, relief=tk.SUNKEN, bg="darkgrey")
+    if start_state: 
+        btn = tk.Button(parent, text=text, command=toggle, 
+                    width=width, height=height, relief=tk.SUNKEN, bg="darkgrey")
+    else: 
+        btn = tk.Button(parent, text=text, command=toggle, 
+                    width=width, height=height, relief=tk.RAISED, bg="SystemButtonFace")
+    
     return btn
 
 # ==================| INPUT FRAME |==================
@@ -52,18 +64,24 @@ zipcode_field.pack(side= 'left')
 zipcode_ROW.pack()
 
 # > ------ activity preference frame ------
-# NOTE: 
+# NOTE: button values are stored in activity_toggle_states
+
 activityPref_ROW = ttk.Frame(master= input_FRAME)
 activities = ["Restaurant", "Activity", "Dessert"]
 
 for i, activity in enumerate(activities):
-    btn = create_toggle_button(activityPref_ROW, activity, activity)
+    btn = create_toggle_button(activityPref_ROW, activity, 10, 1, activity, True, activity_toggle_states)
     btn.grid(row=0, column=i, padx=5, pady=5)
 
 activityPref_ROW.pack()
 
 # > ------ day of week ------
 dayOfWeek_ROW = ttk.Frame(master= input_FRAME)
+dayOfWeek = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
+
+for i, day in enumerate(dayOfWeek):
+    btn = create_toggle_button(dayOfWeek_ROW, day, 5, 1, day, False, dayOfWeek_toggle_states)
+    btn.grid(row=0, column=i, padx=5, pady=5)
 
 dayOfWeek_ROW.pack()
 
