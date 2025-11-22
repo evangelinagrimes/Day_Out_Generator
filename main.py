@@ -5,6 +5,7 @@ from generate_activities import generate_activities
 
 # ==================| MAIN WINDOW |==================
 window = tk.Tk()
+s = ttk.Style()
 window.title("Day Out Generator")
 window.geometry('1200x700')
 
@@ -19,6 +20,10 @@ isSetToDay = True
 isThemeActive = True
 
 # HELPER FUNCTIONS
+
+def generate_helper():
+    print("Calling Google API...")
+
 def create_toggle_button(parent, text, width, height, key, start_state, state_dictionary, ):
     '''
     Creates a toggle button and implements the toggle feature
@@ -75,9 +80,9 @@ def switchThemeButton():
         
     isThemeActive = not isThemeActive
 
-
 # ==================| INPUT FRAME |==================
-input_FRAME = ttk.Frame(master= window, width=400, height=700, relief="ridge")
+input_FRAME = ttk.Frame(master= window, width=400, height=700)
+s.configure('TFrame', background='red')
 
 # > ------ zipcode frame ------
 zipcode_ROW = ttk.Frame(master= input_FRAME)
@@ -85,9 +90,11 @@ zipcode_label = ttk.Label(master= zipcode_ROW,
                             text= "ZIPCODE: ", 
                             font= HEADER_FONT)
 zipcode_field = ttk.Entry(master= zipcode_ROW, textvariable= zipcode_int)
+# zipcode_field.insert(0, "Enter text here")  # Set default text
+
 zipcode_label.pack(side= 'left')
 zipcode_field.pack(side= 'left')
-zipcode_ROW.pack()
+zipcode_ROW.pack(pady=(20,0))
 
 # > ------ activity preference frame ------
 # NOTE: button values are stored in activity_toggle_states
@@ -128,35 +135,41 @@ theme_button.pack(side='left')
 dayNight_ROW.pack()
 
 # > ------ generate button ------
-#@TODO: Button can just be linked to input_FRAME
+generate = PhotoImage(file="assets/GENERATE.png")
+generate_button = tk.Button(master= input_FRAME,  image=generate, bd=0, command=generate)
 
+generate_button.pack(side='bottom', pady=(350, 20))
 input_FRAME.pack(side='left')
 
 # ==================| OUTPUT FRAME |==================
-output_FRAME = ttk.Frame(master= window, width=800, height=700, relief="ridge")
+output_FRAME = ttk.Frame(master= window, width=800, height=700)
 
 # ------------------| CONTENT FRAME |-----------------
 content_FRAME = ttk.Frame(master= output_FRAME)
 
 # - - - - - - - -  | SELECTION FRAME | - - - - - - - -
-selection_FRAME = ttk.Frame(master= content_FRAME, width=300, height=500)
+selection_FRAME = ttk.Frame(master= content_FRAME, width=300, height=550)
+selection_FRAME.pack_propagate(False)
 
 # > ------ first stop ------
 firstStop_FRAME = ttk.Frame(master= selection_FRAME)
+first_label = ttk.Label(firstStop_FRAME, text = "First Stop", font = HEADER_FONT)
 
-firstStop_FRAME.pack(side= 'left')
+first_label.pack()
+firstStop_FRAME.pack(side= 'top')
 # > ------ second stop ------
 secondStop_FRAME = ttk.Frame(master= selection_FRAME)
 
-secondStop_FRAME.pack(side= 'left')
+secondStop_FRAME.pack(side= 'top')
 # > ------ final stop ------
 finalStop_FRAME = ttk.Frame(master= selection_FRAME)
 
-finalStop_FRAME.pack(side= 'left')
+finalStop_FRAME.pack(side= 'top')
 selection_FRAME.pack(side= 'left')
 
 # - - - - - - - - - - | INFO FRAME | - - - - - - - - - 
-info_FRAME = ttk.Frame(master= content_FRAME, width=500, height=500 )
+info_FRAME = ttk.Frame(master= content_FRAME, width=500, height=550 )
+info_FRAME.pack_propagate(False)
 #@TODO: Create a title label for this frame, doesn't need to be its own frame
 
 # > ------ activity type display ------
