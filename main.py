@@ -42,7 +42,7 @@ theme_ROW = ttk.Frame(master= input_FRAME)
 theme_ROW.pack(side= 'left')
 
 # > ------ generate button ------
-"""@TODO: Button can just be linked to input_FRAME"""
+#@TODO: Button can just be linked to input_FRAME
 
 input_FRAME.pack(side='left')
 
@@ -71,19 +71,38 @@ selection_FRAME.pack(side= 'left')
 
 # - - - - - - - - - - | INFO FRAME | - - - - - - - - - 
 info_FRAME = ttk.Frame(master= content_FRAME, width=500, height=500 )
-""" @TODO: Create a title label for this frame, doesn't need to be its own frame """
+#@TODO: Create a title label for this frame, doesn't need to be its own frame
+
+# > ------ activity type display ------
+activityType_ROW = ttk.Frame(master= info_FRAME)
+
+activityType_ROW.pack(side='left')
+# > ------ company name display ------
+companyName_ROW = ttk.Frame(master= info_FRAME)
+
+companyName_ROW.pack(side='left')
+# > ------ website link display ------
+websiteLink_ROW = ttk.Frame(master= info_FRAME)
+
+websiteLink_ROW.pack(side='left')
+# > ------ price level display ------
+priceLevel_ROW = ttk.Frame(master= info_FRAME)
+
+priceLevel_ROW.pack(side='left')
+# > ------ top review display ------
+topReview_ROW = ttk.Frame(master= info_FRAME)
+
+topReview_ROW.pack(side='left')
+
 
 info_FRAME.pack(side= 'right')
+# - - - - - - - - - - - - - - - - - - - -
 
-# > ------ type display ------
-# > ------ company name display ------
-# > ------ website link display ------
-# > ------ price level display ------
-# > ------ top review display ------
-
-
+# @TODO: Add "Make my selection" Button HERE (Content_FRAME)
 content_FRAME.pack(side='top')
+# ---------------------------------------
 output_FRAME.pack(side='right')
+# =======================================
 
 # === RUN ===
 window.mainloop()
