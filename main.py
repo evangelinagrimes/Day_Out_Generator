@@ -11,8 +11,10 @@ window.geometry('1200x700')
 
 # INPUT FIELDS / VARIABLES
 HEADER_FONT = 'Calibri 15'
-HEADER_SIDE = 'left'
+SUBHEADING_FONT = 'Calibri 13'
 OUTPUT_FONT = 'Calibri 12'
+selectedFirstStop_str = tk.StringVar(value="")
+selectedFirstStop_list = []
 zipcode_int = tk.IntVar()
 activity_toggle_states = {}
 dayOfWeek_toggle_states = {}
@@ -20,9 +22,16 @@ isSetToDay = True
 isThemeActive = True
 
 # HELPER FUNCTIONS
-
 def generate_helper():
     print("Calling Google API...")
+
+def on_radio_select(var_name):
+    '''
+    Updates the given variable to the current state of the radio button
+    
+    :param var_name: Radio button variable
+    '''
+    print(f"Selected: {var_name.get()}")
 
 def create_toggle_button(parent, text, width, height, key, start_state, state_dictionary, ):
     '''
@@ -136,10 +145,14 @@ dayNight_ROW.pack()
 
 # > ------ generate button ------
 generate = PhotoImage(file="assets/GENERATE.png")
-generate_button = tk.Button(master= input_FRAME,  image=generate, bd=0, command=generate)
+generate_button = tk.Button(master= input_FRAME,  image=generate, bd=0, command=generate_helper)
 
 generate_button.pack(side='bottom', pady=(350, 20))
 input_FRAME.pack(side='left')
+
+# !#!#!#!#!#!#!#!#!#!#!#!#!#!#!# 
+# Show AFTER API has been called 
+# !#!#!#!#!#!#!#!#!#!#!#!#!#!#!#
 
 # ==================| OUTPUT FRAME |==================
 output_FRAME = ttk.Frame(master= window, width=800, height=700)
@@ -153,9 +166,35 @@ selection_FRAME.pack_propagate(False)
 
 # > ------ first stop ------
 firstStop_FRAME = ttk.Frame(master= selection_FRAME)
-first_label = ttk.Label(firstStop_FRAME, text = "First Stop", font = HEADER_FONT)
+firstStop_label = ttk.Label(firstStop_FRAME, text= "First Stop: ", font = HEADER_FONT)
+restaurant_label = ttk.Label(firstStop_FRAME, text= "Restaurant ", font = SUBHEADING_FONT)
 
-first_label.pack()
+if isSetToDay: 
+    # >> - - - dynamic button selection RESTAURANT- - -
+    restSelection_FRAME = ttk.Frame(master= firstStop_FRAME)
+
+    # TODO:                 vvv REPLACE WITH GENERATED VALUES vvv
+    selectedFirstStop_list = ["Option 1", "Option 2", "Option 3"]
+    #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    firstStop_label.pack(padx=(0,200))
+    restaurant_label.pack(padx=(0,150))
+
+    for i, option_text in enumerate(selectedFirstStop_list):
+        tk.Radiobutton(restSelection_FRAME, 
+                    text=option_text, 
+                    variable=selectedFirstStop_str, 
+                    value=option_text, 
+                    command=lambda v=selectedFirstStop_str: on_radio_select(v)
+                    ).pack(padx=(0, 100))
+        print(f"Current selection: {str(selectedFirstStop_str)}")
+
+    restSelection_FRAME.pack()
+
+else: 
+    pass
+    # >> - - - dynamic button selection ACTIVITY - - -
+
+
 firstStop_FRAME.pack(side= 'top')
 # > ------ second stop ------
 secondStop_FRAME = ttk.Frame(master= selection_FRAME)
