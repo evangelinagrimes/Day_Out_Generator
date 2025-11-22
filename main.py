@@ -20,10 +20,14 @@ activity_toggle_states = {}
 dayOfWeek_toggle_states = {}
 isSetToDay = True
 isThemeActive = True
+generateButtonPressed = False
 
 # HELPER FUNCTIONS
 def generate_helper():
     print("Calling Google API...")
+    
+    # Update the output frame to display activities
+    updateOutputFrame()
 
 def on_radio_select(var_name):
     '''
@@ -89,6 +93,89 @@ def switchThemeButton():
         
     isThemeActive = not isThemeActive
 
+def updateOutputFrame(): 
+
+    # Clear existing content_FRAME widgets
+    for widget in content_FRAME.winfo_children():
+        widget.destroy()
+
+    # - - - - - - - -  | SELECTION FRAME | - - - - - - - -
+    selection_FRAME = ttk.Frame(master= content_FRAME, width=300, height=550)
+    selection_FRAME.pack_propagate(False)
+
+    # > ------ first stop ------
+    firstStop_FRAME = ttk.Frame(master= selection_FRAME)
+    firstStop_label = ttk.Label(firstStop_FRAME, text= "First Stop: ", font = HEADER_FONT)
+    restaurant_label = ttk.Label(firstStop_FRAME, text= "Restaurant ", font = SUBHEADING_FONT)
+
+    if isSetToDay: 
+        # >> - - - dynamic button selection RESTAURANT- - -
+        restSelection_FRAME = ttk.Frame(master= firstStop_FRAME)
+
+        # @TODO:                vvv REPLACE WITH GENERATED VALUES vvv
+        selectedFirstStop_list = ["Option 1", "Option 2", "Option 3"]
+        #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        firstStop_label.pack(padx=(0,200))
+        restaurant_label.pack(padx=(0,150))
+
+        for i, option_text in enumerate(selectedFirstStop_list):
+            tk.Radiobutton(restSelection_FRAME, 
+                        text=option_text, 
+                        variable=selectedFirstStop_str, 
+                        value=option_text, 
+                        command=lambda v=selectedFirstStop_str: on_radio_select(v)
+                        ).pack(padx=(0, 100))
+            print(f"Current selection: {str(selectedFirstStop_str)}")
+
+        restSelection_FRAME.pack()
+
+    else: 
+        pass
+        # @TODO: Add radio buttons for Activity (if Day Out)
+        # >> - - - dynamic button selection ACTIVITY - - -
+
+
+    firstStop_FRAME.pack(side= 'top')
+    # > ------ second stop ------
+    secondStop_FRAME = ttk.Frame(master= selection_FRAME)
+
+    secondStop_FRAME.pack(side= 'top')
+    # > ------ final stop ------
+    finalStop_FRAME = ttk.Frame(master= selection_FRAME)
+
+    finalStop_FRAME.pack(side= 'top')
+    selection_FRAME.pack(side= 'left')
+
+    # - - - - - - - - - - | INFO FRAME | - - - - - - - - - 
+    info_FRAME = ttk.Frame(master= content_FRAME, width=500, height=550 )
+    info_FRAME.pack_propagate(False)
+    #@TODO: Create a title label for this frame, doesn't need to be its own frame
+
+    # > ------ activity type display ------
+    activityType_ROW = ttk.Frame(master= info_FRAME)
+
+    activityType_ROW.pack()
+    # > ------ company name display ------
+    companyName_ROW = ttk.Frame(master= info_FRAME)
+
+    companyName_ROW.pack()
+    # > ------ website link display ------
+    websiteLink_ROW = ttk.Frame(master= info_FRAME)
+
+    websiteLink_ROW.pack()
+    # > ------ price level display ------
+    priceLevel_ROW = ttk.Frame(master= info_FRAME)
+
+    priceLevel_ROW.pack()
+    # > ------ top review display ------
+    topReview_ROW = ttk.Frame(master= info_FRAME)
+
+    topReview_ROW.pack()
+
+
+    info_FRAME.pack(side= 'right')
+# - - - - - - - - - - - - - - - - - - - -
+
 # ==================| INPUT FRAME |==================
 input_FRAME = ttk.Frame(master= window, width=400, height=700)
 s.configure('TFrame', background='red')
@@ -150,91 +237,20 @@ generate_button = tk.Button(master= input_FRAME,  image=generate, bd=0, command=
 generate_button.pack(side='bottom', pady=(350, 20))
 input_FRAME.pack(side='left')
 
-# !#!#!#!#!#!#!#!#!#!#!#!#!#!#!# 
-# Show AFTER API has been called 
-# !#!#!#!#!#!#!#!#!#!#!#!#!#!#!#
+# !#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#
+#           Show AFTER API has been called 
+# !#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#
 
 # ==================| OUTPUT FRAME |==================
 output_FRAME = ttk.Frame(master= window, width=800, height=700)
+output_FRAME.pack_propagate(False)
 
 # ------------------| CONTENT FRAME |-----------------
 content_FRAME = ttk.Frame(master= output_FRAME)
 
-# - - - - - - - -  | SELECTION FRAME | - - - - - - - -
-selection_FRAME = ttk.Frame(master= content_FRAME, width=300, height=550)
-selection_FRAME.pack_propagate(False)
-
-# > ------ first stop ------
-firstStop_FRAME = ttk.Frame(master= selection_FRAME)
-firstStop_label = ttk.Label(firstStop_FRAME, text= "First Stop: ", font = HEADER_FONT)
-restaurant_label = ttk.Label(firstStop_FRAME, text= "Restaurant ", font = SUBHEADING_FONT)
-
-if isSetToDay: 
-    # >> - - - dynamic button selection RESTAURANT- - -
-    restSelection_FRAME = ttk.Frame(master= firstStop_FRAME)
-
-    # TODO:                 vvv REPLACE WITH GENERATED VALUES vvv
-    selectedFirstStop_list = ["Option 1", "Option 2", "Option 3"]
-    #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    firstStop_label.pack(padx=(0,200))
-    restaurant_label.pack(padx=(0,150))
-
-    for i, option_text in enumerate(selectedFirstStop_list):
-        tk.Radiobutton(restSelection_FRAME, 
-                    text=option_text, 
-                    variable=selectedFirstStop_str, 
-                    value=option_text, 
-                    command=lambda v=selectedFirstStop_str: on_radio_select(v)
-                    ).pack(padx=(0, 100))
-        print(f"Current selection: {str(selectedFirstStop_str)}")
-
-    restSelection_FRAME.pack()
-
-else: 
-    pass
-    # >> - - - dynamic button selection ACTIVITY - - -
-
-
-firstStop_FRAME.pack(side= 'top')
-# > ------ second stop ------
-secondStop_FRAME = ttk.Frame(master= selection_FRAME)
-
-secondStop_FRAME.pack(side= 'top')
-# > ------ final stop ------
-finalStop_FRAME = ttk.Frame(master= selection_FRAME)
-
-finalStop_FRAME.pack(side= 'top')
-selection_FRAME.pack(side= 'left')
-
-# - - - - - - - - - - | INFO FRAME | - - - - - - - - - 
-info_FRAME = ttk.Frame(master= content_FRAME, width=500, height=550 )
-info_FRAME.pack_propagate(False)
-#@TODO: Create a title label for this frame, doesn't need to be its own frame
-
-# > ------ activity type display ------
-activityType_ROW = ttk.Frame(master= info_FRAME)
-
-activityType_ROW.pack()
-# > ------ company name display ------
-companyName_ROW = ttk.Frame(master= info_FRAME)
-
-companyName_ROW.pack()
-# > ------ website link display ------
-websiteLink_ROW = ttk.Frame(master= info_FRAME)
-
-websiteLink_ROW.pack()
-# > ------ price level display ------
-priceLevel_ROW = ttk.Frame(master= info_FRAME)
-
-priceLevel_ROW.pack()
-# > ------ top review display ------
-topReview_ROW = ttk.Frame(master= info_FRAME)
-
-topReview_ROW.pack()
-
-
-info_FRAME.pack(side= 'right')
-# - - - - - - - - - - - - - - - - - - - -
+# Default OUTPUT frame contents
+outputCover_label = ttk.Label(master= content_FRAME, text= "Generate your day out!", font= "Calibri 25")
+outputCover_label.pack(padx=100, pady= 100)
 
 # @TODO: Add "Make my selection" Button HERE (Content_FRAME)
 content_FRAME.pack(side='top')
