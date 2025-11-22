@@ -120,20 +120,23 @@ def updateOutputFrame():
     # > ------ first stop ------
     firstStop_FRAME = ttk.Frame(master= selection_FRAME)
     firstStop_label = ttk.Label(firstStop_FRAME, text= "First Stop: ", font = HEADER_FONT)
-    restaurant_label = ttk.Label(firstStop_FRAME, text= "Restaurant ", font = SUBHEADING_FONT)
+    stop_label = ttk.Label(firstStop_FRAME, text="", font = SUBHEADING_FONT)
 
+    stopSelection_FRAME = ttk.Frame(master= firstStop_FRAME)
+
+    global isSetToDay
     if isSetToDay: 
         # >> - - - dynamic button selection RESTAURANT- - -
-        restSelection_FRAME = ttk.Frame(master= firstStop_FRAME)
+        stop_label.config(text="Activity")
 
         # @TODO:                vvv REPLACE WITH GENERATED VALUES vvv
-        selectedFirstStop_list = ["Option 1", "Option 2", "Option 3"]
+        selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         firstStop_label.pack(padx=(0,200))
-        restaurant_label.pack(padx=(0,150))
+        stop_label.pack(padx=(0,150))
 
         for i, option_text in enumerate(selectedFirstStop_list):
-            radButt = tk.Radiobutton(restSelection_FRAME, 
+            radButt = tk.Radiobutton(stopSelection_FRAME, 
                         text=option_text, 
                         variable=selectedStop_str, 
                         value=option_text, 
@@ -142,13 +145,27 @@ def updateOutputFrame():
             radButt.pack(padx=(0, 100))
             print(f"Generating selection... {str(selectedStop_str)}")
 
-        restSelection_FRAME.pack()
-
     else: 
-        pass
-        # @TODO: Add radio buttons for Activity (if Day Out)
         # >> - - - dynamic button selection ACTIVITY - - -
+        stop_label.config(text="Restaurant")
 
+        # @TODO:                vvv REPLACE WITH GENERATED VALUES vvv
+        selectedFirstStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
+        #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        firstStop_label.pack(padx=(0,200))
+        stop_label.pack(padx=(0,150))
+
+        for i, option_text in enumerate(selectedFirstStop_list):
+            radButt = tk.Radiobutton(stopSelection_FRAME, 
+                        text=option_text, 
+                        variable=selectedStop_str, 
+                        value=option_text, 
+                        command=on_radio_select_stop,
+                        )
+            radButt.pack(padx=(0, 100))
+            print(f"Generating selection... {str(selectedStop_str)}")
+
+    stopSelection_FRAME.pack()
 
     firstStop_FRAME.pack(side= 'top')
     # > ------ second stop ------
