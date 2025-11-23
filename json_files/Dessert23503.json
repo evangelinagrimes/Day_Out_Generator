@@ -1,15 +1,15 @@
 {
     "places": [
         {
-            "formattedAddress": "4621 Columbus St #100, Virginia Beach, VA 23462",
+            "formattedAddress": "1233 W Olney Rd, Norfolk, VA 23507",
             "location": {
-                "latitude": 36.840571,
-                "longitude": -76.1360722
+                "latitude": 36.864757399999995,
+                "longitude": -76.309709
             },
-            "websiteUri": "https://www.apexentertainment.com/virginia-beach/",
+            "websiteUri": "http://www.bakehouse757.com/",
             "businessStatus": "OPERATIONAL",
             "displayName": {
-                "text": "Apex Entertainment Virginia Beach",
+                "text": "The Bakehouse at Chelsea",
                 "languageCode": "en"
             },
             "currentOpeningHours": {
@@ -18,7 +18,359 @@
                     {
                         "open": {
                             "day": 0,
-                            "hour": 11,
+                            "hour": 8,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 23
+                            }
+                        },
+                        "close": {
+                            "day": 0,
+                            "hour": 20,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 23
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "hour": 8,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        },
+                        "close": {
+                            "day": 2,
+                            "hour": 20,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "hour": 8,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        },
+                        "close": {
+                            "day": 3,
+                            "hour": 20,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "hour": 8,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        },
+                        "close": {
+                            "day": 4,
+                            "hour": 20,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "hour": 8,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        },
+                        "close": {
+                            "day": 5,
+                            "hour": 21,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "hour": 8,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 29
+                            }
+                        },
+                        "close": {
+                            "day": 6,
+                            "hour": 21,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 29
+                            }
+                        }
+                    }
+                ],
+                "weekdayDescriptions": [
+                    "Monday: Closed",
+                    "Tuesday: 8:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
+                    "Wednesday: 8:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
+                    "Thursday: 8:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
+                    "Friday: 8:00\u202fAM\u2009\u2013\u20099:00\u202fPM",
+                    "Saturday: 8:00\u202fAM\u2009\u2013\u20099:00\u202fPM",
+                    "Sunday: 8:00\u202fAM\u2009\u2013\u20098:00\u202fPM"
+                ],
+                "nextOpenTime": "2025-11-23T13:00:00Z"
+            },
+            "priceRange": {
+                "startPrice": {
+                    "currencyCode": "USD",
+                    "units": "10"
+                },
+                "endPrice": {
+                    "currencyCode": "USD",
+                    "units": "20"
+                }
+            },
+            "reviewSummary": {
+                "text": {
+                    "text": "People say this bakery offers delicious bread, pastries, and pizza. They highlight the fresh, high-quality ingredients, and the delicate crust and buttery taste of the pastries. They also like the friendly staff and welcoming vibe.",
+                    "languageCode": "en-US"
+                },
+                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOlB4eHpYRk01emM1ZTg1QUprUXA0NHc%7CCAIQACoqChtyc19oOlB4eHpYRk01emM1ZTg1QUprUXA0NHcSCwiE6LbIBhDApeBE&d=17924085&t=8",
+                "disclosureText": {
+                    "text": "Summarized with Gemini",
+                    "languageCode": "en-US"
+                },
+                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba985d8e4888b1:0xc68ec2fcb0ce55d2!9m1!1b1"
+            }
+        },
+        {
+            "formattedAddress": "19 E Mellen St, Hampton, VA 23663",
+            "location": {
+                "latitude": 37.018265,
+                "longitude": -76.321471
+            },
+            "websiteUri": "http://itsmadefromscratch.com/",
+            "businessStatus": "OPERATIONAL",
+            "displayName": {
+                "text": "Scratch Bakery Cafe",
+                "languageCode": "en"
+            },
+            "currentOpeningHours": {
+                "openNow": false,
+                "periods": [
+                    {
+                        "open": {
+                            "day": 0,
+                            "hour": 10,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 23
+                            }
+                        },
+                        "close": {
+                            "day": 0,
+                            "hour": 20,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 23
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "hour": 10,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        },
+                        "close": {
+                            "day": 2,
+                            "hour": 19,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "hour": 10,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        },
+                        "close": {
+                            "day": 3,
+                            "hour": 19,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "hour": 10,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        },
+                        "close": {
+                            "day": 4,
+                            "hour": 19,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "hour": 10,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        },
+                        "close": {
+                            "day": 5,
+                            "hour": 20,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "hour": 10,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 29
+                            }
+                        },
+                        "close": {
+                            "day": 6,
+                            "hour": 20,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 29
+                            }
+                        }
+                    }
+                ],
+                "weekdayDescriptions": [
+                    "Monday: Closed",
+                    "Tuesday: 10:00\u202fAM\u2009\u2013\u20097:00\u202fPM",
+                    "Wednesday: 10:00\u202fAM\u2009\u2013\u20097:00\u202fPM",
+                    "Thursday: 10:00\u202fAM\u2009\u2013\u20097:00\u202fPM",
+                    "Friday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
+                    "Saturday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
+                    "Sunday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM"
+                ],
+                "nextOpenTime": "2025-11-23T15:00:00Z"
+            },
+            "priceRange": {
+                "startPrice": {
+                    "currencyCode": "USD",
+                    "units": "10"
+                },
+                "endPrice": {
+                    "currencyCode": "USD",
+                    "units": "20"
+                }
+            }
+        },
+        {
+            "formattedAddress": "5109 Colley Ave, Norfolk, VA 23508",
+            "location": {
+                "latitude": 36.889752099999995,
+                "longitude": -76.2954101
+            },
+            "websiteUri": "http://lollyscreamery.com/",
+            "businessStatus": "OPERATIONAL",
+            "displayName": {
+                "text": "Lolly's Creamery",
+                "languageCode": "en"
+            },
+            "currentOpeningHours": {
+                "openNow": false,
+                "periods": [
+                    {
+                        "open": {
+                            "day": 0,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -40,6 +392,199 @@
                     {
                         "open": {
                             "day": 1,
+                            "hour": 15,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 24
+                            }
+                        },
+                        "close": {
+                            "day": 1,
+                            "hour": 21,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 24
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "hour": 15,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        },
+                        "close": {
+                            "day": 2,
+                            "hour": 21,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "hour": 15,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        },
+                        "close": {
+                            "day": 3,
+                            "hour": 21,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "hour": 15,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        },
+                        "close": {
+                            "day": 4,
+                            "hour": 21,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "hour": 12,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        },
+                        "close": {
+                            "day": 5,
+                            "hour": 22,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "hour": 12,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 29
+                            }
+                        },
+                        "close": {
+                            "day": 6,
+                            "hour": 22,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 29
+                            }
+                        }
+                    }
+                ],
+                "weekdayDescriptions": [
+                    "Monday: 3:00\u2009\u2013\u20099:00\u202fPM",
+                    "Tuesday: 3:00\u2009\u2013\u20099:00\u202fPM",
+                    "Wednesday: 3:00\u2009\u2013\u20099:00\u202fPM",
+                    "Thursday: 3:00\u2009\u2013\u20099:00\u202fPM",
+                    "Friday: 12:00\u2009\u2013\u200910:00\u202fPM",
+                    "Saturday: 12:00\u2009\u2013\u200910:00\u202fPM",
+                    "Sunday: 12:00\u2009\u2013\u20099:00\u202fPM"
+                ],
+                "nextOpenTime": "2025-11-23T17:00:00Z"
+            },
+            "reviewSummary": {
+                "text": {
+                    "text": "People say this ice cream shop offers delicious and creamy ice cream with creative flavors. They highlight the fun and unique flavors, such as Mascarpone and Berry, and the delicious waffle cones. They also like the friendly staff and clean, welcoming environment.",
+                    "languageCode": "en-US"
+                },
+                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOmlUMUdPX1p3SGtHUlB0WDg4Xy1jN1E%7CCAIQACorChtyc19oOmlUMUdPX1p3SGtHUlB0WDg4Xy1jN1ESDAjW1JXIBhCIt_SaAQ&d=17924085&t=8",
+                "disclosureText": {
+                    "text": "Summarized with Gemini",
+                    "languageCode": "en-US"
+                },
+                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba993d673430e1:0x71d5ed152a5bc0b1!9m1!1b1"
+            }
+        },
+        {
+            "formattedAddress": "2815 Colonial Ave, Norfolk, VA 23508",
+            "location": {
+                "latitude": 36.8749198,
+                "longitude": -76.2894975
+            },
+            "businessStatus": "OPERATIONAL",
+            "displayName": {
+                "text": "Inside Scoop Cereal Treats & More",
+                "languageCode": "en"
+            },
+            "currentOpeningHours": {
+                "openNow": false,
+                "periods": [
+                    {
+                        "open": {
+                            "day": 0,
+                            "hour": 12,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 23
+                            }
+                        },
+                        "close": {
+                            "day": 0,
+                            "hour": 19,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 23
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 1,
                             "hour": 14,
                             "minute": 0,
                             "date": {
@@ -50,7 +595,7 @@
                         },
                         "close": {
                             "day": 1,
-                            "hour": 22,
+                            "hour": 20,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -72,7 +617,7 @@
                         },
                         "close": {
                             "day": 2,
-                            "hour": 22,
+                            "hour": 20,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -84,7 +629,7 @@
                     {
                         "open": {
                             "day": 3,
-                            "hour": 11,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -94,7 +639,7 @@
                         },
                         "close": {
                             "day": 3,
-                            "hour": 22,
+                            "hour": 17,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -106,7 +651,378 @@
                     {
                         "open": {
                             "day": 5,
-                            "hour": 14,
+                            "hour": 12,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        },
+                        "close": {
+                            "day": 5,
+                            "hour": 20,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "hour": 12,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 29
+                            }
+                        },
+                        "close": {
+                            "day": 6,
+                            "hour": 20,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 29
+                            }
+                        }
+                    }
+                ],
+                "weekdayDescriptions": [
+                    "Monday: 2:00\u2009\u2013\u20098:00\u202fPM",
+                    "Tuesday: 2:00\u2009\u2013\u20098:00\u202fPM",
+                    "Wednesday: 12:00\u2009\u2013\u20095:00\u202fPM",
+                    "Thursday: Closed",
+                    "Friday: 12:00\u2009\u2013\u20098:00\u202fPM",
+                    "Saturday: 12:00\u2009\u2013\u20098:00\u202fPM",
+                    "Sunday: 12:00\u2009\u2013\u20097:00\u202fPM"
+                ],
+                "specialDays": [
+                    {
+                        "date": {
+                            "year": 2025,
+                            "month": 11,
+                            "day": 26
+                        }
+                    },
+                    {
+                        "date": {
+                            "year": 2025,
+                            "month": 11,
+                            "day": 27
+                        }
+                    }
+                ],
+                "nextOpenTime": "2025-11-23T17:00:00Z"
+            },
+            "reviewSummary": {
+                "text": {
+                    "text": "People say this ice cream shop offers delicious shakes, waffles, and ice cream with a wide variety of toppings and cereal mix-ins. They highlight the fun, family-friendly atmosphere and the inexpensive prices. They also like the friendly and helpful staff.",
+                    "languageCode": "en-US"
+                },
+                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOm9BNVlNNDB0UVg4ZVhwZzFQM0J1enc%7CCAIQACorChtyc19oOm9BNVlNNDB0UVg4ZVhwZzFQM0J1encSDAi_2OfEBhD44ZHwAg&d=17924085&t=8",
+                "disclosureText": {
+                    "text": "Summarized with Gemini",
+                    "languageCode": "en-US"
+                },
+                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba99c5892ffa61:0x954166a9c56e3189!9m1!1b1"
+            }
+        },
+        {
+            "formattedAddress": "3527 Tidewater Dr, Norfolk, VA 23509",
+            "location": {
+                "latitude": 36.8856198,
+                "longitude": -76.26108210000001
+            },
+            "websiteUri": "https://www.facebook.com/Naas-bakery-108394009223821/",
+            "businessStatus": "OPERATIONAL",
+            "displayName": {
+                "text": "Naas Bakery",
+                "languageCode": "en"
+            },
+            "currentOpeningHours": {
+                "openNow": false,
+                "periods": [
+                    {
+                        "open": {
+                            "day": 2,
+                            "hour": 6,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        },
+                        "close": {
+                            "day": 2,
+                            "hour": 15,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "hour": 6,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        },
+                        "close": {
+                            "day": 3,
+                            "hour": 15,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "hour": 6,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        },
+                        "close": {
+                            "day": 4,
+                            "hour": 15,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "hour": 6,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        },
+                        "close": {
+                            "day": 5,
+                            "hour": 15,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 6,
+                            "hour": 6,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 29
+                            }
+                        },
+                        "close": {
+                            "day": 6,
+                            "hour": 15,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 29
+                            }
+                        }
+                    }
+                ],
+                "weekdayDescriptions": [
+                    "Monday: Closed",
+                    "Tuesday: 6:00\u202fAM\u2009\u2013\u20093:00\u202fPM",
+                    "Wednesday: 6:00\u202fAM\u2009\u2013\u20093:00\u202fPM",
+                    "Thursday: 6:00\u202fAM\u2009\u2013\u20093:00\u202fPM",
+                    "Friday: 6:00\u202fAM\u2009\u2013\u20093:00\u202fPM",
+                    "Saturday: 6:00\u202fAM\u2009\u2013\u20093:00\u202fPM",
+                    "Sunday: Closed"
+                ],
+                "nextOpenTime": "2025-11-25T11:00:00Z"
+            },
+            "priceRange": {
+                "startPrice": {
+                    "currencyCode": "USD",
+                    "units": "1"
+                },
+                "endPrice": {
+                    "currencyCode": "USD",
+                    "units": "10"
+                }
+            },
+            "reviewSummary": {
+                "text": {
+                    "text": "People say this bakery offers amazing pastries, bread, cakes, donuts, and sweet treats. They highlight the unbelievable prices and epic apple fritters. They also like the friendly and welcoming staff.",
+                    "languageCode": "en-US"
+                },
+                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOnJ5SHBFR01zN2JzajJIVUFLUmN0WWc%7CCAIQACoqChtyc19oOnJ5SHBFR01zN2JzajJIVUFLUmN0WWcSCwiE6LbIBhDApeBE&d=17924085&t=8",
+                "disclosureText": {
+                    "text": "Summarized with Gemini",
+                    "languageCode": "en-US"
+                },
+                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba977a72078cf5:0x5feb16c572b508c9!9m1!1b1"
+            }
+        },
+        {
+            "formattedAddress": "4314 Monarch Way, Norfolk, VA 23508",
+            "location": {
+                "latitude": 36.8839696,
+                "longitude": -76.3000709
+            },
+            "websiteUri": "https://insomniacookies.com/",
+            "businessStatus": "OPERATIONAL",
+            "displayName": {
+                "text": "Insomnia Cookies",
+                "languageCode": "en"
+            },
+            "currentOpeningHours": {
+                "openNow": false,
+                "periods": [
+                    {
+                        "open": {
+                            "day": 0,
+                            "hour": 0,
+                            "minute": 0,
+                            "truncated": true,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 23
+                            }
+                        },
+                        "close": {
+                            "day": 0,
+                            "hour": 3,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 23
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 0,
+                            "hour": 12,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 23
+                            }
+                        },
+                        "close": {
+                            "day": 1,
+                            "hour": 1,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 24
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 1,
+                            "hour": 11,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 24
+                            }
+                        },
+                        "close": {
+                            "day": 2,
+                            "hour": 1,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 2,
+                            "hour": 11,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        },
+                        "close": {
+                            "day": 3,
+                            "hour": 1,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "hour": 11,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        },
+                        "close": {
+                            "day": 4,
+                            "hour": 1,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "hour": 11,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -116,7 +1032,7 @@
                         },
                         "close": {
                             "day": 6,
-                            "hour": 0,
+                            "hour": 3,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -128,7 +1044,7 @@
                     {
                         "open": {
                             "day": 6,
-                            "hour": 11,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -150,212 +1066,48 @@
                     }
                 ],
                 "weekdayDescriptions": [
-                    "Monday: 2:00\u2009\u2013\u200910:00\u202fPM",
-                    "Tuesday: 2:00\u2009\u2013\u200910:00\u202fPM",
-                    "Wednesday: 11:00\u202fAM\u2009\u2013\u200910:00\u202fPM",
+                    "Monday: 11:00\u202fAM\u2009\u2013\u20091:00\u202fAM",
+                    "Tuesday: 11:00\u202fAM\u2009\u2013\u20091:00\u202fAM",
+                    "Wednesday: 11:00\u202fAM\u2009\u2013\u20091:00\u202fAM",
                     "Thursday: Closed",
-                    "Friday: 2:00\u202fPM\u2009\u2013\u200912:00\u202fAM",
-                    "Saturday: 11:00\u202fAM\u2009\u2013\u200912:00\u202fAM",
-                    "Sunday: 11:00\u202fAM\u2009\u2013\u20099:00\u202fPM"
-                ],
-                "nextOpenTime": "2025-11-23T16:00:00Z"
-            },
-            "reviewSummary": {
-                "text": {
-                    "text": "People say this amusement center offers a wide variety of attractions, including go-karts, bowling, laser tag, mini golf, axe throwing, and an arcade. They also highlight the fun vibe, the attentive and friendly staff, and the clean facilities.\n\nOther reviews mention the wait times can be long.",
-                    "languageCode": "en-US"
-                },
-                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOjBsQ3dZY1RkYWt3UzNEbW1qNXU3Znc%7CCAIQACorChtyc19oOjBsQ3dZY1RkYWt3UzNEbW1qNXU3ZncSDAi_2OfEBhD44ZHwAg&d=17924085&t=8",
-                "disclosureText": {
-                    "text": "Summarized with Gemini",
-                    "languageCode": "en-US"
-                },
-                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba958e29e17859:0xd67633a9ee2eb422!9m1!1b1"
-            }
-        },
-        {
-            "formattedAddress": "801 General Booth Blvd, Virginia Beach, VA 23451",
-            "location": {
-                "latitude": 36.815515999999995,
-                "longitude": -75.9890519
-            },
-            "websiteUri": "https://myadventurepark.com/location/virginia-beach-va/",
-            "businessStatus": "OPERATIONAL",
-            "displayName": {
-                "text": "The Adventure Park at Virginia Aquarium",
-                "languageCode": "en"
-            },
-            "currentOpeningHours": {
-                "openNow": false,
-                "periods": [
-                    {
-                        "open": {
-                            "day": 0,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        },
-                        "close": {
-                            "day": 0,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 1,
-                            "hour": 13,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        },
-                        "close": {
-                            "day": 1,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 3,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        },
-                        "close": {
-                            "day": 3,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 5,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        },
-                        "close": {
-                            "day": 5,
-                            "hour": 18,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 6,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        },
-                        "close": {
-                            "day": 6,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        }
-                    }
-                ],
-                "weekdayDescriptions": [
-                    "Monday: 1:00\u2009\u2013\u20095:00\u202fPM",
-                    "Tuesday: Closed",
-                    "Wednesday: 10:00\u202fAM\u2009\u2013\u20095:00\u202fPM",
-                    "Thursday: Closed",
-                    "Friday: 10:00\u202fAM\u2009\u2013\u20096:00\u202fPM",
-                    "Saturday: 10:00\u202fAM\u2009\u2013\u20095:00\u202fPM",
-                    "Sunday: 10:00\u202fAM\u2009\u2013\u20095:00\u202fPM"
+                    "Friday: 11:00\u202fAM\u2009\u2013\u20093:00\u202fAM",
+                    "Saturday: 12:00\u202fPM\u2009\u2013\u20093:00\u202fAM",
+                    "Sunday: 12:00\u202fPM\u2009\u2013\u20091:00\u202fAM"
                 ],
                 "specialDays": [
                     {
                         "date": {
                             "year": 2025,
                             "month": 11,
-                            "day": 24
-                        }
-                    },
-                    {
-                        "date": {
-                            "year": 2025,
-                            "month": 11,
-                            "day": 26
-                        }
-                    },
-                    {
-                        "date": {
-                            "year": 2025,
-                            "month": 11,
-                            "day": 28
+                            "day": 27
                         }
                     }
                 ],
-                "nextOpenTime": "2025-11-23T15:00:00Z"
+                "nextOpenTime": "2025-11-23T17:00:00Z"
             },
             "reviewSummary": {
                 "text": {
-                    "text": "People say this adventure sports center offers a variety of challenging ropes courses and fun zip lines, with different difficulty levels suitable for kids and adults. They highlight the well-maintained facilities, smooth management, and the innovative harness system that ensures safety. They also like the friendly, helpful, and supportive staff. ",
+                    "text": "People say this dessert shop offers delicious cookies, including classic, deluxe, and vegan options. They also highlight the warm, fresh-baked cookies and the fast service.\n\nOther reviews mention the cookies can be small.",
                     "languageCode": "en-US"
                 },
-                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOklOVWhKTnZfc2FRSVNZcXZ6bERxa3c%7CCAIQACoqChtyc19oOklOVWhKTnZfc2FRSVNZcXZ6bERxa3cSCwiE6LbIBhDApeBE&d=17924085&t=8",
+                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOmpKU1VPU1BwMVhiRWxmbTNoWC1xeXc%7CCAIQACorChtyc19oOmpKU1VPU1BwMVhiRWxmbTNoWC1xeXcSDAi_2OfEBhD44ZHwAg&d=17924085&t=8",
                 "disclosureText": {
                     "text": "Summarized with Gemini",
                     "languageCode": "en-US"
                 },
-                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89bae9f9dba65c25:0x9ece849987351a1d!9m1!1b1"
+                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba984b558dd47f:0xa382b3277c5af522!9m1!1b1"
             }
         },
         {
-            "formattedAddress": "2720 N Mall Dr, Virginia Beach, VA 23452",
+            "formattedAddress": "528 Newtown Rd, Virginia Beach, VA 23462",
             "location": {
-                "latitude": 36.820940799999995,
-                "longitude": -76.0697976
+                "latitude": 36.85725130000001,
+                "longitude": -76.17633610000001
             },
-            "websiteUri": "https://surgefun.com/locations/virginiabeach/",
+            "websiteUri": "https://www.deliciasicecream.com/",
             "businessStatus": "OPERATIONAL",
             "displayName": {
-                "text": "Surge Adventure Park",
+                "text": "Delicias Ice Cream Factory",
                 "languageCode": "en"
             },
             "currentOpeningHours": {
@@ -374,7 +1126,7 @@
                         },
                         "close": {
                             "day": 0,
-                            "hour": 20,
+                            "hour": 22,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -385,8 +1137,30 @@
                     },
                     {
                         "open": {
+                            "day": 1,
+                            "hour": 12,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 24
+                            }
+                        },
+                        "close": {
+                            "day": 1,
+                            "hour": 22,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 24
+                            }
+                        }
+                    },
+                    {
+                        "open": {
                             "day": 2,
-                            "hour": 11,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -396,7 +1170,7 @@
                         },
                         "close": {
                             "day": 2,
-                            "hour": 20,
+                            "hour": 22,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -408,7 +1182,7 @@
                     {
                         "open": {
                             "day": 3,
-                            "hour": 11,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -418,19 +1192,41 @@
                         },
                         "close": {
                             "day": 3,
-                            "hour": 20,
+                            "hour": 22,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
                                 "month": 11,
                                 "day": 26
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "hour": 12,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        },
+                        "close": {
+                            "day": 4,
+                            "hour": 22,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
                             }
                         }
                     },
                     {
                         "open": {
                             "day": 5,
-                            "hour": 11,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -440,7 +1236,7 @@
                         },
                         "close": {
                             "day": 5,
-                            "hour": 20,
+                            "hour": 22,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -452,7 +1248,7 @@
                     {
                         "open": {
                             "day": 6,
-                            "hour": 9,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -473,55 +1269,39 @@
                     }
                 ],
                 "weekdayDescriptions": [
-                    "Monday: Closed",
-                    "Tuesday: 11:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Wednesday: 11:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Thursday: Closed",
-                    "Friday: 11:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Saturday: 9:00\u202fAM\u2009\u2013\u200910:00\u202fPM",
-                    "Sunday: 12:00\u2009\u2013\u20098:00\u202fPM"
-                ],
-                "specialDays": [
-                    {
-                        "date": {
-                            "year": 2025,
-                            "month": 11,
-                            "day": 27
-                        }
-                    },
-                    {
-                        "date": {
-                            "year": 2025,
-                            "month": 11,
-                            "day": 28
-                        }
-                    }
+                    "Monday: 12:00\u2009\u2013\u200910:00\u202fPM",
+                    "Tuesday: 12:00\u2009\u2013\u200910:00\u202fPM",
+                    "Wednesday: 12:00\u2009\u2013\u200910:00\u202fPM",
+                    "Thursday: 12:00\u2009\u2013\u200910:00\u202fPM",
+                    "Friday: 12:00\u2009\u2013\u200910:00\u202fPM",
+                    "Saturday: 12:00\u2009\u2013\u200910:00\u202fPM",
+                    "Sunday: 12:00\u2009\u2013\u200910:00\u202fPM"
                 ],
                 "nextOpenTime": "2025-11-23T17:00:00Z"
             },
             "reviewSummary": {
                 "text": {
-                    "text": "People say this amusement center offers a wide variety of fun activities, including trampolines, a toddler zone, and a zip line. They also highlight the spacious layout, the dedicated toddler area, and the fair waiver.\n\nSome reviews mention the arcade games can be broken.",
+                    "text": "People say this ice cream shop offers a wide selection of ice cream flavors, frozen treats, and Mexican snacks, including churros, mangonadas, and bionicos. They highlight the fun, inviting, and colorful atmosphere, and the friendly and helpful staff. They also like the clean and spacious location.",
                     "languageCode": "en-US"
                 },
-                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOmo2ZlNNajBpaHNyQ201MGJhb2xoSVE%7CCAIQACoqChtyc19oOmo2ZlNNajBpaHNyQ201MGJhb2xoSVESCwiE6LbIBhDApeBE&d=17924085&t=8",
+                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOjNYUWFMaE9EYXMzVzJ5OWt2S0tYaFE%7CCAIQACoqChtyc19oOjNYUWFMaE9EYXMzVzJ5OWt2S0tYaFESCwiE6LbIBhDApeBE&d=17924085&t=8",
                 "disclosureText": {
                     "text": "Summarized with Gemini",
                     "languageCode": "en-US"
                 },
-                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89baeb6b292e62cb:0x726c8a6d1ecbc737!9m1!1b1"
+                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba95ceff737173:0xbdcd273eb69a9ad7!9m1!1b1"
             }
         },
         {
-            "formattedAddress": "3852 Virginia Beach Blvd, Virginia Beach, VA 23452",
+            "formattedAddress": "1510 Colley Ave, Norfolk, VA 23517",
             "location": {
-                "latitude": 36.840834300000004,
-                "longitude": -76.1088884
+                "latitude": 36.8682978,
+                "longitude": -76.29751139999999
             },
-            "websiteUri": "https://www.breakoutgames.com/virginia-beach/bookings?utm_source=google&utm_medium=organic&utm_campaign=gmb-virginia-beach",
+            "websiteUri": "https://www.sfnorfolk.com/",
             "businessStatus": "OPERATIONAL",
             "displayName": {
-                "text": "Breakout Games",
+                "text": "Strawberry Fields Smoothies & Gelato",
                 "languageCode": "en"
             },
             "currentOpeningHours": {
@@ -530,7 +1310,7 @@
                     {
                         "open": {
                             "day": 0,
-                            "hour": 10,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -540,7 +1320,7 @@
                         },
                         "close": {
                             "day": 0,
-                            "hour": 23,
+                            "hour": 21,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -552,7 +1332,7 @@
                     {
                         "open": {
                             "day": 1,
-                            "hour": 10,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -562,7 +1342,7 @@
                         },
                         "close": {
                             "day": 1,
-                            "hour": 23,
+                            "hour": 21,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -574,7 +1354,7 @@
                     {
                         "open": {
                             "day": 2,
-                            "hour": 10,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -584,7 +1364,7 @@
                         },
                         "close": {
                             "day": 2,
-                            "hour": 23,
+                            "hour": 21,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -596,7 +1376,7 @@
                     {
                         "open": {
                             "day": 3,
-                            "hour": 10,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -606,7 +1386,7 @@
                         },
                         "close": {
                             "day": 3,
-                            "hour": 23,
+                            "hour": 21,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -617,8 +1397,30 @@
                     },
                     {
                         "open": {
+                            "day": 4,
+                            "hour": 12,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        },
+                        "close": {
+                            "day": 4,
+                            "hour": 21,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        }
+                    },
+                    {
+                        "open": {
                             "day": 5,
-                            "hour": 10,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -628,7 +1430,7 @@
                         },
                         "close": {
                             "day": 5,
-                            "hour": 23,
+                            "hour": 22,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -640,7 +1442,7 @@
                     {
                         "open": {
                             "day": 6,
-                            "hour": 10,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -650,7 +1452,7 @@
                         },
                         "close": {
                             "day": 6,
-                            "hour": 23,
+                            "hour": 22,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -661,48 +1463,39 @@
                     }
                 ],
                 "weekdayDescriptions": [
-                    "Monday: 10:00\u202fAM\u2009\u2013\u200911:00\u202fPM",
-                    "Tuesday: 10:00\u202fAM\u2009\u2013\u200911:00\u202fPM",
-                    "Wednesday: 10:00\u202fAM\u2009\u2013\u200911:00\u202fPM",
-                    "Thursday: Closed",
-                    "Friday: 10:00\u202fAM\u2009\u2013\u200911:00\u202fPM",
-                    "Saturday: 10:00\u202fAM\u2009\u2013\u200911:00\u202fPM",
-                    "Sunday: 10:00\u202fAM\u2009\u2013\u200911:00\u202fPM"
+                    "Monday: 12:00\u2009\u2013\u20099:00\u202fPM",
+                    "Tuesday: 12:00\u2009\u2013\u20099:00\u202fPM",
+                    "Wednesday: 12:00\u2009\u2013\u20099:00\u202fPM",
+                    "Thursday: 12:00\u2009\u2013\u20099:00\u202fPM",
+                    "Friday: 12:00\u2009\u2013\u200910:00\u202fPM",
+                    "Saturday: 12:00\u2009\u2013\u200910:00\u202fPM",
+                    "Sunday: 12:00\u2009\u2013\u20099:00\u202fPM"
                 ],
-                "specialDays": [
-                    {
-                        "date": {
-                            "year": 2025,
-                            "month": 11,
-                            "day": 27
-                        }
-                    }
-                ],
-                "nextOpenTime": "2025-11-23T15:00:00Z"
+                "nextOpenTime": "2025-11-23T17:00:00Z"
             },
             "reviewSummary": {
                 "text": {
-                    "text": "People say this escape room center offers a variety of challenging and fun escape rooms, including Runaway Train, Mystery Mansion, and Museum Heist. They highlight the immersive themes, creative puzzles, and the enjoyable and rewarding experience. They also like the friendly, helpful, and enthusiastic staff, and the high-energy vibe.",
+                    "text": "People say this ice cream shop offers creamy gelato, fresh fruit smoothies, and unique flavors like Captain Crunch and Banana Pudding. They highlight the fair prices, the cozy and inviting atmosphere, and the friendly, attentive staff. They also like the rotating menu and the option to purchase pints.",
                     "languageCode": "en-US"
                 },
-                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOmVGRTg3MzQ0OWgxM2d5enZvUkQ1TGc%7CCAIQACorChtyc19oOmVGRTg3MzQ0OWgxM2d5enZvUkQ1TGcSDAjW1JXIBhCIt_SaAQ&d=17924085&t=8",
+                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOmJPd216Zi1QSVRSRXFJU1lCMWtBNWc%7CCAIQACorChtyc19oOmJPd216Zi1QSVRSRXFJU1lCMWtBNWcSDAi_2OfEBhD44ZHwAg&d=17924085&t=8",
                 "disclosureText": {
                     "text": "Summarized with Gemini",
                     "languageCode": "en-US"
                 },
-                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba953ffe526e6b:0xaf4496f4dadb371e!9m1!1b1"
+                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba9846d254591d:0x15b1284451bde4a7!9m1!1b1"
             }
         },
         {
-            "formattedAddress": "4318 Holland Rd, Virginia Beach, VA 23452",
+            "formattedAddress": "1619 Colley Ave, Norfolk, VA 23517",
             "location": {
-                "latitude": 36.821323299999996,
-                "longitude": -76.1192855
+                "latitude": 36.869016699999996,
+                "longitude": -76.29746109999999
             },
-            "websiteUri": "https://funvilleplayground.com/",
+            "websiteUri": "http://www.ilovetheskinnydip.com/",
             "businessStatus": "OPERATIONAL",
             "displayName": {
-                "text": "FunVille Playground and Cafe",
+                "text": "The Skinny Dip Frozen Yogurt Bar",
                 "languageCode": "en"
             },
             "currentOpeningHours": {
@@ -711,7 +1504,7 @@
                     {
                         "open": {
                             "day": 0,
-                            "hour": 10,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -721,7 +1514,7 @@
                         },
                         "close": {
                             "day": 0,
-                            "hour": 20,
+                            "hour": 21,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -733,7 +1526,7 @@
                     {
                         "open": {
                             "day": 1,
-                            "hour": 15,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -743,7 +1536,7 @@
                         },
                         "close": {
                             "day": 1,
-                            "hour": 20,
+                            "hour": 21,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -755,7 +1548,7 @@
                     {
                         "open": {
                             "day": 2,
-                            "hour": 15,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -765,7 +1558,7 @@
                         },
                         "close": {
                             "day": 2,
-                            "hour": 20,
+                            "hour": 21,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -777,7 +1570,7 @@
                     {
                         "open": {
                             "day": 3,
-                            "hour": 15,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -787,7 +1580,7 @@
                         },
                         "close": {
                             "day": 3,
-                            "hour": 20,
+                            "hour": 21,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -799,7 +1592,7 @@
                     {
                         "open": {
                             "day": 4,
-                            "hour": 15,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -809,7 +1602,7 @@
                         },
                         "close": {
                             "day": 4,
-                            "hour": 20,
+                            "hour": 21,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -821,7 +1614,7 @@
                     {
                         "open": {
                             "day": 5,
-                            "hour": 15,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -831,8 +1624,8 @@
                         },
                         "close": {
                             "day": 5,
-                            "hour": 20,
-                            "minute": 0,
+                            "hour": 21,
+                            "minute": 30,
                             "date": {
                                 "year": 2025,
                                 "month": 11,
@@ -843,7 +1636,7 @@
                     {
                         "open": {
                             "day": 6,
-                            "hour": 10,
+                            "hour": 12,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -853,8 +1646,8 @@
                         },
                         "close": {
                             "day": 6,
-                            "hour": 20,
-                            "minute": 0,
+                            "hour": 21,
+                            "minute": 30,
                             "date": {
                                 "year": 2025,
                                 "month": 11,
@@ -864,27 +1657,27 @@
                     }
                 ],
                 "weekdayDescriptions": [
-                    "Monday: 3:00\u2009\u2013\u20098:00\u202fPM",
-                    "Tuesday: 3:00\u2009\u2013\u20098:00\u202fPM",
-                    "Wednesday: 3:00\u2009\u2013\u20098:00\u202fPM",
-                    "Thursday: 3:00\u2009\u2013\u20098:00\u202fPM",
-                    "Friday: 3:00\u2009\u2013\u20098:00\u202fPM",
-                    "Saturday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Sunday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM"
+                    "Monday: 12:00\u2009\u2013\u20099:00\u202fPM",
+                    "Tuesday: 12:00\u2009\u2013\u20099:00\u202fPM",
+                    "Wednesday: 12:00\u2009\u2013\u20099:00\u202fPM",
+                    "Thursday: 12:00\u2009\u2013\u20099:00\u202fPM",
+                    "Friday: 12:00\u2009\u2013\u20099:30\u202fPM",
+                    "Saturday: 12:00\u2009\u2013\u20099:30\u202fPM",
+                    "Sunday: 12:00\u2009\u2013\u20099:00\u202fPM"
                 ],
-                "nextOpenTime": "2025-11-23T15:00:00Z"
+                "nextOpenTime": "2025-11-23T17:00:00Z"
             }
         },
         {
-            "formattedAddress": "2388 London Bridge Rd, Virginia Beach, VA 23456",
+            "formattedAddress": "5360 Robin Hood Rd, Norfolk, VA 23513",
             "location": {
-                "latitude": 36.773019399999995,
-                "longitude": -76.0222248
+                "latitude": 36.8806425,
+                "longitude": -76.2210032
             },
-            "websiteUri": "https://www.huntclubfarm.com/",
+            "websiteUri": "http://www.blackdogcatering.com/",
             "businessStatus": "OPERATIONAL",
             "displayName": {
-                "text": "Hunt Club Farm",
+                "text": "The Blackdog Cafe",
                 "languageCode": "en"
             },
             "currentOpeningHours": {
@@ -892,41 +1685,19 @@
                 "periods": [
                     {
                         "open": {
-                            "day": 0,
+                            "day": 1,
                             "hour": 9,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
                                 "month": 11,
-                                "day": 23
-                            }
-                        },
-                        "close": {
-                            "day": 0,
-                            "hour": 20,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 1,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
                                 "day": 24
                             }
                         },
                         "close": {
                             "day": 1,
-                            "hour": 20,
-                            "minute": 0,
+                            "hour": 15,
+                            "minute": 30,
                             "date": {
                                 "year": 2025,
                                 "month": 11,
@@ -937,148 +1708,136 @@
                     {
                         "open": {
                             "day": 2,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 25
-                            }
-                        },
-                        "close": {
-                            "day": 2,
-                            "hour": 20,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 25
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 3,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        },
-                        "close": {
-                            "day": 3,
-                            "hour": 20,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 4,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 27
-                            }
-                        },
-                        "close": {
-                            "day": 4,
-                            "hour": 20,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 27
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 5,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        },
-                        "close": {
-                            "day": 5,
-                            "hour": 20,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 6,
                             "hour": 9,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
                                 "month": 11,
-                                "day": 29
+                                "day": 25
                             }
                         },
                         "close": {
-                            "day": 6,
-                            "hour": 20,
+                            "day": 2,
+                            "hour": 15,
+                            "minute": 30,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 25
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 3,
+                            "hour": 9,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
                                 "month": 11,
-                                "day": 29
+                                "day": 26
+                            }
+                        },
+                        "close": {
+                            "day": 3,
+                            "hour": 15,
+                            "minute": 30,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 26
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 4,
+                            "hour": 9,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        },
+                        "close": {
+                            "day": 4,
+                            "hour": 15,
+                            "minute": 30,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 27
+                            }
+                        }
+                    },
+                    {
+                        "open": {
+                            "day": 5,
+                            "hour": 9,
+                            "minute": 0,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
+                            }
+                        },
+                        "close": {
+                            "day": 5,
+                            "hour": 15,
+                            "minute": 30,
+                            "date": {
+                                "year": 2025,
+                                "month": 11,
+                                "day": 28
                             }
                         }
                     }
                 ],
                 "weekdayDescriptions": [
-                    "Monday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Tuesday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Wednesday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Thursday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Friday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Saturday: 9:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Sunday: 9:00\u202fAM\u2009\u2013\u20098:00\u202fPM"
+                    "Monday: 9:00\u202fAM\u2009\u2013\u20093:30\u202fPM",
+                    "Tuesday: 9:00\u202fAM\u2009\u2013\u20093:30\u202fPM",
+                    "Wednesday: 9:00\u202fAM\u2009\u2013\u20093:30\u202fPM",
+                    "Thursday: 9:00\u202fAM\u2009\u2013\u20093:30\u202fPM",
+                    "Friday: 9:00\u202fAM\u2009\u2013\u20093:30\u202fPM",
+                    "Saturday: Closed",
+                    "Sunday: Closed"
                 ],
-                "nextOpenTime": "2025-11-23T14:00:00Z"
+                "nextOpenTime": "2025-11-24T14:00:00Z"
+            },
+            "priceRange": {
+                "startPrice": {
+                    "currencyCode": "USD",
+                    "units": "10"
+                },
+                "endPrice": {
+                    "currencyCode": "USD",
+                    "units": "20"
+                }
             },
             "reviewSummary": {
                 "text": {
-                    "text": "Visitors say this children's farm offers a variety of activities, including hay rides, a petting zoo with goats, chickens, and parakeets, a tree house, and a tree walk. They also highlight the friendly staff and the well-maintained, clean facilities.",
+                    "text": "People say this American restaurant serves delicious homemade sandwiches, salads, sides, and drinks. They highlight the generous portions, eclectic vibe, and friendly staff. They also like the cozy atmosphere.",
                     "languageCode": "en-US"
                 },
-                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOml4SHVjZVNpb1Z3c3dxRE54NHlyRHc%7CCAIQACoqChtyc19oOml4SHVjZVNpb1Z3c3dxRE54NHlyRHcSCwiv3Y7BBhDIqv91&d=17924085&t=8",
+                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOkhtbThpejBzc3pGNUVzb1d3NGZQeUE%7CCAIQACoqChtyc19oOkhtbThpejBzc3pGNUVzb1d3NGZQeUESCwiE6LbIBhDApeBE&d=17924085&t=8",
                 "disclosureText": {
                     "text": "Summarized with Gemini",
                     "languageCode": "en-US"
                 },
-                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89bac1a3971f030b:0x279f223ebcc6787!9m1!1b1"
+                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba96fc236f8f47:0x47a6bd85f1eff0a9!9m1!1b1"
             }
         },
         {
-            "formattedAddress": "600 S Lynnhaven Rd # 100, Virginia Beach, VA 23452",
+            "formattedAddress": "520 W 21st St Ste C, Norfolk, VA 23517",
             "location": {
-                "latitude": 36.820618499999995,
-                "longitude": -76.0749969
+                "latitude": 36.8702075,
+                "longitude": -76.29291479999999
             },
-            "websiteUri": "https://www.extremeescapesvb.com/",
+            "websiteUri": "https://www.coldstonecreamery.com/stores/21022?utm_source=gmb&utm_medium=gmb&utm_campaign=gmb&utm_id=gmb",
             "businessStatus": "OPERATIONAL",
             "displayName": {
-                "text": "Extreme Escapes",
+                "text": "Cold Stone Creamery",
                 "languageCode": "en"
             },
             "currentOpeningHours": {
@@ -1097,7 +1856,7 @@
                         },
                         "close": {
                             "day": 0,
-                            "hour": 21,
+                            "hour": 22,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -1185,7 +1944,7 @@
                         },
                         "close": {
                             "day": 4,
-                            "hour": 23,
+                            "hour": 21,
                             "minute": 0,
                             "date": {
                                 "year": 2025,
@@ -1243,976 +2002,24 @@
                     "Monday: 11:00\u202fAM\u2009\u2013\u20099:00\u202fPM",
                     "Tuesday: 11:00\u202fAM\u2009\u2013\u20099:00\u202fPM",
                     "Wednesday: 11:00\u202fAM\u2009\u2013\u20099:00\u202fPM",
-                    "Thursday: 11:00\u202fAM\u2009\u2013\u200911:00\u202fPM",
+                    "Thursday: 11:00\u202fAM\u2009\u2013\u20099:00\u202fPM",
                     "Friday: 11:00\u202fAM\u2009\u2013\u200911:00\u202fPM",
                     "Saturday: 11:00\u202fAM\u2009\u2013\u200911:00\u202fPM",
-                    "Sunday: 11:00\u202fAM\u2009\u2013\u20099:00\u202fPM"
+                    "Sunday: 11:00\u202fAM\u2009\u2013\u200910:00\u202fPM"
                 ],
                 "nextOpenTime": "2025-11-23T16:00:00Z"
-            }
-        },
-        {
-            "formattedAddress": "5241 Cleveland St STE 101, Virginia Beach, VA 23462",
-            "location": {
-                "latitude": 36.842402899999996,
-                "longitude": -76.16234879999999
-            },
-            "websiteUri": "http://www.escape2win.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb",
-            "businessStatus": "OPERATIONAL",
-            "displayName": {
-                "text": "Escape2Win Escape Room Virginia Beach",
-                "languageCode": "en"
-            },
-            "currentOpeningHours": {
-                "openNow": false,
-                "periods": [
-                    {
-                        "open": {
-                            "day": 0,
-                            "hour": 12,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        },
-                        "close": {
-                            "day": 0,
-                            "hour": 20,
-                            "minute": 45,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 1,
-                            "hour": 14,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        },
-                        "close": {
-                            "day": 1,
-                            "hour": 20,
-                            "minute": 45,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 3,
-                            "hour": 14,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        },
-                        "close": {
-                            "day": 3,
-                            "hour": 20,
-                            "minute": 45,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 5,
-                            "hour": 14,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        },
-                        "close": {
-                            "day": 5,
-                            "hour": 20,
-                            "minute": 45,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 6,
-                            "hour": 11,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        },
-                        "close": {
-                            "day": 6,
-                            "hour": 20,
-                            "minute": 45,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        }
-                    }
-                ],
-                "weekdayDescriptions": [
-                    "Monday: 2:00\u2009\u2013\u20098:45\u202fPM",
-                    "Tuesday: Closed",
-                    "Wednesday: 2:00\u2009\u2013\u20098:45\u202fPM",
-                    "Thursday: Closed",
-                    "Friday: 2:00\u2009\u2013\u20098:45\u202fPM",
-                    "Saturday: 11:00\u202fAM\u2009\u2013\u20098:45\u202fPM",
-                    "Sunday: 12:00\u2009\u2013\u20098:45\u202fPM"
-                ],
-                "nextOpenTime": "2025-11-23T17:00:00Z"
             },
             "reviewSummary": {
                 "text": {
-                    "text": "People say this escape room center offers challenging rooms, including a ghostly encounter. They highlight the fun, interactive, and immersive experience, and the well-built rooms with synchronized puzzles and extra effects. They also like the friendly and helpful staff, and the great game masters who provide clues without giving away the answers. ",
+                    "text": "People say this ice cream shop offers delicious ice cream and shakes, and they praise the friendly and helpful staff. They also highlight the clean and welcoming environment, making it a great place to enjoy a sweet treat with family and friends.\n\nSome reviews mention the service can be slow.",
                     "languageCode": "en-US"
                 },
-                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOjFLcmtpZ2JoR2tReHRxc1ljQkpJanc%7CCAIQACoqChtyc19oOjFLcmtpZ2JoR2tReHRxc1ljQkpJancSCwiE6LbIBhDApeBE&d=17924085&t=8",
+                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOlFsVWJWMzBzVC1sYmhCMFNWSnNYbkE%7CCAIQACorChtyc19oOlFsVWJWMzBzVC1sYmhCMFNWSnNYbkESDAj77NfBBhC80pWRAw&d=17924085&t=8",
                 "disclosureText": {
                     "text": "Summarized with Gemini",
                     "languageCode": "en-US"
                 },
-                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba95e937deed8d:0xdfb0f81477a821e5!9m1!1b1"
-            }
-        },
-        {
-            "formattedAddress": "3200 Dam Neck Rd #104, Virginia Beach, VA 23453",
-            "location": {
-                "latitude": 36.7857225,
-                "longitude": -76.0802076
-            },
-            "websiteUri": "http://www.theescaperoomvb.com/",
-            "businessStatus": "OPERATIONAL",
-            "displayName": {
-                "text": "The Escape Room VB LLC",
-                "languageCode": "en"
-            },
-            "currentOpeningHours": {
-                "openNow": false,
-                "periods": [
-                    {
-                        "open": {
-                            "day": 0,
-                            "hour": 12,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        },
-                        "close": {
-                            "day": 0,
-                            "hour": 18,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 1,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        },
-                        "close": {
-                            "day": 1,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 4,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 27
-                            }
-                        },
-                        "close": {
-                            "day": 4,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 27
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 5,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        },
-                        "close": {
-                            "day": 5,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 6,
-                            "hour": 9,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        },
-                        "close": {
-                            "day": 6,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        }
-                    }
-                ],
-                "weekdayDescriptions": [
-                    "Monday: 5:00\u2009\u2013\u200910:00\u202fPM",
-                    "Tuesday: Closed",
-                    "Wednesday: Closed",
-                    "Thursday: 5:00\u2009\u2013\u200910:00\u202fPM",
-                    "Friday: 5:00\u2009\u2013\u200910:00\u202fPM",
-                    "Saturday: 9:00\u202fAM\u2009\u2013\u200910:00\u202fPM",
-                    "Sunday: 12:00\u2009\u2013\u20096:00\u202fPM"
-                ],
-                "nextOpenTime": "2025-11-23T17:00:00Z"
-            }
-        },
-        {
-            "formattedAddress": "2697 International Pkwy 2, Suite 101, Virginia Beach, VA 23452",
-            "location": {
-                "latitude": 36.8160479,
-                "longitude": -76.0647929
-            },
-            "websiteUri": "http://www.blackcatescaperoomva.com/",
-            "businessStatus": "OPERATIONAL",
-            "displayName": {
-                "text": "Black Cat Escape Room",
-                "languageCode": "en"
-            },
-            "currentOpeningHours": {
-                "openNow": false,
-                "periods": [
-                    {
-                        "open": {
-                            "day": 0,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        },
-                        "close": {
-                            "day": 0,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 1,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        },
-                        "close": {
-                            "day": 1,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 5,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        },
-                        "close": {
-                            "day": 6,
-                            "hour": 0,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 6,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        },
-                        "close": {
-                            "day": 6,
-                            "hour": 23,
-                            "minute": 59,
-                            "truncated": true,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        }
-                    }
-                ],
-                "weekdayDescriptions": [
-                    "Monday: 10:00\u202fAM\u2009\u2013\u200910:00\u202fPM",
-                    "Tuesday: Closed",
-                    "Wednesday: Closed",
-                    "Thursday: Closed",
-                    "Friday: 10:00\u202fAM\u2009\u2013\u200912:00\u202fAM",
-                    "Saturday: 10:00\u202fAM\u2009\u2013\u200912:00\u202fAM",
-                    "Sunday: 10:00\u202fAM\u2009\u2013\u200910:00\u202fPM"
-                ],
-                "specialDays": [
-                    {
-                        "date": {
-                            "year": 2025,
-                            "month": 11,
-                            "day": 27
-                        }
-                    }
-                ],
-                "nextOpenTime": "2025-11-23T15:00:00Z"
-            },
-            "reviewSummary": {
-                "text": {
-                    "text": "People say this escape room center offers fun and challenging rooms, including a speakeasy and a dollhouse, with intricate puzzles and immersive stories. They highlight the attention to detail in the decor, the realistic and time-period-appropriate atmosphere, and the ability to choose different difficulty levels. They also like the friendly and helpful staff, and the enthusiastic game masters who enhance the experience.",
-                    "languageCode": "en-US"
-                },
-                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOmVQYTJaNTZzWGk2NFNFTGZoSUs2eUE%7CCAIQACorChtyc19oOmVQYTJaNTZzWGk2NFNFTGZoSUs2eUESDAjW1JXIBhCIt_SaAQ&d=17924085&t=8",
-                "disclosureText": {
-                    "text": "Summarized with Gemini",
-                    "languageCode": "en-US"
-                },
-                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89baeb886b84370f:0x8d3fc0570aecbc70!9m1!1b1"
-            }
-        },
-        {
-            "formattedAddress": "717 General Booth Blvd, Virginia Beach, VA 23451",
-            "location": {
-                "latitude": 36.82120510000001,
-                "longitude": -75.9836042
-            },
-            "websiteUri": "http://www.virginiaaquarium.com/",
-            "businessStatus": "OPERATIONAL",
-            "displayName": {
-                "text": "Virginia Aquarium & Marine Science Center",
-                "languageCode": "en"
-            },
-            "currentOpeningHours": {
-                "openNow": false,
-                "periods": [
-                    {
-                        "open": {
-                            "day": 0,
-                            "hour": 9,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        },
-                        "close": {
-                            "day": 0,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 1,
-                            "hour": 9,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        },
-                        "close": {
-                            "day": 1,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 2,
-                            "hour": 9,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 25
-                            }
-                        },
-                        "close": {
-                            "day": 2,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 25
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 3,
-                            "hour": 9,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        },
-                        "close": {
-                            "day": 3,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 4,
-                            "hour": 9,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 27
-                            }
-                        },
-                        "close": {
-                            "day": 4,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 27
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 5,
-                            "hour": 9,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        },
-                        "close": {
-                            "day": 5,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 6,
-                            "hour": 9,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        },
-                        "close": {
-                            "day": 6,
-                            "hour": 17,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        }
-                    }
-                ],
-                "weekdayDescriptions": [
-                    "Monday: 9:00\u202fAM\u2009\u2013\u20095:00\u202fPM",
-                    "Tuesday: 9:00\u202fAM\u2009\u2013\u20095:00\u202fPM",
-                    "Wednesday: 9:00\u202fAM\u2009\u2013\u20095:00\u202fPM",
-                    "Thursday: 9:00\u202fAM\u2009\u2013\u20095:00\u202fPM",
-                    "Friday: 9:00\u202fAM\u2009\u2013\u20095:00\u202fPM",
-                    "Saturday: 9:00\u202fAM\u2009\u2013\u20095:00\u202fPM",
-                    "Sunday: 9:00\u202fAM\u2009\u2013\u20095:00\u202fPM"
-                ],
-                "nextOpenTime": "2025-11-23T14:00:00Z"
-            },
-            "reviewSummary": {
-                "text": {
-                    "text": "People say this aquarium offers a wide variety of marine life, including dolphins, sharks, sea turtles, and stingrays, as well as interactive exhibits and touch tanks. They also highlight the friendly and knowledgeable staff, and the family-friendly atmosphere.\n\nOther reviews mention the ticket price can be high.",
-                    "languageCode": "en-US"
-                },
-                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOkgtZjd3U28wcDBkSXdLYTVMWUdHSVE%7CCAIQACoqChtyc19oOkgtZjd3U28wcDBkSXdLYTVMWUdHSVESCwiE6LbIBhDApeBE&d=17924085&t=8",
-                "disclosureText": {
-                    "text": "Summarized with Gemini",
-                    "languageCode": "en-US"
-                },
-                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89bae9f233fa4901:0x5a9ad75c33d4b8d8!9m1!1b1"
-            }
-        },
-        {
-            "formattedAddress": "701 Lynnhaven Pkwy, Virginia Beach, VA 23452",
-            "location": {
-                "latitude": 36.8188847,
-                "longitude": -76.0707746
-            },
-            "websiteUri": "https://getairsports.com/virginiabeach/",
-            "businessStatus": "OPERATIONAL",
-            "displayName": {
-                "text": "Get Air Trampoline Park",
-                "languageCode": "en"
-            },
-            "currentOpeningHours": {
-                "openNow": false,
-                "periods": [
-                    {
-                        "open": {
-                            "day": 0,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        },
-                        "close": {
-                            "day": 0,
-                            "hour": 20,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 1,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        },
-                        "close": {
-                            "day": 1,
-                            "hour": 20,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 24
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 2,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 25
-                            }
-                        },
-                        "close": {
-                            "day": 2,
-                            "hour": 20,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 25
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 3,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        },
-                        "close": {
-                            "day": 3,
-                            "hour": 20,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 4,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 27
-                            }
-                        },
-                        "close": {
-                            "day": 4,
-                            "hour": 20,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 27
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 5,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        },
-                        "close": {
-                            "day": 5,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 6,
-                            "hour": 10,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        },
-                        "close": {
-                            "day": 6,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        }
-                    }
-                ],
-                "weekdayDescriptions": [
-                    "Monday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Tuesday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Wednesday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Thursday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM",
-                    "Friday: 10:00\u202fAM\u2009\u2013\u200910:00\u202fPM",
-                    "Saturday: 10:00\u202fAM\u2009\u2013\u200910:00\u202fPM",
-                    "Sunday: 10:00\u202fAM\u2009\u2013\u20098:00\u202fPM"
-                ],
-                "nextOpenTime": "2025-11-23T15:00:00Z"
-            },
-            "reviewSummary": {
-                "text": {
-                    "text": "People say this amusement center offers a variety of activities, including trampolines, climbing structures, and a ninja course. They also highlight the spacious waiting area, the fun toddler time, and the reasonable weekday prices for parties.\n\nOther reviews mention the facilities can be poorly maintained.",
-                    "languageCode": "en-US"
-                },
-                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOjNpNnhzVEU1S2cwRGFHQmJlQ2daV3c%7CCAIQACorChtyc19oOjNpNnhzVEU1S2cwRGFHQmJlQ2daV3cSDAjW1JXIBhCIt_SaAQ&d=17924085&t=8",
-                "disclosureText": {
-                    "text": "Summarized with Gemini",
-                    "languageCode": "en-US"
-                },
-                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89bac01d6f8cc9e1:0x298d3a0a86cb0b56!9m1!1b1"
-            }
-        },
-        {
-            "formattedAddress": "4317 Bonney Rd, Virginia Beach, VA 23452",
-            "location": {
-                "latitude": 36.837361699999995,
-                "longitude": -76.1225358
-            },
-            "websiteUri": "http://escaperoomvirginiabeach.com/",
-            "businessStatus": "OPERATIONAL",
-            "displayName": {
-                "text": "Escape Room Virginia Beach",
-                "languageCode": "en"
-            },
-            "currentOpeningHours": {
-                "openNow": false,
-                "periods": [
-                    {
-                        "open": {
-                            "day": 0,
-                            "hour": 12,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        },
-                        "close": {
-                            "day": 0,
-                            "hour": 19,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 23
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 3,
-                            "hour": 15,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        },
-                        "close": {
-                            "day": 3,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 26
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 4,
-                            "hour": 15,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 27
-                            }
-                        },
-                        "close": {
-                            "day": 4,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 27
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 5,
-                            "hour": 15,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        },
-                        "close": {
-                            "day": 5,
-                            "hour": 22,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 28
-                            }
-                        }
-                    },
-                    {
-                        "open": {
-                            "day": 6,
-                            "hour": 11,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        },
-                        "close": {
-                            "day": 6,
-                            "hour": 23,
-                            "minute": 0,
-                            "date": {
-                                "year": 2025,
-                                "month": 11,
-                                "day": 29
-                            }
-                        }
-                    }
-                ],
-                "weekdayDescriptions": [
-                    "Monday: Closed",
-                    "Tuesday: Closed",
-                    "Wednesday: 3:00\u2009\u2013\u200910:00\u202fPM",
-                    "Thursday: 3:00\u2009\u2013\u200910:00\u202fPM",
-                    "Friday: 3:00\u2009\u2013\u200910:00\u202fPM",
-                    "Saturday: 11:00\u202fAM\u2009\u2013\u200911:00\u202fPM",
-                    "Sunday: 12:00\u2009\u2013\u20097:00\u202fPM"
-                ],
-                "nextOpenTime": "2025-11-23T17:00:00Z"
-            },
-            "reviewSummary": {
-                "text": {
-                    "text": "People say this escape room center offers fun and immersive experiences. They highlight the challenging puzzles and riddles, and the engaging stories for each room. They also like the helpful and informative game masters who provide clues and explain the rules well.",
-                    "languageCode": "en-US"
-                },
-                "flagContentUri": "https://www.google.com/local/review/rap/report?postId=5%401:CAIQACodChtyc19oOkkxRk8yNzh2OGxpbU5jZVJCYkpZNVE%7CCAIQACoqChtyc19oOkkxRk8yNzh2OGxpbU5jZVJCYkpZNVESCwiE6LbIBhDApeBE&d=17924085&t=8",
-                "disclosureText": {
-                    "text": "Summarized with Gemini",
-                    "languageCode": "en-US"
-                },
-                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba95827a083aef:0x39e23fe6f198bb6a!9m1!1b1"
+                "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x89ba9a74f0cbcd77:0x66fc30671999ab2!9m1!1b1"
             }
         }
     ]

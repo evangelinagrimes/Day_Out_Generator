@@ -7,13 +7,15 @@ class Event:
     
     '''
 
-    def __init__(self, type, business, address, website=None, price=None, topReview=None): 
+    def __init__(self, type, status, business, businessHours, address, website, priceLevel, reviewSummary): 
         self.type = type
+        self.status = status
         self.business = business
+        self.businessHours = businessHours
         self.address = address
         self.website = website
-        self.price = price
-        self.topReview = topReview
+        self.priceLevel = priceLevel
+        self.reviewSummary = reviewSummary
 
     def getType(self):
         return self.type
@@ -27,11 +29,17 @@ class Event:
     def getWebsite(self): 
         return self.website
     
-    def getPrice(self):
-        return self.price
+    def getPriceLevel(self):
+        return self.priceLevel
     
-    def getTopReview(self):
-        return self.topReview
+    def getReviewSummary(self):
+        return self.reviewSummary
+    
+    def getBusinessHours(self):
+        return self.businessHours
+    
+    def getStatus(self):
+        return self.status
 
     
 

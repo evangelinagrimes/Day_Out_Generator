@@ -18,6 +18,7 @@ STOP_Y_POS = 10
 INFO_SUB_LABEL_POS = (5, 0)
 
 selectedStop_str = tk.StringVar(value="")
+zipcode_int = tk.IntVar()
 
 event_list = []
 
@@ -27,7 +28,6 @@ selectedAddress_str = tk.StringVar(value="Default Address value")
 selectedWebsite_str = tk.StringVar(value="Default Website value")
 selectedPrice_str = tk.StringVar(value="Default Price value")
 selectedTopReview_str = tk.StringVar(value="Default Top Review value")
-zipcode_int = tk.IntVar()
 
 selectedFirstStop_list = []
 selectedSecondStop_list = []
@@ -45,14 +45,21 @@ def generate_helper():
     global selectedFirstStop_list
     global selectedSecondStop_list
     global selectedFinalStop_list
-    print("Calling Google API...")
 
-    # TEST INPUT DATA
-    event_list.append( 
-        {Event("Restaurant", "RockLovers", "223 Forthcoming St", "https://RockLover.com", "Expensive", "Love this place!"), 
-         Event("Activity", "PartyLovers", "124 AppleBlossom St", "https://PartyLovers.com", "Cheap", "Yeah.. it was ok"),
-         Event("Dessert", "BerriesAndCream", "444 Dairy Way", "https://BerriesAndCream.com", "Medium", "WOOO WOULD TOTALLY GO BACK")
-         })
+    # @TODO: MAKE SURE ZIPCODE IS VALID BEFORE RUNNING
+    zipcode = zipcode_int.get()
+    if len(str(zipcode)) < 5:
+        print(f"ERROR: {zipcode} is not a valid zipcode. Please try again.")
+    else:
+        print(f"Calling Google API with {zipcode}...")
+        generate_activities(zipcode)
+
+    # # TEST INPUT DATA
+    # event_list.append( 
+    #     {Event(type="Restaurant", status="Good Standing", business="RockLovers", businessHours={}, address="223 Forthcoming St", website="https://RockLover.com", priceLevel="CHEAP", reviewSummary="Love this place!"), 
+    #      Event(type="Activity", status="Bad Standing", business="PartyLovers", businessHours={}, address="124 AppleBlossom St", website="https://PartyLover.com", priceLevel="EXPENSIVE", reviewSummary="This place was just ok"),
+    #      Event(type="Dessert", status="Medium Standing", business="DairyLovers", businessHours={}, address="444 Dairy Way", website="https://BerriesAndCream.com", priceLevel="Medium", reviewSummary="WOOO WOULD TOTALLY GO BACK")
+    #      })
     
     # @TODO: Update with event objects
     selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
@@ -235,7 +242,7 @@ def updateOutputFrame():
         subSecondStop_label.config(text="Activity")
 
         # @TODO:                vvv    REPLACE WITH GENERATED VALUES     vvv
-        selectedSecondStop_list = ["Activity 1", "Activity 2", "Activity 3"]
+        # selectedSecondStop_list = ["Activity 1", "Activity 2", "Activity 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         for i, option_text in enumerate(selectedSecondStop_list):
             radButt = tk.Radiobutton(secondStopRadioSelection_FRAME, 
@@ -386,14 +393,6 @@ def updateOutputFrame():
 
         Needs to be beneath the labels to update
 
-        selectedStop_str = tk.StringVar(value="")
-        selectedType_str = tk.StringVar()
-        selectedBusiness_str = tk.StringVar()
-        selectedAddress_str = tk.StringVar()
-        selectedWebsite_str = tk.StringVar()
-        selectedPrice_str = tk.StringVar()
-        selectedTopReview_str = tk.StringVar()
-
         '''
         # OUTPUT data
         selection = selectedStop_str.get()
@@ -474,7 +473,7 @@ activityPref_ROW.pack()
 # >> ------ day of week ------
 # NOTE: button values are stored in dayOfWeek_toggle_states
 dayOfWeek_ROW = ttk.Frame(master= field_FRAME)
-dayOfWeek = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
+dayOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"]
 
 for i, day in enumerate(dayOfWeek):
     btn = create_toggle_button(dayOfWeek_ROW, day, 5, 1, day, False, dayOfWeek_toggle_states)
