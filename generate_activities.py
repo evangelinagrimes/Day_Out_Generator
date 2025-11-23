@@ -11,7 +11,7 @@ event_dict= {}
 past_zipcodes = []
 curr_city= ""
 region_code= 'US'
-curr_zipcode = 23456
+curr_zipcode = 0
 entertainment_type= ["adventure_sports_center", "coffee_shop", "amphitheatre", "amusement_center", "amusement_park",
                       "aquarium", "banquet_hall", "barbecue_area", "botanical_garden", "bowling_alley",
                       "casino", "comedy_club", "community_center", "concert_hall", "cultural_center",
@@ -43,15 +43,6 @@ def call_places_api(new_zipcode):
     global region_code
     global past_zipcodes
     requests_dict = {}
-
-    # past_zipcodes = read_and_store_csv("assets/used_zips.csv")
-    # if past_zipcodes:
-    #     curr_zipcode = past_zipcodes[-1]
-    # else:
-    #     curr_zipcode = None 
-
-    # Validate zipcode (proper number of integers)
-    # Check if zipcode changed
 
     # If a new zipcode is put in, make a new call
     if new_zipcode not in past_zipcodes: 
@@ -93,15 +84,12 @@ def call_places_api(new_zipcode):
             ).execute()
 
             # write_to_json_file(response, place, curr_zipcode)
-            read_json_rawdata(response, place)
-        # append_zip_to_csv(curr_zipcode)
+            event_dict[place] = read_json_data(response, place)
+            
+        for key, value in event_dict.items():
+            for val in value:
+                print(val)
 
-    # elif new_zipcode in past_zipcodes and new_zipcode != curr_zipcode:
-    #     print(f"Updating to existing zipcode: {new_zipcode}")
-    #     curr_zipcode = new_zipcode
-    #     for place in place_types:
-    #         read_json_file(f"{place}{str(curr_zipcode)}.json", place)
-    
     else:
         print(f"{curr_zipcode} has already been called")
 
@@ -166,14 +154,13 @@ def write_to_json_file(file_data, file_name, zipcode):
     except Exception as e: 
         print(f"ERROR write_to_json_file: {e}")
 
-def read_json_rawdata(response, place):
+def read_json_data(response, place_type):
     """
     Fresh data read
     """
-    global event_dict
     event_list = []
     try: 
-        print(          "Began read_json_file...")
+        print(          "Began read_json_data...")
         for place in response['places']:
             openHours = {}
             name = place.get('displayName', {}).get('text', 'Unknown')
@@ -188,10 +175,10 @@ def read_json_rawdata(response, place):
             address = place.get('formattedAddress', 'Unknown')
             website = place.get('websiteUri', 'Unknown')
             status = place.get('businessStatus', 'Unknown')
-            review = place.get('reviewSummary', {}).get('text', {}).get('text', 'NoReview')
+            review = place.get('reviewSummary', {}).get('text', {}).get('text', 'N/A')
             priceLevel = place.get('priceLevel', 'N/A')
 
-            event_list.append(Event.Event(type=place,
+            event_list.append(Event.Event(type=place_type,
                                     status=status,
                                     business=name,
                                     businessHours=openHours,
@@ -199,12 +186,13 @@ def read_json_rawdata(response, place):
                                     website=website,
                                     priceLevel=priceLevel,
                                     reviewSummary=review))
-        event_dict[place] = event_list
         print(          "Leaving read_json_file...")
     except Exception as e:
-        print(f"ERROR read_json_rawdata: {e}")
-        # print(place)
-    return None
+        print(f"ERROR read_json_data: {e}")
+        print(place)
+        return event_list 
+    
+    return event_list 
 
 # def read_json_file(file_name, place):
     # """
