@@ -47,6 +47,8 @@ def generate_helper():
     global selectedFinalStop_list
     print("Calling Google API...")
 
+    # generate_activities()
+
     # TEST INPUT DATA
     event_list.append( 
         {Event("Restaurant", "RockLovers", "223 Forthcoming St", "https://RockLover.com", "Expensive", "Love this place!"), 

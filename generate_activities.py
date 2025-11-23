@@ -2,12 +2,13 @@ from google_api import create_service
 from geopy.geocoders import Nominatim
 import math
 import json
+import csv
 
 event_dict= {}
 past_zipcodes = []
 curr_city= ""
 region_code= 'US'
-curr_zipcode = 0
+curr_zipcode = 23456
 entertainment_type= ["adventure_sports_center", "coffee_shop", "amphitheatre", "amusement_center", "amusement_park",
                       "aquarium", "banquet_hall", "barbecue_area", "botanical_garden", "bowling_alley",
                       "casino", "comedy_club", "community_center", "concert_hall", "cultural_center",
@@ -29,12 +30,18 @@ dessert_type=       ["acai_shop", "bakery", "candy_store", "chocolate_shop", "co
 ]
 place_types=        ["Restaurant", "Activity", "Dessert"]
 
+def generate_activities():
+    return None
 
 def call_places_api(zipcode):
     global curr_zipcode
     global curr_city
     global region_code
+    global past_zipcodes
     requests_dict = {}
+
+    if len(past_zipcodes) < 1: 
+        past_zipcodes = read_and_store_csv("assets/used_zips.csv")
 
     # Validate zipcode (proper number of integers)
     # Check if zipcode changed
@@ -80,6 +87,7 @@ def call_places_api(zipcode):
 
             write_to_json_file(response, place, zipcode)
             convert_data_to_events(response, place)
+            write_zip_to_csv(zipcode)
 
     else:
         print(f"{zipcode} has already been called")
@@ -87,12 +95,33 @@ def call_places_api(zipcode):
 
 
 # HELPER FUNCTIONS 
-def write_to_json_file(file_data, file_name, zip):
+def write_zip_to_csv(zipcode):
+    try:
+        with open("assets/used_zips.csv", 'w') as csv_file:
+            csv_writer = csv.writer(csv_file)
+            csv_writer.writerow(zipcode)
+    except Exception as e:
+        print(f"ERROR write_zip_to_csv: {e}")
+
+def read_and_store_csv(file_name):
+    csv_list= []
+    try:
+        with open(file_name, 'r') as csv_file: 
+            csv_reader = csv.reader(csv_file)
+            for row in csv_reader:
+                for data in row:
+                    csv_list.append(data)
+    except Exception as e:
+        print(f"ERROR read_csv: {e}")
+
+    return csv_list
+
+def write_to_json_file(file_data, file_name, zipcode):
     try: 
-        with open(f"json_files/{file_name}{str(zip)}.json", 'w') as json_file:
+        with open(f"json_files/{file_name}{str(zipcode)}.json", 'w') as json_file:
             json.dump(file_data, json_file, indent=4)
     except Exception as e: 
-        print(f"ERROR: {e}")
+        print(f"ERROR write_to_json_file: {e}")
 
 def convert_data_to_events(response, place):
     return None
@@ -127,7 +156,6 @@ def zipcode_to_coords(zipcode):
         print(f"Error: {e}")
         return None, None, None
     
-
 def create_location_restriction(latitude, longitude, radius_km=10):
     """
     Create locationRestriction rectangle for Google Places API
