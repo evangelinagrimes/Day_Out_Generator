@@ -8,11 +8,11 @@ from Event import *
 window = tk.Tk()
 s = ttk.Style()
 window.title("Day Out Generator")
-window.geometry('1200x700')
+window.geometry('1300x700')
 
 # INPUT FIELDS / VARIABLES
 HEADER_FONT = 'Calibri 15'
-SUBHEADING_FONT = 'Calibri 13'
+SUBHEADER_FONT = 'Calibri 13'
 PARAGRAPH_FONT = 'Calibri 12'
 STOP_Y_POS = 10
 INFO_SUB_LABEL_POS = (5, 0)
@@ -141,7 +141,7 @@ def updateOutputFrame():
     global selectedFinalStop_list  
 
     global HEADER_FONT
-    global SUBHEADING_FONT
+    global SUBHEADER_FONT
     global PARAGRAPH_FONT
 
     # Clear existing content_FRAME widgets
@@ -160,7 +160,7 @@ def updateOutputFrame():
     # > ------ first stop ------
     firstStop_FRAME = ttk.Frame(master= selection_FRAME)
     firstStop_label = ttk.Label(firstStop_FRAME, text= "FIRST STOP ", font = HEADER_FONT)
-    subFirstStop_label = ttk.Label(firstStop_FRAME, text="", font = SUBHEADING_FONT)
+    subFirstStop_label = ttk.Label(firstStop_FRAME, text="", font = SUBHEADER_FONT)
 
     firstStopRadioSelection_FRAME = ttk.Frame(master= firstStop_FRAME)
     
@@ -212,7 +212,7 @@ def updateOutputFrame():
     # > ------ second stop ------
     secondStop_FRAME = ttk.Frame(master= selection_FRAME)
     secondStop_label = ttk.Label(secondStop_FRAME, text= "SECOND STOP ", font = HEADER_FONT)
-    subSecondStop_label = ttk.Label(secondStop_FRAME, text="", font = SUBHEADING_FONT)
+    subSecondStop_label = ttk.Label(secondStop_FRAME, text="", font = SUBHEADER_FONT)
 
     secondStopRadioSelection_FRAME = ttk.Frame(master= secondStop_FRAME)
 
@@ -260,7 +260,7 @@ def updateOutputFrame():
     # > ------ final stop ------
     finalStop_FRAME = ttk.Frame(master= selection_FRAME)
     finalStop_label = ttk.Label(finalStop_FRAME, text= "FINAL STOP ", font = HEADER_FONT)
-    subFinalStop_label = ttk.Label(finalStop_FRAME, text="Dessert", font = SUBHEADING_FONT)
+    subFinalStop_label = ttk.Label(finalStop_FRAME, text="Dessert", font = SUBHEADER_FONT)
 
     finalStopRadioSelection_FRAME = ttk.Frame(master= finalStop_FRAME)
 
@@ -299,7 +299,7 @@ def updateOutputFrame():
     info_FRAME.pack_propagate(False)
 
     infoTitle_label = ttk.Label(master= info_FRAME, 
-                                text= "Select to see more information", 
+                                text= "Select a stop to see more information", 
                                 font= HEADER_FONT)
     
     infoTitle_label.pack(pady=25)
@@ -309,7 +309,7 @@ def updateOutputFrame():
 
     activityType_label = ttk.Label(master= activityType_ROW, 
                                 text= "", 
-                                font= SUBHEADING_FONT)
+                                font= SUBHEADER_FONT)
     activityType_output_label = ttk.Label(master= activityType_ROW,
                                           text="",
                                           font= PARAGRAPH_FONT)
@@ -323,21 +323,19 @@ def updateOutputFrame():
     
     business_label = ttk.Label(master= business_ROW, 
                                 text= "", 
-                                font= SUBHEADING_FONT)
+                                font= SUBHEADER_FONT)
     business_output_label = ttk.Label(master= business_ROW,
                                           text="",
                                           font= PARAGRAPH_FONT)
-
     business_label.pack(side='left')
     business_output_label.pack(side='left')
     business_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
 
     # > ------ address name display ------
     address_ROW = ttk.Frame(master= info_FRAME)
-
     address_label = ttk.Label(master= address_ROW, 
                                 text= "", 
-                                font= SUBHEADING_FONT)
+                                font= SUBHEADER_FONT)
     address_output_label = ttk.Label(master= address_ROW,
                                           text="",
                                           font= PARAGRAPH_FONT)
@@ -347,32 +345,38 @@ def updateOutputFrame():
     
     # > ------ website link display ------
     website_ROW = ttk.Frame(master= info_FRAME)
-
     website_label = ttk.Label(master= website_ROW, 
                                 text= "", 
-                                font= SUBHEADING_FONT)
-
-    website_label.pack()
+                                font= SUBHEADER_FONT)
+    website_output_label = ttk.Label(master= website_ROW,
+                                        text="",
+                                        font= PARAGRAPH_FONT)
+    website_label.pack(side='left')
+    website_output_label.pack(side='left')
     website_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
     
     # > ------ price level display ------
-    priceLevel_ROW = ttk.Frame(master= info_FRAME)
-
-    priceLevel_label = ttk.Label(master= priceLevel_ROW, 
+    price_ROW = ttk.Frame(master= info_FRAME)
+    price_label = ttk.Label(master= price_ROW, 
                                 text= "", 
-                                font= SUBHEADING_FONT)
-
-    priceLevel_label.pack()
-    priceLevel_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+                                font= SUBHEADER_FONT)
+    price_output_label = ttk.Label(master= price_ROW,
+                                        text="",
+                                        font= PARAGRAPH_FONT)
+    price_label.pack(side='left')
+    price_output_label.pack(side='left')
+    price_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
     
     # > ------ top review display ------
     topReview_ROW = ttk.Frame(master= info_FRAME)
-
     topReview_label = ttk.Label(master= topReview_ROW, 
                                 text= "", 
-                                font= SUBHEADING_FONT)
-
-    topReview_label.pack()
+                                font= SUBHEADER_FONT)
+    topReview_output_label = ttk.Label(master= topReview_ROW,
+                                        text="",
+                                        font= PARAGRAPH_FONT)
+    topReview_label.pack(side='left')
+    topReview_output_label.pack(side='left')
     topReview_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
 
     def update_info_label(*args):
@@ -406,27 +410,28 @@ def updateOutputFrame():
 
             #Show labels
             activityType_label.config(text= "Type: ")
-            business_label.config(text="Business: ")
-            address_label.config(text="Address: ")
-            website_label.config(text="Website: ")
-            priceLevel_label.config(text="Price: ")
-            topReview_label.config(text="Top Review: ")
+            business_label.config(text= "Business: ")
+            address_label.config(text= "Address: ")
+            website_label.config(text= "Website: ")
+            price_label.config(text= "Price: ")
+            topReview_label.config(text= "Top Review: ")
 
             #Show output
             activityType_output_label.config(text=type)
             business_output_label.config(text=business)
             address_output_label.config(text=address)
-            
-
+            website_output_label.config(text=website)
+            price_output_label.config(text=price)
+            topReview_output_label.config(text=review)
             
         else:
             # Reset label values
-            infoTitle_label.config(text= "Select to see more information")
+            infoTitle_label.config(text= "Select a stop to see more information")
             activityType_label.config(text= "")
             business_label.config(text= "")
             address_label.config(text= "")
             website_label.config(text= "")
-            priceLevel_label.config(text= "")
+            price_label.config(text= "")
             topReview_label.config(text= "")
               
     traceID = selectedStop_str.trace('w', update_info_label)
@@ -434,15 +439,19 @@ def updateOutputFrame():
 # - - - - - - - - - - - - - - - - - - - -
 
 # ==================| INPUT FRAME |==================
-input_FRAME = ttk.Frame(master= window, width=400, height=700)
+input_FRAME = ttk.Frame(master= window, width=500, height=700)
 input_FRAME.pack_propagate(False)
 # s.configure('TFrame', background='red')
 
-# > ------ zipcode frame ------
-zipcode_ROW = ttk.Frame(master= input_FRAME)
+# > ------ field frame ------
+field_FRAME = ttk.Frame(master= input_FRAME, width= 500, height=225, relief="raised")
+field_FRAME.pack_propagate(False)
+
+# >> ------ zipcode frame ------
+zipcode_ROW = ttk.Frame(master= field_FRAME)
 zipcode_label = ttk.Label(master= zipcode_ROW,
                             text= "ZIPCODE: ", 
-                            font= HEADER_FONT)
+                            font= SUBHEADER_FONT)
 zipcode_field = ttk.Entry(master= zipcode_ROW, textvariable= zipcode_int)
 # zipcode_field.insert(0, "Enter text here")  # Set default text
 
@@ -450,10 +459,10 @@ zipcode_label.pack(side= 'left')
 zipcode_field.pack(side= 'left')
 zipcode_ROW.pack(pady=(20,0))
 
-# > ------ activity preference frame ------
+# >> ------ activity preference frame ------
 # NOTE: button values are stored in activity_toggle_states
 
-activityPref_ROW = ttk.Frame(master= input_FRAME)
+activityPref_ROW = ttk.Frame(master= field_FRAME)
 activities = ["Restaurant", "Activity", "Dessert"]
 
 for i, activity in enumerate(activities):
@@ -462,9 +471,9 @@ for i, activity in enumerate(activities):
 
 activityPref_ROW.pack()
 
-# > ------ day of week ------
+# >> ------ day of week ------
 # NOTE: button values are stored in dayOfWeek_toggle_states
-dayOfWeek_ROW = ttk.Frame(master= input_FRAME)
+dayOfWeek_ROW = ttk.Frame(master= field_FRAME)
 dayOfWeek = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
 
 for i, day in enumerate(dayOfWeek):
@@ -473,8 +482,8 @@ for i, day in enumerate(dayOfWeek):
 
 dayOfWeek_ROW.pack()
 
-# > ------ day/night AND theme  ------
-dayNight_ROW = ttk.Frame(master= input_FRAME)   
+# >> ------ day/night AND theme  ------
+dayNight_ROW = ttk.Frame(master= field_FRAME)   
 
 day = PhotoImage(file="assets/switchDAY.png")
 night = PhotoImage(file="assets/switchNIGHT.png")
@@ -488,12 +497,23 @@ day_button.pack(side='left')
 theme_button.pack(side='left')
 dayNight_ROW.pack()
 
-# > ------ generate button ------
+# >> ------ generate button ------
 generate = PhotoImage(file="assets/GENERATE.png")
-generate_button = tk.Button(master= input_FRAME,  image=generate, bd=0, command=generate_helper)
+generate_button = tk.Button(master= field_FRAME,  image=generate, bd=0, command=generate_helper)
 
-generate_button.pack(side='bottom')
+generate_button.pack(pady=15)
+
+# >> -----------------------------
+field_FRAME.pack(padx=25)
+
+# > ------ final selection frame ------
+finalSelection_FRAME = ttk.Frame(master= input_FRAME)
+# @TODO: Have the final selection display here
+
+finalSelection_FRAME.pack()
+# > -----------------------------
 input_FRAME.pack(side='left', pady=50)
+
 
 # !#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#!#
 #        DISPLAYS CONTENT BEFORE API IS CALLED
@@ -511,7 +531,7 @@ outputCover_label = ttk.Label(master= content_FRAME, text= "Generate your day ou
 outputCover_label.pack(padx=100, pady= 100)
 
 # @TODO: Add "Make my selection" Button HERE (Content_FRAME)
-content_FRAME.pack(side='top', pady=(50, 0))
+content_FRAME.pack(side='top', pady=(50, 0), padx=50)
 # ---------------------------------------
 output_FRAME.pack(side='right')
 # =======================================
