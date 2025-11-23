@@ -135,7 +135,7 @@ def updateOutputFrame():
     '''
     global isTimeSetToDay
     global traceID
-    global activities
+    global place_type
     global selectedFirstStop_list   
     global selectedSecondStop_list  
     global selectedFinalStop_list  
@@ -200,7 +200,7 @@ def updateOutputFrame():
             radButt.pack()
             print(f"First Stop: Generating selection RESTAURANT ... {str(selectedStop_str)}")
     else:
-        print(f"                SKIPPED because {activities[0]} or {activities[1]} was false")
+        print(f"                SKIPPED because {place_type[0]} or {place_type[1]} was false")
         firstStop_label.config(text= "")
 
     firstStop_label.pack(anchor='w')
@@ -248,7 +248,7 @@ def updateOutputFrame():
             print(f"Second Stop: Generating selection ACTIVITY ... {str(selectedStop_str)}")
 
     else: 
-        print(f"                SKIPPED because {activities[0]} or {activities[1]} was false")
+        print(f"                SKIPPED because {place_type[0]} or {place_type[1]} was false")
         secondStop_label.config(text= "")
 
     secondStop_label.pack(anchor='w')
@@ -278,7 +278,7 @@ def updateOutputFrame():
             radButt.pack()
             print(f"Final Stop: Generating selection DESSERT ... {str(selectedStop_str)}")
     else:
-        print(f"                SKIPPED because {activities[2]} was false")
+        print(f"                SKIPPED because {place_type[2]} was false")
         finalStop_label.config(text= "")
         subFinalStop_label.config(text="")
 
@@ -463,9 +463,9 @@ zipcode_ROW.pack(pady=(20,0))
 # NOTE: button values are stored in activity_toggle_states
 
 activityPref_ROW = ttk.Frame(master= field_FRAME)
-activities = ["Restaurant", "Activity", "Dessert"]
+place_type = ["Restaurant", "Activity", "Dessert"]
 
-for i, activity in enumerate(activities):
+for i, activity in enumerate(place_type):
     btn = create_toggle_button(activityPref_ROW, activity, 10, 1, activity, True, activity_toggle_states)
     btn.grid(row=0, column=i, padx=5, pady=5)
 
