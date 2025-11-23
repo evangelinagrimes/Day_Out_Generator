@@ -11,7 +11,7 @@ event_dict= {}
 past_zipcodes = []
 curr_city= ""
 region_code= 'US'
-curr_zipcode = 0
+curr_zipcode = 23456
 entertainment_type= ["adventure_sports_center", "coffee_shop", "amphitheatre", "amusement_center", "amusement_park",
                       "aquarium", "banquet_hall", "barbecue_area", "botanical_garden", "bowling_alley",
                       "casino", "comedy_club", "community_center", "concert_hall", "cultural_center",
@@ -44,11 +44,11 @@ def call_places_api(new_zipcode):
     global past_zipcodes
     requests_dict = {}
 
-    past_zipcodes = read_and_store_csv("assets/used_zips.csv")
-    if past_zipcodes:
-        curr_zipcode = past_zipcodes[-1]
-    else:
-        curr_zipcode = None 
+    # past_zipcodes = read_and_store_csv("assets/used_zips.csv")
+    # if past_zipcodes:
+    #     curr_zipcode = past_zipcodes[-1]
+    # else:
+    #     curr_zipcode = None 
 
     # Validate zipcode (proper number of integers)
     # Check if zipcode changed
@@ -92,10 +92,9 @@ def call_places_api(new_zipcode):
                 fields= field_mask
             ).execute()
 
-            write_to_json_file(response, place, curr_zipcode)
+            # write_to_json_file(response, place, curr_zipcode)
             read_json_rawdata(response, place)
-        append_zip_to_csv(curr_zipcode)
-
+        # append_zip_to_csv(curr_zipcode)
 
     # elif new_zipcode in past_zipcodes and new_zipcode != curr_zipcode:
     #     print(f"Updating to existing zipcode: {new_zipcode}")
@@ -107,9 +106,9 @@ def call_places_api(new_zipcode):
         print(f"{curr_zipcode} has already been called")
 
 # HELPER FUNCTIONS 
-# ================================
-#       MANIPULATING FILES
-# ================================
+# ==========================================
+#       MANIPULATING FILES |Deprecated|
+# ==========================================
 def append_zip_to_csv(zipcode):
     """Append a ZIP code to the used_zips.csv file.
     
@@ -180,13 +179,16 @@ def read_json_rawdata(response, place):
             name = place.get('displayName', {}).get('text', 'Unknown')
             daysOpen = place['currentOpeningHours']['weekdayDescriptions']
             for elem in daysOpen: 
-                day, times = elem.split(": ")
-                clean_time = re.sub(r'\s+', ' ', times).replace('–', '-')
-                openHours[day] = clean_time
+                day, time = elem.split(": ")
+                if time == "Closed":
+                    openHours[day] = time
+                else:
+                    clean_time = re.sub(r'\s+', ' ', time).replace('–', '-')
+                    openHours[day] = clean_time
             address = place.get('formattedAddress', 'Unknown')
             website = place.get('websiteUri', 'Unknown')
             status = place.get('businessStatus', 'Unknown')
-            review = place.get('reviewSummary', {})
+            review = place.get('reviewSummary', {}).get('text', {}).get('text', 'NoReview')
             priceLevel = place.get('priceLevel', 'N/A')
 
             event_list.append(Event.Event(type=place,
@@ -316,5 +318,6 @@ def convert_data_to_events(response, place):
     return None
 
 if __name__ == "__main__":
-    # call_places_api(23456)
-    read_json_file('json_files/Dessert23456.json', 'Restaurant')
+    call_places_api(23456)
+    # read_json_file('json_files/Dessert23456.json', 'Restaurant')
+    
