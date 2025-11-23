@@ -21,12 +21,12 @@ selectedStop_str = tk.StringVar(value="")
 
 event_list = []
 
-selectedType_str = tk.StringVar(value="Default value")
-selectedBusiness_str = tk.StringVar(value="Default value")
-selectedAddress_str = tk.StringVar(value="Default value")
-selectedWebsite_str = tk.StringVar(value="Default value")
-selectedPrice_str = tk.StringVar(value="Default value")
-selectedTopReview_str = tk.StringVar(value="Default value")
+selectedType_str = tk.StringVar(value="Default Type value")
+selectedBusiness_str = tk.StringVar(value="Default Business value")
+selectedAddress_str = tk.StringVar(value="Default Address value")
+selectedWebsite_str = tk.StringVar(value="Default Website value")
+selectedPrice_str = tk.StringVar(value="Default Price value")
+selectedTopReview_str = tk.StringVar(value="Default Top Review value")
 zipcode_int = tk.IntVar()
 
 selectedFirstStop_list = []
@@ -35,7 +35,7 @@ selectedFinalStop_list = []
 
 activity_toggle_states = {}
 dayOfWeek_toggle_states = {}
-isSetToDay = True
+isTimeSetToDay = True
 isThemeActive = True
 generateButtonPressed = False
 traceID = ""
@@ -106,15 +106,15 @@ def create_toggle_button(parent, text, width, height, key, start_state, state_di
     return btn
 
 def switchDayButton(): 
-    global isSetToDay
-    if isSetToDay: 
+    global isTimeSetToDay
+    if isTimeSetToDay: 
         day_button.config(image=night)
         # print("Switched to NIGHT OUT")
     else:
         day_button.config(image=day)
         # print("Switched to DAY OUT")
         
-    isSetToDay = not isSetToDay
+    isTimeSetToDay = not isTimeSetToDay
 
 def switchThemeButton():
     global isThemeActive
@@ -133,7 +133,7 @@ def updateOutputFrame():
     Updates the output content frame to display the activities pulled from the 
     data collected with the Google Places API call
     '''
-    global isSetToDay
+    global isTimeSetToDay
     global traceID
     global activities
     global selectedFirstStop_list   
@@ -159,12 +159,12 @@ def updateOutputFrame():
 
     # > ------ first stop ------
     firstStop_FRAME = ttk.Frame(master= selection_FRAME)
-    firstStop_label = ttk.Label(firstStop_FRAME, text= "FIRST STOP ", font = HEADER_FONT)
+    firstStop_label = ttk.Label(firstStop_FRAME, text= "FIRST STOP", font = HEADER_FONT)
     subFirstStop_label = ttk.Label(firstStop_FRAME, text="", font = SUBHEADER_FONT)
 
     firstStopRadioSelection_FRAME = ttk.Frame(master= firstStop_FRAME)
     
-    if isSetToDay and activity_toggle_states["Activity"]: 
+    if isTimeSetToDay and activity_toggle_states["Activity"]: 
         # >> - - - dynamic button selection RESTAURANT- - -
         subFirstStop_label.config(text="Activity")
 
@@ -183,7 +183,7 @@ def updateOutputFrame():
             radButt.pack()
             print(f"First Stop: Generating selection ACTIVITY... {str(selectedStop_str)}")
 
-    elif not isSetToDay and activity_toggle_states["Restaurant"]: 
+    elif not isTimeSetToDay and activity_toggle_states["Restaurant"]: 
         # >> - - - dynamic button selection ACTIVITY - - -
         subFirstStop_label.config(text="Restaurant")
 
@@ -211,12 +211,12 @@ def updateOutputFrame():
 
     # > ------ second stop ------
     secondStop_FRAME = ttk.Frame(master= selection_FRAME)
-    secondStop_label = ttk.Label(secondStop_FRAME, text= "SECOND STOP ", font = HEADER_FONT)
+    secondStop_label = ttk.Label(secondStop_FRAME, text= "SECOND STOP", font = HEADER_FONT)
     subSecondStop_label = ttk.Label(secondStop_FRAME, text="", font = SUBHEADER_FONT)
 
     secondStopRadioSelection_FRAME = ttk.Frame(master= secondStop_FRAME)
 
-    if isSetToDay and activity_toggle_states["Restaurant"]: 
+    if isTimeSetToDay and activity_toggle_states["Restaurant"]: 
         subSecondStop_label.config(text="Restaurant")
 
         # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
@@ -231,7 +231,7 @@ def updateOutputFrame():
                         )
             radButt.pack()
             print(f"Second Stop: Generating selection RESTAURANT ... {str(selectedStop_str)}")
-    elif not isSetToDay and activity_toggle_states["Activity"]: 
+    elif not isTimeSetToDay and activity_toggle_states["Activity"]: 
         subSecondStop_label.config(text="Activity")
 
         # @TODO:                vvv    REPLACE WITH GENERATED VALUES     vvv
@@ -259,7 +259,7 @@ def updateOutputFrame():
 
     # > ------ final stop ------
     finalStop_FRAME = ttk.Frame(master= selection_FRAME)
-    finalStop_label = ttk.Label(finalStop_FRAME, text= "FINAL STOP ", font = HEADER_FONT)
+    finalStop_label = ttk.Label(finalStop_FRAME, text= "FINAL STOP", font = HEADER_FONT)
     subFinalStop_label = ttk.Label(finalStop_FRAME, text="Dessert", font = SUBHEADER_FONT)
 
     finalStopRadioSelection_FRAME = ttk.Frame(master= finalStop_FRAME)
@@ -299,7 +299,7 @@ def updateOutputFrame():
     info_FRAME.pack_propagate(False)
 
     infoTitle_label = ttk.Label(master= info_FRAME, 
-                                text= "Select a stop to see more information", 
+                                text= "Select a place to see more information", 
                                 font= HEADER_FONT)
     
     infoTitle_label.pack(pady=25)
@@ -426,7 +426,7 @@ def updateOutputFrame():
             
         else:
             # Reset label values
-            infoTitle_label.config(text= "Select a stop to see more information")
+            infoTitle_label.config(text= "Select a place to see more information")
             activityType_label.config(text= "")
             business_label.config(text= "")
             address_label.config(text= "")
