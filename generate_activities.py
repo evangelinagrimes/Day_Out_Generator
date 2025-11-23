@@ -31,36 +31,24 @@ dessert_type=       ["acai_shop", "bakery", "candy_store", "chocolate_shop", "co
 ]
 place_types=        ["Restaurant", "Activity", "Dessert"]
 
-def generate_activities(zipcode, dayPreference, isTimeSetToDay):
+def generate_activities(zipcode, dayPref, isTimeSetToDay):
     global event_dict
     firstStop_list = []
     secondStop_list = []
     finalStop_list = []
-    checkIfOpen = 5
 
     call_places_api(zipcode)
 
-    if isTimeSetToDay:
-        # If day out, I want to know when the business opens
-        # If night out, I want to know when the business closes
-
-        for event in event_dict["Activity"]:
-            print(f"Filtering {event.getBusiness()}...")
-            status = event.getStatus()
-            businessHours = event.getBusinessHours()
-            if status == "OPERATIONAL":
-                print(f"Day Preference: {', '.join(f'{key}: {value}' for key, value in dayPreference.items())}")
-                print(f"Business Hours: {', '.join(f'{key}: {value}' for key, value in businessHours.items())}")
-                for day in dayPreference:
-                    # Check if the business is open
-                    if businessHours[day] != "Closed": 
-                        opening, _, closing, abb = businessHours[day].split(' ')
-                        hour, _ = opening.split(':')
-                        # Store any business that is open before 5:00PM
-                        if int(hour) < checkIfOpen:
-                            firstStop_list.append(event)
-
-
+    if isTimeSetToDay: 
+        # Activity > Dinner > Dessert
+        create_stop_list(isTimeSetToDay, "Activity", dayPref, firstStop_list)
+        create_stop_list(isTimeSetToDay, "Restaurant", dayPref, secondStop_list)
+        create_stop_list(isTimeSetToDay, "Dessert", dayPref, finalStop_list)
+    else:
+        # Dinner > Activity > Dessert
+        create_stop_list(isTimeSetToDay, "Restaurant", dayPref, secondStop_list)
+        create_stop_list(isTimeSetToDay, "Activity", dayPref, firstStop_list)
+        create_stop_list(isTimeSetToDay, "Dessert", dayPref, finalStop_list)
 
     # Sort through the input
     # This method should return three lists (first stop, second stop, final stop) 
@@ -79,6 +67,73 @@ def generate_activities(zipcode, dayPreference, isTimeSetToDay):
     #       - Business hours must correspond with given times
     #       - 
     return firstStop_list, secondStop_list, finalStop_list
+
+def create_stop_list(isTimeSetToDay, place_type, dayPref, stop_list):
+    checkIfOpen = 5  # 5 AM for day check
+    checkIfOpenNight = 17  # 5 PM for night check
+    
+    # If day out, check when business opens
+    # If night out, check when business closes
+
+    for event in event_dict[place_type]:
+        print(f"Filtering {event.getBusiness()}...")
+        status = event.getStatus()
+        businessHours = event.getBusinessHours()
+        
+        if status != "OPERATIONAL":
+            continue
+            
+        print(f"Business Hours: {', '.join(f'{key}: {value}' for key, value in businessHours.items())}")
+        
+        time_string = businessHours.get(dayPref, "Closed")
+        
+        if time_string == "Closed":
+            print(f"  {dayPref}: Closed, skipping...")
+            continue
+            
+        # Split on dash to get opening and closing times
+        if '-' not in time_string:
+            print(f"  Unexpected format for {dayPref}: {time_string}")
+            continue
+        
+        opening_time, closing_time = [t.strip() for t in time_string.split('-')]
+        
+        try:
+            # Parse opening hour
+            opening_hour = int(opening_time.split(':')[0])
+            if 'PM' in opening_time and opening_hour != 12:
+                opening_hour += 12
+            elif 'AM' in opening_time and opening_hour == 12:
+                opening_hour = 0
+            
+            # Parse closing hour
+            closing_hour = int(closing_time.split(':')[0])
+            if 'PM' in closing_time and closing_hour != 12:
+                closing_hour += 12
+            elif 'AM' in closing_time and closing_hour == 12:
+                closing_hour = 0
+            
+            # Check if business meets time criteria
+            if isTimeSetToDay:
+                # Day out: check if opens early enough (before 5 PM)
+                if opening_hour < checkIfOpenNight:
+                    print(f"  {dayPref}: Opens at {opening_time} - Adding to list!")
+                    stop_list.append(event)
+                else:
+                    print(f"  {dayPref}: Opens at {opening_time} - Too late")
+            else:
+                # Night out: check if closes late enough (after 5 PM)
+                if closing_hour >= checkIfOpenNight:
+                    print(f"  {dayPref}: Closes at {closing_time} - Adding to list!")
+                    stop_list.append(event)
+                else:
+                    print(f"  {dayPref}: Closes at {closing_time} - Too early")
+                    
+        except (ValueError, IndexError) as e:
+            print(f"  Could not parse time from: {opening_time} - {closing_time}")
+    
+    return stop_list
+
 
 def call_places_api(new_zipcode):
     global curr_zipcode

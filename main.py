@@ -57,27 +57,14 @@ def generate_helper():
         error_label.config(text="ERROR: Invalid zipcode... Please try again.")
         return
 
-    if len(active_day_button) <= 1: 
+    if active_day_button == None or len(active_day_button) < 1: 
         print(f"ERROR: invalid day selection... Please try again.")
         error_label.config(text="ERROR: invalid day selection... Please try again.")
         return
 
     print(f"Calling Google API with {zipcode}...")
     error_label.config(text="")
-    generate_activities(zipcode, dayOfWeek_toggle_states, isTimeSetToDay)
-
-    # # TEST INPUT DATA
-    # event_list.append( 
-    #     {Event(type="Restaurant", status="Good Standing", business="RockLovers", businessHours={}, address="223 Forthcoming St", website="https://RockLover.com", priceLevel="CHEAP", reviewSummary="Love this place!"), 
-    #      Event(type="Activity", status="Bad Standing", business="PartyLovers", businessHours={}, address="124 AppleBlossom St", website="https://PartyLover.com", priceLevel="EXPENSIVE", reviewSummary="This place was just ok"),
-    #      Event(type="Dessert", status="Medium Standing", business="DairyLovers", businessHours={}, address="444 Dairy Way", website="https://BerriesAndCream.com", priceLevel="Medium", reviewSummary="WOOO WOULD TOTALLY GO BACK")
-    #      })
-    
-    # @TODO: Update with event objects
-    # selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
-    # selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
-    # selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
-    # print(f'Updated selected Lists... \nFirst: {str(selectedFirstStop_list)}\nSecond: {str(selectedSecondStop_list)}\nFinal: {str(selectedFinalStop_list)}')
+    selectedFirstStop_list, selectedSecondStop_list, selectedFinalStop_list = generate_activities(zipcode, active_day_button, isTimeSetToDay)
     
     # Update the output frame to display activities
     updateOutputFrame()
