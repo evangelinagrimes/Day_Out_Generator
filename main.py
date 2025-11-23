@@ -14,6 +14,8 @@ window.geometry('1300x700')
 HEADER_FONT             = 'Calibri 15'
 SUBHEADER_FONT          = 'Calibri 13'
 PARAGRAPH_FONT          = 'Calibri 12'
+PARAGRAPH_WRAP_LENGTH   = 250
+LABEL_WRAP_LENGTH       = 150
 STOP_Y_POS              = 10
 INFO_SUB_LABEL_POS      = (5, 0)
 NUM_OF_SELECTIONS       = 3
@@ -204,7 +206,8 @@ def updateOutputFrame():
                 radButt = tk.Radiobutton(firstStopRadioSelection_FRAME, 
                             text=key, 
                             variable=selectedStop_var, 
-                            value=value, 
+                            value=value,
+                            wraplength=LABEL_WRAP_LENGTH,
                             command=lambda v=value: on_radio_select_stop(v)
                             )
                 radButt.pack()
@@ -225,6 +228,7 @@ def updateOutputFrame():
                             text=key, 
                             variable=selectedStop_var, 
                             value=value, 
+                            wraplength=LABEL_WRAP_LENGTH,
                             command=lambda v=value: on_radio_select_stop(v)
                             )
                 radButt.pack()
@@ -260,6 +264,7 @@ def updateOutputFrame():
                             text=key, 
                             variable=selectedStop_var, 
                             value=value, 
+                            wraplength=LABEL_WRAP_LENGTH,
                             command=lambda v=value: on_radio_select_stop(v)
                             )
                 radButt.pack()
@@ -278,6 +283,7 @@ def updateOutputFrame():
                             text=key, 
                             variable=selectedStop_var, 
                             value=value, 
+                            wraplength=LABEL_WRAP_LENGTH,
                             command=lambda v=value: on_radio_select_stop(v)
                             )
                 radButt.pack()
@@ -311,6 +317,7 @@ def updateOutputFrame():
                             text=key, 
                             variable=selectedStop_var, 
                             value=value, 
+                            wraplength=LABEL_WRAP_LENGTH,
                             command=lambda v=value: on_radio_select_stop(v)
                             )
                 radButt.pack()
@@ -353,7 +360,8 @@ def updateOutputFrame():
                                 font= SUBHEADER_FONT)
     activityType_output_label = ttk.Label(master= activityType_ROW,
                                           text="",
-                                          font= PARAGRAPH_FONT)
+                                          font= PARAGRAPH_FONT,
+                                          wraplength=PARAGRAPH_WRAP_LENGTH)
     
     activityType_label.pack(side='left')
     activityType_output_label.pack(side='left')
@@ -364,10 +372,11 @@ def updateOutputFrame():
     
     business_label = ttk.Label(master= business_ROW, 
                                 text= "", 
-                                font= SUBHEADER_FONT)
+                                font= SUBHEADER_FONT,)
     business_output_label = ttk.Label(master= business_ROW,
                                           text="",
-                                          font= PARAGRAPH_FONT)
+                                          font= PARAGRAPH_FONT,
+                                          wraplength=PARAGRAPH_WRAP_LENGTH)
     business_label.pack(side='left')
     business_output_label.pack(side='left')
     business_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
@@ -379,7 +388,8 @@ def updateOutputFrame():
                                 font= SUBHEADER_FONT)
     address_output_label = ttk.Label(master= address_ROW,
                                           text="",
-                                          font= PARAGRAPH_FONT)
+                                          font= PARAGRAPH_FONT,
+                                          wraplength=PARAGRAPH_WRAP_LENGTH)
     address_label.pack(side='left')
     address_output_label.pack(side='left')
     address_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
@@ -391,7 +401,8 @@ def updateOutputFrame():
                                 font= SUBHEADER_FONT)
     website_output_label = ttk.Label(master= website_ROW,
                                         text="",
-                                        font= PARAGRAPH_FONT)
+                                        font= PARAGRAPH_FONT,
+                                        wraplength=PARAGRAPH_WRAP_LENGTH)
     website_label.pack(side='left')
     website_output_label.pack(side='left')
     website_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
@@ -403,22 +414,24 @@ def updateOutputFrame():
                                 font= SUBHEADER_FONT)
     price_output_label = ttk.Label(master= price_ROW,
                                         text="",
-                                        font= PARAGRAPH_FONT)
+                                        font= PARAGRAPH_FONT,
+                                        wraplength=PARAGRAPH_WRAP_LENGTH)
     price_label.pack(side='left')
     price_output_label.pack(side='left')
     price_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
     
-    # > ------ top review display ------
-    topReview_ROW = ttk.Frame(master= info_FRAME)
-    topReview_label = ttk.Label(master= topReview_ROW, 
+    # > ------ review summary display ------
+    reviewSummary_ROW = ttk.Frame(master= info_FRAME)
+    reviewSummary_label = ttk.Label(master= reviewSummary_ROW, 
                                 text= "", 
                                 font= SUBHEADER_FONT)
-    topReview_output_label = ttk.Label(master= topReview_ROW,
+    reviewSummary_output_label = ttk.Label(master= reviewSummary_ROW,
                                         text="",
-                                        font= PARAGRAPH_FONT)
-    topReview_label.pack(side='left')
-    topReview_output_label.pack(side='left')
-    topReview_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+                                        font= PARAGRAPH_FONT,
+                                        wraplength=PARAGRAPH_WRAP_LENGTH)
+    reviewSummary_label.pack(side='left')
+    reviewSummary_output_label.pack(side='left')
+    reviewSummary_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
 
         
     def update_info_label():
@@ -460,7 +473,7 @@ def updateOutputFrame():
                 address_label.config(text="Address: ")
                 website_label.config(text="Website: ")
                 price_label.config(text="Price: ")
-                topReview_label.config(text="Top Review: ")
+                reviewSummary_label.config(text="Review\nSummary: ")
                 
                 # Show output
                 activityType_output_label.config(text=type_val)
@@ -468,7 +481,7 @@ def updateOutputFrame():
                 address_output_label.config(text=address)
                 website_output_label.config(text=website)
                 price_output_label.config(text=price)
-                topReview_output_label.config(text=review)
+                reviewSummary_output_label.config(text=review)
             else:
                 # Reset label values
                 infoTitle_label.config(text="Select a place to see more information")
@@ -477,7 +490,7 @@ def updateOutputFrame():
                 address_label.config(text="")
                 website_label.config(text="")
                 price_label.config(text="")
-                topReview_label.config(text="")
+                reviewSummary_label.config(text="")
         except Exception as e:
             print(f"Error updating labels: {e}")
             infoTitle_label.config(text="Select a place to see more information")
