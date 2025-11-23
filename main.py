@@ -22,16 +22,16 @@ zipcode_int             = tk.IntVar()
 
 event_list              = []
 
-selectedType_str        = tk.StringVar(value="Default Type value")
-selectedBusiness_str    = tk.StringVar(value="Default Business value")
-selectedAddress_str     = tk.StringVar(value="Default Address value")
-selectedWebsite_str     = tk.StringVar(value="Default Website value")
-selectedPrice_str       = tk.StringVar(value="Default Price value")
-selectedTopReview_str   = tk.StringVar(value="Default Top Review value")
+selectedType_str        = tk.StringVar()
+selectedBusiness_str    = tk.StringVar()
+selectedAddress_str     = tk.StringVar()
+selectedWebsite_str     = tk.StringVar()
+selectedPrice_str       = tk.StringVar()
+selectedTopReview_str   = tk.StringVar()
 
-selectedFirstStop_list  = []
-selectedSecondStop_list = []
-selectedFinalStop_list  = []
+selectedFirstStop_dict  = {}
+selectedSecondStop_dict = {}
+selectedFinalStop_dict  = {}
 
 activity_toggle_states  = {}
 dayOfWeek_toggle_states = {}
@@ -43,9 +43,9 @@ traceID                 = ""
 
 # HELPER FUNCTIONS
 def generate_helper():
-    global selectedFirstStop_list
-    global selectedSecondStop_list
-    global selectedFinalStop_list
+    global selectedFirstStop_dict
+    global selectedSecondStop_dict
+    global selectedFinalStop_dict
 
     global dayOfWeek_toggle_states
     global isTimeSetToDay
@@ -64,7 +64,7 @@ def generate_helper():
 
     print(f"Calling Google API with {zipcode}...")
     error_label.config(text="")
-    selectedFirstStop_list, selectedSecondStop_list, selectedFinalStop_list = generate_activities(zipcode, active_day_button, isTimeSetToDay)
+    selectedFirstStop_dict, selectedSecondStop_dict, selectedFinalStop_dict = generate_activities(zipcode, active_day_button, isTimeSetToDay)
     
     # Update the output frame to display activities
     updateOutputFrame()
@@ -171,9 +171,9 @@ def updateOutputFrame():
     global isTimeSetToDay
     global traceID
     global place_type
-    global selectedFirstStop_list   
-    global selectedSecondStop_list  
-    global selectedFinalStop_list  
+    global selectedFirstStop_dict   
+    global selectedSecondStop_dict  
+    global selectedFinalStop_dict  
 
     global HEADER_FONT
     global SUBHEADER_FONT
@@ -203,14 +203,10 @@ def updateOutputFrame():
         # >> - - - dynamic button selection RESTAURANT- - -
         subFirstStop_label.config(text="Activity")
 
-        # @TODO:                vvv   REPLACE WITH GENERATED VALUES    vvv
-        # selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
-        #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-        print(f"First at Enumeration: {str(selectedFirstStop_list)}")
-        for i, option_text in enumerate(selectedFirstStop_list):
+        print(f"First at Enumeration: {str(selectedFirstStop_dict)}")
+        for i, option_text in enumerate(selectedFirstStop_dict):
             radButt = tk.Radiobutton(firstStopRadioSelection_FRAME, 
-                        text=option_text, 
+                        text=option_text.getBusiness(), 
                         variable=selectedStop_str, 
                         value=option_text, 
                         command=on_radio_select_stop,
@@ -222,12 +218,9 @@ def updateOutputFrame():
         # >> - - - dynamic button selection ACTIVITY - - -
         subFirstStop_label.config(text="Restaurant")
 
-        # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
-        selectedFirstStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
-        #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        for i, option_text in enumerate(selectedFirstStop_list):
+        for i, option_text in enumerate(selectedFirstStop_dict):
             radButt = tk.Radiobutton(firstStopRadioSelection_FRAME, 
-                        text=option_text, 
+                        text=option_text.getBusiness(), 
                         variable=selectedStop_str, 
                         value=option_text, 
                         command=on_radio_select_stop,
@@ -257,9 +250,9 @@ def updateOutputFrame():
         # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
         # selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        for i, option_text in enumerate(selectedSecondStop_list):
+        for i, option_text in enumerate(selectedSecondStop_dict):
             radButt = tk.Radiobutton(secondStopRadioSelection_FRAME, 
-                        text=option_text, 
+                        text=option_text.getBusiness(), 
                         variable=selectedStop_str, 
                         value=option_text, 
                         command=on_radio_select_stop,
@@ -272,9 +265,9 @@ def updateOutputFrame():
         # @TODO:                vvv    REPLACE WITH GENERATED VALUES     vvv
         # selectedSecondStop_list = ["Activity 1", "Activity 2", "Activity 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        for i, option_text in enumerate(selectedSecondStop_list):
+        for i, option_text in enumerate(selectedSecondStop_dict):
             radButt = tk.Radiobutton(secondStopRadioSelection_FRAME, 
-                        text=option_text, 
+                        text=option_text.getBusiness(), 
                         variable=selectedStop_str, 
                         value=option_text, 
                         command=on_radio_select_stop,
@@ -303,9 +296,9 @@ def updateOutputFrame():
         # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
         # selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        for i, option_text in enumerate(selectedFinalStop_list):
+        for i, option_text in enumerate(selectedFinalStop_dict):
             radButt = tk.Radiobutton(finalStopRadioSelection_FRAME, 
-                        text=option_text, 
+                        text=option_text.getBusiness(), 
                         variable=selectedStop_str, 
                         value=option_text, 
                         command=on_radio_select_stop,
@@ -424,12 +417,12 @@ def updateOutputFrame():
         '''
         # OUTPUT data
         selection = selectedStop_str.get()
-        type = selectedType_str.get()
-        business = selectedBusiness_str.get()
-        address = selectedAddress_str.get() 
-        website = selectedWebsite_str.get()
-        price = selectedPrice_str.get()
-        review = selectedTopReview_str.get()
+        type = selection.getType()
+        business = selection.getBusiness()
+        address = selection.getAddress()
+        website = selection.getWebsite()
+        price = selection.getPriceLevel()
+        review = selection.getReviewSummary()
 
         if selection: 
             # Show title

@@ -33,22 +33,22 @@ place_types=        ["Restaurant", "Activity", "Dessert"]
 
 def generate_activities(zipcode, dayPref, isTimeSetToDay):
     global event_dict
-    firstStop_list = []
-    secondStop_list = []
-    finalStop_list = []
+    firstStop_dict = {}
+    secondStop_dict = {}
+    finalStop_dict = {}
 
     call_places_api(zipcode)
 
     if isTimeSetToDay: 
         # Activity > Dinner > Dessert
-        create_stop_list(isTimeSetToDay, "Activity", dayPref, firstStop_list)
-        create_stop_list(isTimeSetToDay, "Restaurant", dayPref, secondStop_list)
-        create_stop_list(isTimeSetToDay, "Dessert", dayPref, finalStop_list)
+        create_stop_dict(isTimeSetToDay, "Activity", dayPref, firstStop_dict)
+        create_stop_dict(isTimeSetToDay, "Restaurant", dayPref, secondStop_dict)
+        create_stop_dict(isTimeSetToDay, "Dessert", dayPref, finalStop_dict)
     else:
         # Dinner > Activity > Dessert
-        create_stop_list(isTimeSetToDay, "Restaurant", dayPref, secondStop_list)
-        create_stop_list(isTimeSetToDay, "Activity", dayPref, firstStop_list)
-        create_stop_list(isTimeSetToDay, "Dessert", dayPref, finalStop_list)
+        create_stop_dict(isTimeSetToDay, "Restaurant", dayPref, secondStop_dict)
+        create_stop_dict(isTimeSetToDay, "Activity", dayPref, firstStop_dict)
+        create_stop_dict(isTimeSetToDay, "Dessert", dayPref, finalStop_dict)
 
     # Sort through the input
     # This method should return three lists (first stop, second stop, final stop) 
@@ -66,15 +66,12 @@ def generate_activities(zipcode, dayPref, isTimeSetToDay):
     #       - If business must be in operation
     #       - Business hours must correspond with given times
     #       - 
-    return firstStop_list, secondStop_list, finalStop_list
+    return firstStop_dict, secondStop_dict, finalStop_dict
 
-def create_stop_list(isTimeSetToDay, place_type, dayPref, stop_list):
+def create_stop_dict(isTimeSetToDay, place_type, dayPref, stop_dict):
     checkIfOpen = 5  # 5 AM for day check
     checkIfOpenNight = 17  # 5 PM for night check
     
-    # If day out, check when business opens
-    # If night out, check when business closes
-
     for event in event_dict[place_type]:
         print(f"Filtering {event.getBusiness()}...")
         status = event.getStatus()
@@ -83,7 +80,7 @@ def create_stop_list(isTimeSetToDay, place_type, dayPref, stop_list):
         if status != "OPERATIONAL":
             continue
             
-        print(f"Business Hours: {', '.join(f'{key}: {value}' for key, value in businessHours.items())}")
+        # print(f"Business Hours: {', '.join(f'{key}: {value}' for key, value in businessHours.items())}")
         
         time_string = businessHours.get(dayPref, "Closed")
         
@@ -117,23 +114,18 @@ def create_stop_list(isTimeSetToDay, place_type, dayPref, stop_list):
             if isTimeSetToDay:
                 # Day out: check if opens early enough (before 5 PM)
                 if opening_hour < checkIfOpenNight:
-                    print(f"  {dayPref}: Opens at {opening_time} - Adding to list!")
-                    stop_list.append(event)
-                else:
-                    print(f"  {dayPref}: Opens at {opening_time} - Too late")
+                    # print(f"  {dayPref}: Opens at {opening_time} - Adding to list!")
+                    stop_dict[event.getBusiness()] = (event)
             else:
                 # Night out: check if closes late enough (after 5 PM)
                 if closing_hour >= checkIfOpenNight:
-                    print(f"  {dayPref}: Closes at {closing_time} - Adding to list!")
-                    stop_list.append(event)
-                else:
-                    print(f"  {dayPref}: Closes at {closing_time} - Too early")
+                    # print(f"  {dayPref}: Closes at {closing_time} - Adding to list!")
+                    stop_dict[event.getBusiness()] = (event)
                     
         except (ValueError, IndexError) as e:
             print(f"  Could not parse time from: {opening_time} - {closing_time}")
     
-    return stop_list
-
+    return stop_dict
 
 def call_places_api(new_zipcode):
     global curr_zipcode
