@@ -18,6 +18,7 @@ STOP_Y_POS = 10
 INFO_SUB_LABEL_POS = (5, 0)
 
 selectedStop_str = tk.StringVar(value="")
+zipcode_int = tk.IntVar()
 
 event_list = []
 
@@ -27,7 +28,6 @@ selectedAddress_str = tk.StringVar(value="Default Address value")
 selectedWebsite_str = tk.StringVar(value="Default Website value")
 selectedPrice_str = tk.StringVar(value="Default Price value")
 selectedTopReview_str = tk.StringVar(value="Default Top Review value")
-zipcode_int = tk.IntVar()
 
 selectedFirstStop_list = []
 selectedSecondStop_list = []
@@ -45,9 +45,11 @@ def generate_helper():
     global selectedFirstStop_list
     global selectedSecondStop_list
     global selectedFinalStop_list
-    print("Calling Google API...")
 
-    # generate_activities()
+    # @TODO: MAKE SURE ZIPCODE IS VALID BEFORE RUNNING
+    zipcode = zipcode_int.get()
+    print(f"Calling Google API with {zipcode}...")
+    generate_activities(zipcode)
 
     # TEST INPUT DATA
     event_list.append( 
@@ -237,7 +239,7 @@ def updateOutputFrame():
         subSecondStop_label.config(text="Activity")
 
         # @TODO:                vvv    REPLACE WITH GENERATED VALUES     vvv
-        selectedSecondStop_list = ["Activity 1", "Activity 2", "Activity 3"]
+        # selectedSecondStop_list = ["Activity 1", "Activity 2", "Activity 3"]
         #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         for i, option_text in enumerate(selectedSecondStop_list):
             radButt = tk.Radiobutton(secondStopRadioSelection_FRAME, 
@@ -387,14 +389,6 @@ def updateOutputFrame():
         radio button
 
         Needs to be beneath the labels to update
-
-        selectedStop_str = tk.StringVar(value="")
-        selectedType_str = tk.StringVar()
-        selectedBusiness_str = tk.StringVar()
-        selectedAddress_str = tk.StringVar()
-        selectedWebsite_str = tk.StringVar()
-        selectedPrice_str = tk.StringVar()
-        selectedTopReview_str = tk.StringVar()
 
         '''
         # OUTPUT data

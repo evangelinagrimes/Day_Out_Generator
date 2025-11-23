@@ -4,6 +4,11 @@ import math
 import json
 import csv
 
+# @TODO: 
+#   - Go through the curr_city setting method and figure out why it's returning None
+#   - Implement convert_to_event_objects
+#   - implement generate_activties 
+
 event_dict= {}
 past_zipcodes = []
 curr_city= ""
@@ -30,10 +35,11 @@ dessert_type=       ["acai_shop", "bakery", "candy_store", "chocolate_shop", "co
 ]
 place_types=        ["Restaurant", "Activity", "Dessert"]
 
-def generate_activities():
+def generate_activities(zipcode):
+    call_places_api(zipcode)
     return None
 
-def call_places_api(zipcode):
+def call_places_api(new_zipcode):
     global curr_zipcode
     global curr_city
     global region_code
@@ -47,9 +53,9 @@ def call_places_api(zipcode):
     # Check if zipcode changed
 
     # If a new zipcode is put in, make a new call
-    if curr_zipcode != zipcode and zipcode not in past_zipcodes: 
+    if curr_zipcode != new_zipcode and new_zipcode not in past_zipcodes: 
         past_zipcodes.append(curr_zipcode)
-        curr_zipcode = zipcode
+        curr_zipcode = new_zipcode
         client_secret_file = 'client_secret.json'
         API_NAME = 'places'
         API_VERSION = 'v1'
@@ -58,7 +64,7 @@ def call_places_api(zipcode):
         service = create_service(client_secret_file, API_NAME, API_VERSION, SCOPES)
         
         # Find Longitude and Latitude values
-        curr_latitude, curr_longitude, curr_city = zipcode_to_coords(zipcode)
+        curr_latitude, curr_longitude, curr_city = zipcode_to_coords(curr_zipcode)
         # Find Long/Lat high and low
         location_restriction_rect = create_location_restriction(curr_latitude, curr_longitude)
         # Create text queries
@@ -85,25 +91,43 @@ def call_places_api(zipcode):
                 fields= field_mask
             ).execute()
 
-            write_to_json_file(response, place, zipcode)
+            write_to_json_file(response, place, curr_zipcode)
             convert_data_to_events(response, place)
-            write_zip_to_csv(zipcode)
+            append_zip_to_csv(curr_zipcode)
 
     else:
-        print(f"{zipcode} has already been called")
+        print(f"{curr_zipcode} has already been called")
         pass
 
 
 # HELPER FUNCTIONS 
-def write_zip_to_csv(zipcode):
+def append_zip_to_csv(zipcode):
+    """Append a ZIP code to the used_zips.csv file.
+    
+    Adds the ZIP code as a new row in assets/used_zips.csv to track
+    which ZIP codes have been queried.
+    
+    :param zipcode: ZIP code to append (int or string)
+    :return: None
+    :raises: Prints error message if file write fails
+    """
     try:
-        with open("assets/used_zips.csv", 'w') as csv_file:
+        with open("assets/used_zips.csv", 'a', newline="") as csv_file:
             csv_writer = csv.writer(csv_file)
-            csv_writer.writerow(zipcode)
+            csv_writer.writerow([zipcode])
     except Exception as e:
         print(f"ERROR write_zip_to_csv: {e}")
 
 def read_and_store_csv(file_name):
+    """Read all data from a CSV file and return as a flat list.
+    
+    Reads all rows and columns from the CSV file and flattens them
+    into a single list of values.
+    
+    :param file_name: Path to the CSV file to read
+    :return: List containing all values from the CSV file (flattened). Returns empty list if file read fails
+    :raises: Prints error message if file read fails
+    """
     csv_list= []
     try:
         with open(file_name, 'r') as csv_file: 
@@ -117,6 +141,17 @@ def read_and_store_csv(file_name):
     return csv_list
 
 def write_to_json_file(file_data, file_name, zipcode):
+    """
+    Write data to a JSON file in the json_files directory.
+    
+    Creates a JSON file with the format: json_files/{file_name}{zipcode}.json
+    
+    :param file_data: Dictionary or data structure to write to JSON file
+    :param file_name: Base name for the file (without extension)
+    :param zipcode: ZIP code to append to filename (int or string)
+    :return: None
+    :raises: Prints error message if file write fails
+    """
     try: 
         with open(f"json_files/{file_name}{str(zipcode)}.json", 'w') as json_file:
             json.dump(file_data, json_file, indent=4)
@@ -124,6 +159,7 @@ def write_to_json_file(file_data, file_name, zipcode):
         print(f"ERROR write_to_json_file: {e}")
 
 def convert_data_to_events(response, place):
+    # @TODO: implement to create event objects
     return None
 
 def zipcode_to_coords(zipcode):
