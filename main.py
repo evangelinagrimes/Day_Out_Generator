@@ -11,34 +11,35 @@ window.title("Day Out Generator")
 window.geometry('1300x700')
 
 # INPUT FIELDS / VARIABLES
-HEADER_FONT = 'Calibri 15'
-SUBHEADER_FONT = 'Calibri 13'
-PARAGRAPH_FONT = 'Calibri 12'
-STOP_Y_POS = 10
-INFO_SUB_LABEL_POS = (5, 0)
+HEADER_FONT             = 'Calibri 15'
+SUBHEADER_FONT          = 'Calibri 13'
+PARAGRAPH_FONT          = 'Calibri 12'
+STOP_Y_POS              = 10
+INFO_SUB_LABEL_POS      = (5, 0)
 
-selectedStop_str = tk.StringVar(value="")
-zipcode_int = tk.IntVar()
+selectedStop_str        = tk.StringVar(value="")
+zipcode_int             = tk.IntVar()
 
-event_list = []
+event_list              = []
 
-selectedType_str = tk.StringVar(value="Default Type value")
-selectedBusiness_str = tk.StringVar(value="Default Business value")
-selectedAddress_str = tk.StringVar(value="Default Address value")
-selectedWebsite_str = tk.StringVar(value="Default Website value")
-selectedPrice_str = tk.StringVar(value="Default Price value")
-selectedTopReview_str = tk.StringVar(value="Default Top Review value")
+selectedType_str        = tk.StringVar(value="Default Type value")
+selectedBusiness_str    = tk.StringVar(value="Default Business value")
+selectedAddress_str     = tk.StringVar(value="Default Address value")
+selectedWebsite_str     = tk.StringVar(value="Default Website value")
+selectedPrice_str       = tk.StringVar(value="Default Price value")
+selectedTopReview_str   = tk.StringVar(value="Default Top Review value")
 
-selectedFirstStop_list = []
+selectedFirstStop_list  = []
 selectedSecondStop_list = []
-selectedFinalStop_list = []
+selectedFinalStop_list  = []
 
-activity_toggle_states = {}
+activity_toggle_states  = {}
 dayOfWeek_toggle_states = {}
-isTimeSetToDay = True
-isThemeActive = True
-generateButtonPressed = False
-traceID = ""
+active_day_button       = ""
+isTimeSetToDay          = True
+isThemeActive           = True
+generateButtonPressed   = False
+traceID                 = ""
 
 # HELPER FUNCTIONS
 def generate_helper():
@@ -46,13 +47,24 @@ def generate_helper():
     global selectedSecondStop_list
     global selectedFinalStop_list
 
-    # @TODO: MAKE SURE ZIPCODE IS VALID BEFORE RUNNING
+    global dayOfWeek_toggle_states
+    global isTimeSetToDay
+
     zipcode = zipcode_int.get()
+
     if len(str(zipcode)) < 5:
-        print(f"ERROR: {zipcode} is not a valid zipcode. Please try again.")
-    else:
-        print(f"Calling Google API with {zipcode}...")
-        generate_activities(zipcode)
+        print(f"ERROR: {zipcode} is not a valid zipcode... Please try again.")
+        error_label.config(text="ERROR: Invalid zipcode... Please try again.")
+        return
+
+    if len(active_day_button) <= 1: 
+        print(f"ERROR: invalid day selection... Please try again.")
+        error_label.config(text="ERROR: invalid day selection... Please try again.")
+        return
+
+    print(f"Calling Google API with {zipcode}...")
+    error_label.config(text="")
+    generate_activities(zipcode, dayOfWeek_toggle_states, isTimeSetToDay)
 
     # # TEST INPUT DATA
     # event_list.append( 
@@ -62,10 +74,10 @@ def generate_helper():
     #      })
     
     # @TODO: Update with event objects
-    selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
-    selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
-    selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
-    print(f'Updated selected Lists... \nFirst: {str(selectedFirstStop_list)}\nSecond: {str(selectedSecondStop_list)}\nFinal: {str(selectedFinalStop_list)}')
+    # selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
+    # selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
+    # selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
+    # print(f'Updated selected Lists... \nFirst: {str(selectedFirstStop_list)}\nSecond: {str(selectedSecondStop_list)}\nFinal: {str(selectedFinalStop_list)}')
     
     # Update the output frame to display activities
     updateOutputFrame()
@@ -78,7 +90,7 @@ def on_radio_select_stop():
     selected = selectedStop_str.get()
     print(f"Selected: {selected}")
 
-def create_toggle_button(parent, text, width, height, key, start_state, state_dictionary, ):
+def create_toggle_button(parent, text, width, height, key, start_state, state_dictionary, isSingleSelect=False):
     '''
     Creates a toggle button and implements the toggle feature
     
@@ -92,23 +104,52 @@ def create_toggle_button(parent, text, width, height, key, start_state, state_di
 
     :return: A button object
     '''
+    
     state_dictionary[key] = start_state
+    # Store button references in a dictionary
+    if not hasattr(create_toggle_button, 'button_refs'):
+        create_toggle_button.button_refs = {}
     
     def toggle():
-        state_dictionary[key] = not state_dictionary[key]
-        if state_dictionary[key]:
-            btn.config(relief=tk.SUNKEN, bg="darkgrey")
-            # print(f"{str(key)} state toggled ON" )
+        if not isSingleSelect:
+            # Multi-select mode
+            state_dictionary[key] = not state_dictionary[key]
+            
+            if state_dictionary[key]:
+                btn.config(relief=tk.SUNKEN, bg="darkgrey")
+            else:
+                btn.config(relief=tk.RAISED, bg="SystemButtonFace")
         else:
-            btn.config(relief=tk.RAISED, bg="SystemButtonFace")
-            # print(f"{str(key)} state toggled OFF" )
+            # Single-select mode
+            global active_day_button
+            
+            # If there's currently an active button, turn it off
+            if active_day_button and active_day_button != key:
+                state_dictionary[active_day_button] = False
+                create_toggle_button.button_refs[active_day_button].config(relief=tk.RAISED, bg="SystemButtonFace")
+            
+            # Toggle current button
+            state_dictionary[key] = not state_dictionary[key]
+            
+            if state_dictionary[key]:
+                btn.config(relief=tk.SUNKEN, bg="darkgrey")
+                active_day_button = key
+            else:
+                btn.config(relief=tk.RAISED, bg="SystemButtonFace")
+                active_day_button = None
     
-    if start_state: 
-        btn = tk.Button(parent, text=text, command=toggle, 
-                    width=width, height=height, relief=tk.SUNKEN, bg="darkgrey")
-    else: 
-        btn = tk.Button(parent, text=text, command=toggle, 
-                    width=width, height=height, relief=tk.RAISED, bg="SystemButtonFace")
+    btn = tk.Button(parent, text=text, command=toggle, 
+                    width=width, height=height,
+                    relief=tk.SUNKEN if start_state else tk.RAISED,
+                    bg="darkgrey" if start_state else "SystemButtonFace")
+    
+    # Store button reference
+    create_toggle_button.button_refs[key] = btn
+    
+    # Set initial active button for single-select mode
+    if isSingleSelect and start_state:
+        global active_day_button
+        active_day_button = key
     
     return btn
 
@@ -165,9 +206,9 @@ def updateOutputFrame():
     selection_FRAME.pack_propagate(False)
 
     # > ------ first stop ------
-    firstStop_FRAME = ttk.Frame(master= selection_FRAME)
-    firstStop_label = ttk.Label(firstStop_FRAME, text= "FIRST STOP", font = HEADER_FONT)
-    subFirstStop_label = ttk.Label(firstStop_FRAME, text="", font = SUBHEADER_FONT)
+    firstStop_FRAME     = ttk.Frame(master= selection_FRAME)
+    firstStop_label     = ttk.Label(firstStop_FRAME, text= "FIRST STOP", font = HEADER_FONT)
+    subFirstStop_label  = ttk.Label(firstStop_FRAME, text="", font = SUBHEADER_FONT)
 
     firstStopRadioSelection_FRAME = ttk.Frame(master= firstStop_FRAME)
     
@@ -443,7 +484,7 @@ input_FRAME.pack_propagate(False)
 # s.configure('TFrame', background='red')
 
 # > ------ field frame ------
-field_FRAME = ttk.Frame(master= input_FRAME, width= 500, height=225, relief="raised")
+field_FRAME = ttk.Frame(master= input_FRAME, width= 500, height=250, relief="raised")
 field_FRAME.pack_propagate(False)
 
 # >> ------ zipcode frame ------
@@ -473,34 +514,39 @@ activityPref_ROW.pack()
 # >> ------ day of week ------
 # NOTE: button values are stored in dayOfWeek_toggle_states
 dayOfWeek_ROW = ttk.Frame(master= field_FRAME)
-dayOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"]
+dayOfWeek = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
+dayOfWeekKey = ["Monday", "Tuesday", "Wednesday","Thursday", "Friday", "Saturday", "Sunday"]
 
 for i, day in enumerate(dayOfWeek):
-    btn = create_toggle_button(dayOfWeek_ROW, day, 5, 1, day, False, dayOfWeek_toggle_states)
+    btn = create_toggle_button(dayOfWeek_ROW, day, 5, 1, dayOfWeekKey[i], False, dayOfWeek_toggle_states, True)
     btn.grid(row=0, column=i, padx=5, pady=5)
 
 dayOfWeek_ROW.pack()
 
 # >> ------ day/night AND theme  ------
-dayNight_ROW = ttk.Frame(master= field_FRAME)   
+dayNight_ROW    = ttk.Frame(master= field_FRAME)   
 
-day = PhotoImage(file="assets/switchDAY.png")
-night = PhotoImage(file="assets/switchNIGHT.png")
-day_button = tk.Button(dayNight_ROW, image=day, bd=0, command=switchDayButton)
+day             = PhotoImage(file="assets/switchDAY.png")
+night           = PhotoImage(file="assets/switchNIGHT.png")
+day_button      = tk.Button(dayNight_ROW, image=day, bd=0, command=switchDayButton)
 
-theme = PhotoImage(file="assets/THEME.png")
-noTheme = PhotoImage(file="assets/NO_THEME.png")
-theme_button = tk.Button(dayNight_ROW, image=noTheme, bd=0, command=switchThemeButton)
+theme           = PhotoImage(file="assets/THEME.png")
+noTheme         = PhotoImage(file="assets/NO_THEME.png")
+theme_button    = tk.Button(dayNight_ROW, image=noTheme, bd=0, command=switchThemeButton)
 
 day_button.pack(side='left')
 theme_button.pack(side='left')
 dayNight_ROW.pack()
 
-# >> ------ generate button ------
+# >> ------ generate button and error label ------
 generate = PhotoImage(file="assets/GENERATE.png")
-generate_button = tk.Button(master= field_FRAME,  image=generate, bd=0, command=generate_helper)
+s.configure("Red.TLabel", foreground="red")
 
-generate_button.pack(pady=15)
+generate_button = tk.Button(master= field_FRAME,  image=generate, bd=0, command=generate_helper)
+error_label     = ttk.Label(master= field_FRAME, text="", style="Red.TLabel")
+
+error_label.pack()
+generate_button.pack(pady=(0,15))
 
 # >> -----------------------------
 field_FRAME.pack(padx=25)

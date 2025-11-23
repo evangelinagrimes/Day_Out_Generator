@@ -4,8 +4,6 @@ import math, json, csv, re, Event
 
 # @TODO: 
 #   - Go through the curr_city setting method and figure out why it's returning None
-#   - Implement convert_to_event_objects
-#   - implement generate_activties 
 
 event_dict= {}
 past_zipcodes = []
@@ -33,9 +31,54 @@ dessert_type=       ["acai_shop", "bakery", "candy_store", "chocolate_shop", "co
 ]
 place_types=        ["Restaurant", "Activity", "Dessert"]
 
-def generate_activities(zipcode):
+def generate_activities(zipcode, dayPreference, isTimeSetToDay):
+    global event_dict
+    firstStop_list = []
+    secondStop_list = []
+    finalStop_list = []
+    checkIfOpen = 5
+
     call_places_api(zipcode)
-    return None
+
+    if isTimeSetToDay:
+        # If day out, I want to know when the business opens
+        # If night out, I want to know when the business closes
+
+        for event in event_dict["Activity"]:
+            print(f"Filtering {event.getBusiness()}...")
+            status = event.getStatus()
+            businessHours = event.getBusinessHours()
+            if status == "OPERATIONAL":
+                print(f"Day Preference: {', '.join(f'{key}: {value}' for key, value in dayPreference.items())}")
+                print(f"Business Hours: {', '.join(f'{key}: {value}' for key, value in businessHours.items())}")
+                for day in dayPreference:
+                    # Check if the business is open
+                    if businessHours[day] != "Closed": 
+                        opening, _, closing, abb = businessHours[day].split(' ')
+                        hour, _ = opening.split(':')
+                        # Store any business that is open before 5:00PM
+                        if int(hour) < checkIfOpen:
+                            firstStop_list.append(event)
+
+
+
+    # Sort through the input
+    # This method should return three lists (first stop, second stop, final stop) 
+    #   FIRST STOP: 
+    #       - If DayOut: Start with activity (Open before 5PM)
+    #       - If NighOut: Start with dinner (Open past 5PM)
+    #   SECOND STOP:
+    #       - If DayOut: Search for restaurant (Open past 5PM)
+    #       - If NighOut: Search for activity (Open past 5PM)
+    #   FINAL STOP:
+    #       If DayOut: Will always be dessert (Open past 5PM)
+    #       If NighOut: Will always be dessert (Open past 8PM)
+    #
+    #   Other Conditions: 
+    #       - If business must be in operation
+    #       - Business hours must correspond with given times
+    #       - 
+    return firstStop_list, secondStop_list, finalStop_list
 
 def call_places_api(new_zipcode):
     global curr_zipcode
@@ -160,23 +203,23 @@ def read_json_data(response, place_type):
     """
     event_list = []
     try: 
-        print(          "Began read_json_data...")
+        print("                                             Began read_json_data...")
         for place in response['places']:
-            openHours = {}
-            name = place.get('displayName', {}).get('text', 'Unknown')
-            daysOpen = place['currentOpeningHours']['weekdayDescriptions']
+            openHours   = {}
+            name        = place.get('displayName', {}).get('text', 'Unknown')
+            daysOpen    = place['currentOpeningHours']['weekdayDescriptions']
             for elem in daysOpen: 
                 day, time = elem.split(": ")
                 if time == "Closed":
                     openHours[day] = time
                 else:
-                    clean_time = re.sub(r'\s+', ' ', time).replace('–', '-')
+                    clean_time  = re.sub(r'\s+', ' ', time).replace('–', '-')
                     openHours[day] = clean_time
-            address = place.get('formattedAddress', 'Unknown')
-            website = place.get('websiteUri', 'Unknown')
-            status = place.get('businessStatus', 'Unknown')
-            review = place.get('reviewSummary', {}).get('text', {}).get('text', 'N/A')
-            priceLevel = place.get('priceLevel', 'N/A')
+            address     = place.get('formattedAddress', 'Unknown')
+            website     = place.get('websiteUri', 'Unknown')
+            status      = place.get('businessStatus', 'Unknown')
+            review      = place.get('reviewSummary', {}).get('text', {}).get('text', 'N/A')
+            priceLevel  = place.get('priceLevel', 'N/A')
 
             event_list.append(Event.Event(type=place_type,
                                     status=status,
@@ -186,50 +229,13 @@ def read_json_data(response, place_type):
                                     website=website,
                                     priceLevel=priceLevel,
                                     reviewSummary=review))
-        print(          "Leaving read_json_file...")
+        print("                                             Leaving read_json_file...")
     except Exception as e:
         print(f"ERROR read_json_data: {e}")
         print(place)
         return event_list 
     
     return event_list 
-
-# def read_json_file(file_name, place):
-    # """
-    # Used when file exists / zipcode has been called already
-    # """
-    # global event_dict
-    # event_list = []
-    # try:
-    #     print(          "Began read_json_file...")
-    #     with open(file_name, 'r') as json_file: 
-    #         data = json.load(json_file)
-    #         for place in data['places']:
-    #             openHours = {}
-    #             name = place['displayName']['text']
-    #             daysOpen = place['currentOpeningHours']['weekdayDescriptions']
-    #             for elem in daysOpen: 
-    #                 day, times = elem.split(": ")
-    #                 clean_time = re.sub(r'\s+', ' ', times).replace('–', '-')
-    #                 openHours[day] = clean_time
-    #             address = place['formattedAddress']
-    #             website = place['websiteUri']
-    #             status = place['businessStatus']
-    #             review = place['reviewSummary']['text']['text']
-    #             priceLevel = place['priceLevel'] or None
-    #             event_list.append(Event.Event(type=place,
-    #                                 status=status,
-    #                                 business=name,
-    #                                 businessHours=openHours,
-    #                                 address=address,
-    #                                 website=website,
-    #                                 priceLevel=priceLevel,
-    #                                 reviewSummary=review))
-    #     event_dict[place] = event_list
-    #     print(          "Leaving read_json_file...")
-
-    # except Exception as e:
-    #     print(f"ERROR read_json_file: {e}")
 
 # ================================
 #     QUERY HELPER FUNCTIONS
@@ -306,6 +312,6 @@ def convert_data_to_events(response, place):
     return None
 
 if __name__ == "__main__":
-    call_places_api(23456)
+    generate_activities(23456, True, {"Monday": False, "Tuesday": True, "Wednesday": True, "Thursday": False, "Friday": True, "Saturday": False, "Sunday": False})
     # read_json_file('json_files/Dessert23456.json', 'Restaurant')
     

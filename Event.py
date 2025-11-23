@@ -54,4 +54,4 @@ class Event:
         return self.status 
 
     def __str__(self):
-        return f"----------| {self.business} |-----------\nTYPE: {self.type}\nADDRESS: {self.address}\nOPEN HOURS: {self.businessHours}\nWEBSITE: {self.website}\nPRICE: {self.priceLevel}\nREVIEW SUMMARY: {self.reviewSummary}\n{'--' * 20}"
+        return f"----------| {self.business} |-----------\nTYPE: {self.type}\nSTATUS: {self.status}\nADDRESS: {self.address}\nOPEN HOURS: {self.businessHours}\nWEBSITE: {self.website}\nPRICE: {self.priceLevel}\nREVIEW SUMMARY: {self.reviewSummary}\n{'--' * 20}"
