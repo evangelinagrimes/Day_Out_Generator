@@ -48,15 +48,18 @@ def generate_helper():
 
     # @TODO: MAKE SURE ZIPCODE IS VALID BEFORE RUNNING
     zipcode = zipcode_int.get()
-    print(f"Calling Google API with {zipcode}...")
-    generate_activities(zipcode)
+    if len(str(zipcode)) < 5:
+        print(f"ERROR: {zipcode} is not a valid zipcode. Please try again.")
+    else:
+        print(f"Calling Google API with {zipcode}...")
+        generate_activities(zipcode)
 
-    # TEST INPUT DATA
-    event_list.append( 
-        {Event("Restaurant", "RockLovers", "223 Forthcoming St", "https://RockLover.com", "Expensive", "Love this place!"), 
-         Event("Activity", "PartyLovers", "124 AppleBlossom St", "https://PartyLovers.com", "Cheap", "Yeah.. it was ok"),
-         Event("Dessert", "BerriesAndCream", "444 Dairy Way", "https://BerriesAndCream.com", "Medium", "WOOO WOULD TOTALLY GO BACK")
-         })
+    # # TEST INPUT DATA
+    # event_list.append( 
+    #     {Event(type="Restaurant", status="Good Standing", business="RockLovers", businessHours={}, address="223 Forthcoming St", website="https://RockLover.com", priceLevel="CHEAP", reviewSummary="Love this place!"), 
+    #      Event(type="Activity", status="Bad Standing", business="PartyLovers", businessHours={}, address="124 AppleBlossom St", website="https://PartyLover.com", priceLevel="EXPENSIVE", reviewSummary="This place was just ok"),
+    #      Event(type="Dessert", status="Medium Standing", business="DairyLovers", businessHours={}, address="444 Dairy Way", website="https://BerriesAndCream.com", priceLevel="Medium", reviewSummary="WOOO WOULD TOTALLY GO BACK")
+    #      })
     
     # @TODO: Update with event objects
     selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
@@ -470,7 +473,7 @@ activityPref_ROW.pack()
 # >> ------ day of week ------
 # NOTE: button values are stored in dayOfWeek_toggle_states
 dayOfWeek_ROW = ttk.Frame(master= field_FRAME)
-dayOfWeek = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
+dayOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"]
 
 for i, day in enumerate(dayOfWeek):
     btn = create_toggle_button(dayOfWeek_ROW, day, 5, 1, day, False, dayOfWeek_toggle_states)
