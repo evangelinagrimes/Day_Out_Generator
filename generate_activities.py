@@ -93,6 +93,8 @@ def create_stop_dict(isTimeSetToDay, place_type, dayPref, stop_dict):
         if time_string == "Closed":
             print(f"  {dayPref}: Closed, skipping...")
             continue
+
+        time_string = time_string.replace('–', '-').replace('—', '-').strip()
         
         # Confirm that they are open during the provided times (e.g. Before 5PM or after 5PM)
         if '-' not in time_string:
@@ -100,6 +102,12 @@ def create_stop_dict(isTimeSetToDay, place_type, dayPref, stop_dict):
             print(f"  Unexpected format for {dayPref}: {time_string}")
             continue
         
+        # Split on dash - handle extra spaces
+        time_parts = time_string.split('-')
+        if len(time_parts) != 2:
+            print(f"  Could not parse time format: {time_string}")
+            continue
+
         opening_time, closing_time = [t.strip() for t in time_string.split('-')]
         
         try:
