@@ -16,22 +16,22 @@ SUBHEADER_FONT          = 'Calibri 13'
 PARAGRAPH_FONT          = 'Calibri 12'
 STOP_Y_POS              = 10
 INFO_SUB_LABEL_POS      = (5, 0)
+NUM_OF_SELECTIONS       = 3
 
-selectedStop_str        = tk.StringVar(value="")
+selectedStop_var        = None
 zipcode_int             = tk.IntVar()
 
 event_list              = []
+selectedType_str        = tk.StringVar()
+selectedBusiness_str    = tk.StringVar()
+selectedAddress_str     = tk.StringVar()
+selectedWebsite_str     = tk.StringVar()
+selectedPrice_str       = tk.StringVar()
+selectedTopReview_str   = tk.StringVar()
 
-selectedType_str        = tk.StringVar(value="Default Type value")
-selectedBusiness_str    = tk.StringVar(value="Default Business value")
-selectedAddress_str     = tk.StringVar(value="Default Address value")
-selectedWebsite_str     = tk.StringVar(value="Default Website value")
-selectedPrice_str       = tk.StringVar(value="Default Price value")
-selectedTopReview_str   = tk.StringVar(value="Default Top Review value")
-
-selectedFirstStop_list  = []
-selectedSecondStop_list = []
-selectedFinalStop_list  = []
+selectedFirstStop_dict  = {}
+selectedSecondStop_dict = {}
+selectedFinalStop_dict  = {}
 
 activity_toggle_states  = {}
 dayOfWeek_toggle_states = {}
@@ -39,13 +39,12 @@ active_day_button       = ""
 isTimeSetToDay          = True
 isThemeActive           = True
 generateButtonPressed   = False
-traceID                 = ""
 
 # HELPER FUNCTIONS
 def generate_helper():
-    global selectedFirstStop_list
-    global selectedSecondStop_list
-    global selectedFinalStop_list
+    global selectedFirstStop_dict
+    global selectedSecondStop_dict
+    global selectedFinalStop_dict
 
     global dayOfWeek_toggle_states
     global isTimeSetToDay
@@ -64,18 +63,10 @@ def generate_helper():
 
     print(f"Calling Google API with {zipcode}...")
     error_label.config(text="")
-    selectedFirstStop_list, selectedSecondStop_list, selectedFinalStop_list = generate_activities(zipcode, active_day_button, isTimeSetToDay)
+    selectedFirstStop_dict, selectedSecondStop_dict, selectedFinalStop_dict = generate_activities(zipcode, active_day_button, isTimeSetToDay)
     
     # Update the output frame to display activities
     updateOutputFrame()
-
-def on_radio_select_stop():
-    '''
-    Updates the currently selected stop to the current state of the radio button
-    '''
-    global selectedStop_str
-    selected = selectedStop_str.get()
-    print(f"Selected: {selected}")
 
 def create_toggle_button(parent, text, width, height, key, start_state, state_dictionary, isSingleSelect=False):
     '''
@@ -168,12 +159,19 @@ def updateOutputFrame():
     Updates the output content frame to display the activities pulled from the 
     data collected with the Google Places API call
     '''
+    def on_radio_select_stop(event_obj):
+        '''
+        Updates the currently selected stop to the current state of the radio button
+        '''
+        global selectedStop_var
+        selectedStop_var = event_obj  
+        update_info_label()  
+
     global isTimeSetToDay
-    global traceID
     global place_type
-    global selectedFirstStop_list   
-    global selectedSecondStop_list  
-    global selectedFinalStop_list  
+    global selectedFirstStop_dict   
+    global selectedSecondStop_dict  
+    global selectedFinalStop_dict  
 
     global HEADER_FONT
     global SUBHEADER_FONT
@@ -182,11 +180,6 @@ def updateOutputFrame():
     # Clear existing content_FRAME widgets
     for widget in content_FRAME.winfo_children():
         widget.destroy()
-
-    try:
-        selectedStop_str.trace_remove('write', traceID)
-    except:
-        print("             Could not remove existing Trace ID")
 
     # - - - - - - - -  | SELECTION FRAME | - - - - - - - -
     selection_FRAME = ttk.Frame(master= content_FRAME, width=300, height=550, relief="groove")
@@ -203,37 +196,42 @@ def updateOutputFrame():
         # >> - - - dynamic button selection RESTAURANT- - -
         subFirstStop_label.config(text="Activity")
 
-        # @TODO:                vvv   REPLACE WITH GENERATED VALUES    vvv
-        # selectedFirstStop_list = ["Activity 1", "Activity 2", "Activity 3"]
-        #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-        print(f"First at Enumeration: {str(selectedFirstStop_list)}")
-        for i, option_text in enumerate(selectedFirstStop_list):
-            radButt = tk.Radiobutton(firstStopRadioSelection_FRAME, 
-                        text=option_text, 
-                        variable=selectedStop_str, 
-                        value=option_text, 
-                        command=on_radio_select_stop,
-                        )
-            radButt.pack()
-            print(f"First Stop: Generating selection ACTIVITY... {str(selectedStop_str)}")
+        print(f"First at Enumeration: {str(selectedFirstStop_dict)}")
+        count = 0
+        for key, value in selectedFirstStop_dict.items():
+            # ADDED COUNT TO LIMIT THE NUMBER OF SELECTIONS CREATED
+            if count < NUM_OF_SELECTIONS:
+                radButt = tk.Radiobutton(firstStopRadioSelection_FRAME, 
+                            text=key, 
+                            variable=selectedStop_var, 
+                            value=value, 
+                            command=lambda v=value: on_radio_select_stop(v)
+                            )
+                radButt.pack()
+                print(f"First Stop: Generating selection ACTIVITY... {str(selectedStop_var)}")
+                count += 1
+            else:
+                break
 
     elif not isTimeSetToDay and activity_toggle_states["Restaurant"]: 
         # >> - - - dynamic button selection ACTIVITY - - -
         subFirstStop_label.config(text="Restaurant")
 
-        # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
-        selectedFirstStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
-        #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        for i, option_text in enumerate(selectedFirstStop_list):
-            radButt = tk.Radiobutton(firstStopRadioSelection_FRAME, 
-                        text=option_text, 
-                        variable=selectedStop_str, 
-                        value=option_text, 
-                        command=on_radio_select_stop,
-                        )
-            radButt.pack()
-            print(f"First Stop: Generating selection RESTAURANT ... {str(selectedStop_str)}")
+        count = 0
+        for key, value in selectedFirstStop_dict.items():
+            # ADDED COUNT TO LIMIT THE NUMBER OF SELECTIONS CREATED
+            if count < NUM_OF_SELECTIONS:
+                radButt = tk.Radiobutton(firstStopRadioSelection_FRAME, 
+                            text=key, 
+                            variable=selectedStop_var, 
+                            value=value, 
+                            command=lambda v=value: on_radio_select_stop(v)
+                            )
+                radButt.pack()
+                print(f"First Stop: Generating selection RESTAURANT ... {str(selectedStop_var)}")
+                count += 1
+            else: 
+                break
     else:
         print(f"                SKIPPED because {place_type[0]} or {place_type[1]} was false")
         firstStop_label.config(text= "")
@@ -254,34 +252,39 @@ def updateOutputFrame():
     if isTimeSetToDay and activity_toggle_states["Restaurant"]: 
         subSecondStop_label.config(text="Restaurant")
 
-        # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
-        # selectedSecondStop_list = ["Restaurant 1", "Restaurant 2", "Restaurant 3"]
-        #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        for i, option_text in enumerate(selectedSecondStop_list):
-            radButt = tk.Radiobutton(secondStopRadioSelection_FRAME, 
-                        text=option_text, 
-                        variable=selectedStop_str, 
-                        value=option_text, 
-                        command=on_radio_select_stop,
-                        )
-            radButt.pack()
-            print(f"Second Stop: Generating selection RESTAURANT ... {str(selectedStop_str)}")
+        count = 0
+        for key, value in selectedSecondStop_dict.items():
+            # ADDED COUNT TO LIMIT THE NUMBER OF SELECTIONS CREATED
+            if count < NUM_OF_SELECTIONS:
+                radButt = tk.Radiobutton(secondStopRadioSelection_FRAME, 
+                            text=key, 
+                            variable=selectedStop_var, 
+                            value=value, 
+                            command=lambda v=value: on_radio_select_stop(v)
+                            )
+                radButt.pack()
+                print(f"Second Stop: Generating selection RESTAURANT ... {str(selectedStop_var)}")
+                count += 1
+            else:
+                break
     elif not isTimeSetToDay and activity_toggle_states["Activity"]: 
         subSecondStop_label.config(text="Activity")
 
-        # @TODO:                vvv    REPLACE WITH GENERATED VALUES     vvv
-        # selectedSecondStop_list = ["Activity 1", "Activity 2", "Activity 3"]
-        #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        for i, option_text in enumerate(selectedSecondStop_list):
-            radButt = tk.Radiobutton(secondStopRadioSelection_FRAME, 
-                        text=option_text, 
-                        variable=selectedStop_str, 
-                        value=option_text, 
-                        command=on_radio_select_stop,
-                        )
-            radButt.pack()
-            print(f"Second Stop: Generating selection ACTIVITY ... {str(selectedStop_str)}")
-
+        count = 0
+        for key, value in selectedSecondStop_dict.items():
+            # ADDED COUNT TO LIMIT THE NUMBER OF SELECTIONS CREATED
+            if count < NUM_OF_SELECTIONS:
+                radButt = tk.Radiobutton(secondStopRadioSelection_FRAME, 
+                            text=key, 
+                            variable=selectedStop_var, 
+                            value=value, 
+                            command=lambda v=value: on_radio_select_stop(v)
+                            )
+                radButt.pack()
+                print(f"Second Stop: Generating selection ACTIVITY ... {str(selectedStop_var)}")
+                count += 1
+            else:
+                break
     else: 
         print(f"                SKIPPED because {place_type[0]} or {place_type[1]} was false")
         secondStop_label.config(text= "")
@@ -300,18 +303,21 @@ def updateOutputFrame():
     finalStopRadioSelection_FRAME = ttk.Frame(master= finalStop_FRAME)
 
     if activity_toggle_states["Dessert"]: 
-        # @TODO:                vvv       REPLACE WITH GENERATED VALUES       vvv
-        # selectedFinalStop_list = ["Dessert 1", "Dessert 2", "Dessert 3"]
-        #                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        for i, option_text in enumerate(selectedFinalStop_list):
-            radButt = tk.Radiobutton(finalStopRadioSelection_FRAME, 
-                        text=option_text, 
-                        variable=selectedStop_str, 
-                        value=option_text, 
-                        command=on_radio_select_stop,
-                        )
-            radButt.pack()
-            print(f"Final Stop: Generating selection DESSERT ... {str(selectedStop_str)}")
+        count = 0
+        for key, value in selectedFinalStop_dict.items():
+            # ADDED COUNT TO LIMIT THE NUMBER OF SELECTIONS CREATED
+            if count < NUM_OF_SELECTIONS:
+                radButt = tk.Radiobutton(finalStopRadioSelection_FRAME, 
+                            text=key, 
+                            variable=selectedStop_var, 
+                            value=value, 
+                            command=lambda v=value: on_radio_select_stop(v)
+                            )
+                radButt.pack()
+                print(f"Final Stop: Generating selection DESSERT ... {str(selectedStop_var)}")
+                count += 1
+            else:
+                break
     else:
         print(f"                SKIPPED because {place_type[2]} was false")
         finalStop_label.config(text= "")
@@ -414,7 +420,8 @@ def updateOutputFrame():
     topReview_output_label.pack(side='left')
     topReview_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
 
-    def update_info_label(*args):
+        
+    def update_info_label():
         '''
         Updates the info labels to match the selected
         radio button
@@ -422,46 +429,59 @@ def updateOutputFrame():
         Needs to be beneath the labels to update
 
         '''
-        # OUTPUT data
-        selection = selectedStop_str.get()
-        type = selectedType_str.get()
-        business = selectedBusiness_str.get()
-        address = selectedAddress_str.get() 
-        website = selectedWebsite_str.get()
-        price = selectedPrice_str.get()
-        review = selectedTopReview_str.get()
+        global selectedStop_var
 
-        if selection: 
-            # Show title
-            infoTitle_label.config(text=selection)
+        try:
+            selection = selectedStop_var
 
-            #Show labels
-            activityType_label.config(text= "Type: ")
-            business_label.config(text= "Business: ")
-            address_label.config(text= "Address: ")
-            website_label.config(text= "Website: ")
-            price_label.config(text= "Price: ")
-            topReview_label.config(text= "Top Review: ")
-
-            #Show output
-            activityType_output_label.config(text=type)
-            business_output_label.config(text=business)
-            address_output_label.config(text=address)
-            website_output_label.config(text=website)
-            price_output_label.config(text=price)
-            topReview_output_label.config(text=review)
+            # Debug
+            print(f"=== DEBUG update_info_label ===")
+            print(f"Type: {type(selection)}")
+            print(f"Value: {selection}")
+            if hasattr(selection, 'getBusiness'):
+                print(f"Business: {selection.getBusiness()}")
+            print(f"===============================")
             
-        else:
-            # Reset label values
-            infoTitle_label.config(text= "Select a place to see more information")
-            activityType_label.config(text= "")
-            business_label.config(text= "")
-            address_label.config(text= "")
-            website_label.config(text= "")
-            price_label.config(text= "")
-            topReview_label.config(text= "")
-              
-    traceID = selectedStop_str.trace('w', update_info_label)
+            if selection and hasattr(selection, 'getBusiness'):
+                # Get all data from Event object
+                type_val = selection.getType()
+                business = selection.getBusiness()
+                address = selection.getAddress()
+                website = selection.getWebsite()
+                price = selection.getPriceLevel()
+                review = selection.getReviewSummary()
+                
+                # Show title with business name
+                infoTitle_label.config(text=business)
+                
+                # Show labels
+                activityType_label.config(text="Type: ")
+                business_label.config(text="Business: ")
+                address_label.config(text="Address: ")
+                website_label.config(text="Website: ")
+                price_label.config(text="Price: ")
+                topReview_label.config(text="Top Review: ")
+                
+                # Show output
+                activityType_output_label.config(text=type_val)
+                business_output_label.config(text=business)
+                address_output_label.config(text=address)
+                website_output_label.config(text=website)
+                price_output_label.config(text=price)
+                topReview_output_label.config(text=review)
+            else:
+                # Reset label values
+                infoTitle_label.config(text="Select a place to see more information")
+                activityType_label.config(text="")
+                business_label.config(text="")
+                address_label.config(text="")
+                website_label.config(text="")
+                price_label.config(text="")
+                topReview_label.config(text="")
+        except Exception as e:
+            print(f"Error updating labels: {e}")
+            infoTitle_label.config(text="Select a place to see more information")
+
     info_FRAME.pack(side= 'right')
 # - - - - - - - - - - - - - - - - - - - -
 

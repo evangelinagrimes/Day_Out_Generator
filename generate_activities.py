@@ -32,70 +32,82 @@ dessert_type=       ["acai_shop", "bakery", "candy_store", "chocolate_shop", "co
 place_types=        ["Restaurant", "Activity", "Dessert"]
 
 def generate_activities(zipcode, dayPref, isTimeSetToDay):
+    """
+    This method returns three dictionaries of Event objects where {"key", "value"} is {"Business_Name": [List of Event objects]}
+    
+      FIRST STOP: 
+          - If DayOut: Start with activity (Open before 5PM)
+          - If NighOut: Start with dinner (Open past 5PM)
+      SECOND STOP:
+          - If DayOut: Search for restaurant (Open past 5PM)
+          - If NighOut: Search for activity (Open past 5PM)
+      FINAL STOP:
+          If DayOut: Will always be dessert (Open past 5PM)
+          If NighOut: Will always be dessert (Open past 8PM)
+    
+      Other Conditions: 
+          - If business must be in operation
+          - Business hours must correspond with given times
+
+    :returns: firstStop_dict, secondStop_dict, finalStop_dict 
+    """
     global event_dict
-    firstStop_list = []
-    secondStop_list = []
-    finalStop_list = []
+    firstStop_dict = {}
+    secondStop_dict = {}
+    finalStop_dict = {}
 
     call_places_api(zipcode)
 
     if isTimeSetToDay: 
         # Activity > Dinner > Dessert
-        create_stop_list(isTimeSetToDay, "Activity", dayPref, firstStop_list)
-        create_stop_list(isTimeSetToDay, "Restaurant", dayPref, secondStop_list)
-        create_stop_list(isTimeSetToDay, "Dessert", dayPref, finalStop_list)
+        create_stop_dict(isTimeSetToDay, "Activity", dayPref, firstStop_dict)
+        create_stop_dict(isTimeSetToDay, "Restaurant", dayPref, secondStop_dict)
+        create_stop_dict(isTimeSetToDay, "Dessert", dayPref, finalStop_dict)
     else:
         # Dinner > Activity > Dessert
-        create_stop_list(isTimeSetToDay, "Restaurant", dayPref, secondStop_list)
-        create_stop_list(isTimeSetToDay, "Activity", dayPref, firstStop_list)
-        create_stop_list(isTimeSetToDay, "Dessert", dayPref, finalStop_list)
+        create_stop_dict(isTimeSetToDay, "Restaurant", dayPref, secondStop_dict)
+        create_stop_dict(isTimeSetToDay, "Activity", dayPref, firstStop_dict)
+        create_stop_dict(isTimeSetToDay, "Dessert", dayPref, finalStop_dict)
 
-    # Sort through the input
-    # This method should return three lists (first stop, second stop, final stop) 
-    #   FIRST STOP: 
-    #       - If DayOut: Start with activity (Open before 5PM)
-    #       - If NighOut: Start with dinner (Open past 5PM)
-    #   SECOND STOP:
-    #       - If DayOut: Search for restaurant (Open past 5PM)
-    #       - If NighOut: Search for activity (Open past 5PM)
-    #   FINAL STOP:
-    #       If DayOut: Will always be dessert (Open past 5PM)
-    #       If NighOut: Will always be dessert (Open past 8PM)
-    #
-    #   Other Conditions: 
-    #       - If business must be in operation
-    #       - Business hours must correspond with given times
-    #       - 
-    return firstStop_list, secondStop_list, finalStop_list
+    return firstStop_dict, secondStop_dict, finalStop_dict
 
-def create_stop_list(isTimeSetToDay, place_type, dayPref, stop_list):
+def create_stop_dict(isTimeSetToDay, place_type, dayPref, stop_dict):
     checkIfOpen = 5  # 5 AM for day check
     checkIfOpenNight = 17  # 5 PM for night check
     
-    # If day out, check when business opens
-    # If night out, check when business closes
-
+    # Loop through specified Event Objects (e.g. "Restaurant", "Activity", "Dessert")
     for event in event_dict[place_type]:
         print(f"Filtering {event.getBusiness()}...")
         status = event.getStatus()
         businessHours = event.getBusinessHours()
         
+        # Verify that the business is in operation
         if status != "OPERATIONAL":
             continue
             
-        print(f"Business Hours: {', '.join(f'{key}: {value}' for key, value in businessHours.items())}")
+        # print(f"Business Hours: {', '.join(f'{key}: {value}' for key, value in businessHours.items())}")
         
+        # Check if the business is open during the preferred day
         time_string = businessHours.get(dayPref, "Closed")
         
         if time_string == "Closed":
             print(f"  {dayPref}: Closed, skipping...")
             continue
-            
-        # Split on dash to get opening and closing times
+
+        time_string = time_string.replace('–', '-').replace('—', '-').strip()
+        
+        # Confirm that they are open during the provided times (e.g. Before 5PM or after 5PM)
         if '-' not in time_string:
+            # Split on dash to get opening and closing times
             print(f"  Unexpected format for {dayPref}: {time_string}")
             continue
         
+        # Split on dash - handle extra spaces
+        time_parts = time_string.split('-')
+        if len(time_parts) != 2:
+            print(f"  Could not parse time format: {time_string}")
+            continue
+
         opening_time, closing_time = [t.strip() for t in time_string.split('-')]
         
         try:
@@ -117,23 +129,18 @@ def create_stop_list(isTimeSetToDay, place_type, dayPref, stop_list):
             if isTimeSetToDay:
                 # Day out: check if opens early enough (before 5 PM)
                 if opening_hour < checkIfOpenNight:
-                    print(f"  {dayPref}: Opens at {opening_time} - Adding to list!")
-                    stop_list.append(event)
-                else:
-                    print(f"  {dayPref}: Opens at {opening_time} - Too late")
+                    # print(f"  {dayPref}: Opens at {opening_time} - Adding to list!")
+                    stop_dict[event.getBusiness()] = (event)
             else:
                 # Night out: check if closes late enough (after 5 PM)
                 if closing_hour >= checkIfOpenNight:
-                    print(f"  {dayPref}: Closes at {closing_time} - Adding to list!")
-                    stop_list.append(event)
-                else:
-                    print(f"  {dayPref}: Closes at {closing_time} - Too early")
+                    # print(f"  {dayPref}: Closes at {closing_time} - Adding to list!")
+                    stop_dict[event.getBusiness()] = (event)
                     
         except (ValueError, IndexError) as e:
             print(f"  Could not parse time from: {opening_time} - {closing_time}")
     
-    return stop_list
-
+    return stop_dict
 
 def call_places_api(new_zipcode):
     global curr_zipcode
@@ -183,7 +190,8 @@ def call_places_api(new_zipcode):
 
             # write_to_json_file(response, place, curr_zipcode)
             event_dict[place] = read_json_data(response, place)
-            
+
+        # Debugging - See each Event object in the event_dict  
         for key, value in event_dict.items():
             for val in value:
                 print(val)
@@ -255,6 +263,8 @@ def write_to_json_file(file_data, file_name, zipcode):
 def read_json_data(response, place_type):
     """
     Fresh data read
+
+    :return: A list of Event objects
     """
     event_list = []
     try: 
