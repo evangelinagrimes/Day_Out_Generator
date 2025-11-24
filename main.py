@@ -16,7 +16,7 @@ SUBHEADER_FONT          = 'Calibri 13'
 PARAGRAPH_FONT          = 'Calibri 12'
 PARAGRAPH_WRAP_LENGTH   = 250
 LABEL_WRAP_LENGTH       = 200
-STOP_Y_POS              = 10
+STOP_Y_POS              = 25
 INFO_SUB_LABEL_POS      = (5, 0)
 NUM_OF_SELECTIONS       = 3
 
