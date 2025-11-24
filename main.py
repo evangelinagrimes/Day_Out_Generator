@@ -15,7 +15,7 @@ HEADER_FONT             = 'Calibri 15'
 SUBHEADER_FONT          = 'Calibri 13'
 PARAGRAPH_FONT          = 'Calibri 12'
 PARAGRAPH_WRAP_LENGTH   = 250
-LABEL_WRAP_LENGTH       = 150
+LABEL_WRAP_LENGTH       = 200
 STOP_Y_POS              = 10
 INFO_SUB_LABEL_POS      = (5, 0)
 NUM_OF_SELECTIONS       = 3
@@ -133,6 +133,11 @@ def create_toggle_button(parent, text, width, height, key, start_state, state_di
     
     return btn
 
+def copy_to_clipboard(text, widget):
+    widget.clipboard_clear()
+    widget.clipboard_append(text)
+    widget.update()  
+
 def switchDayButton(): 
     global isTimeSetToDay
     if isTimeSetToDay: 
@@ -240,9 +245,9 @@ def updateOutputFrame():
         print(f"                SKIPPED because {place_type[0]} or {place_type[1]} was false")
         firstStop_label.config(text= "")
 
-    firstStop_label.pack(anchor='w')
-    subFirstStop_label.pack()
-    firstStopRadioSelection_FRAME.pack()
+    firstStop_label.pack(anchor='c')
+    subFirstStop_label.pack(anchor='c')
+    firstStopRadioSelection_FRAME.pack(anchor='w')
 
     firstStop_FRAME.pack(side= 'top', pady= STOP_Y_POS)
 
@@ -295,9 +300,9 @@ def updateOutputFrame():
         print(f"                SKIPPED because {place_type[0]} or {place_type[1]} was false")
         secondStop_label.config(text= "")
 
-    secondStop_label.pack(anchor='w')
-    subSecondStop_label.pack()
-    secondStopRadioSelection_FRAME.pack()
+    secondStop_label.pack(anchor='c')
+    subSecondStop_label.pack(anchor='c')
+    secondStopRadioSelection_FRAME.pack(anchor='w')
     
     secondStop_FRAME.pack(side= 'top', pady= STOP_Y_POS)
 
@@ -330,9 +335,9 @@ def updateOutputFrame():
         finalStop_label.config(text= "")
         subFinalStop_label.config(text="")
 
-    finalStop_label.pack(anchor='w')
-    subFinalStop_label.pack()
-    finalStopRadioSelection_FRAME.pack()
+    finalStop_label.pack(anchor='c')
+    subFinalStop_label.pack(anchor='c')
+    finalStopRadioSelection_FRAME.pack(anchor='w')
 
     finalStop_FRAME.pack(side= 'top', pady= STOP_Y_POS)
 
@@ -343,7 +348,9 @@ def updateOutputFrame():
     INFO_ROW_Y_SPACING = 5
     INFO_ROW_X_SPACING = 25
 
-    info_FRAME = ttk.Frame(master= content_FRAME, width=500, height=550, relief="groove")
+    copy_image = PhotoImage(file="assets/copy.png")
+
+    info_FRAME = ttk.Frame(master= content_FRAME, width=650, height=550, relief="groove")
     info_FRAME.pack_propagate(False)
 
     infoTitle_label = ttk.Label(master= info_FRAME, 
@@ -368,18 +375,19 @@ def updateOutputFrame():
     activityType_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
     
     # > ------ business name display ------
-    business_ROW = ttk.Frame(master= info_FRAME)
+    # business_ROW = ttk.Frame(master= info_FRAME)
     
-    business_label = ttk.Label(master= business_ROW, 
-                                text= "", 
-                                font= SUBHEADER_FONT,)
-    business_output_label = ttk.Label(master= business_ROW,
-                                          text="",
-                                          font= PARAGRAPH_FONT,
-                                          wraplength=PARAGRAPH_WRAP_LENGTH)
-    business_label.pack(side='left')
-    business_output_label.pack(side='left')
-    business_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
+    # business_label = ttk.Label(master= business_ROW, 
+    #                             text= "", 
+    #                             font= SUBHEADER_FONT,)
+    # business_output_label = ttk.Label(master= business_ROW,
+    #                                       text="",
+    #                                       font= PARAGRAPH_FONT,
+    #                                       wraplength=PARAGRAPH_WRAP_LENGTH)
+
+    # business_label.pack(side='left')
+    # business_output_label.pack(side='left')
+    # business_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
 
     # > ------ address name display ------
     address_ROW = ttk.Frame(master= info_FRAME)
@@ -390,8 +398,14 @@ def updateOutputFrame():
                                           text="",
                                           font= PARAGRAPH_FONT,
                                           wraplength=PARAGRAPH_WRAP_LENGTH)
+    copy_address_button = tk.Button(master= address_ROW, 
+                                    image=copy_image, 
+                                    bd=0,
+                                    command=lambda: copy_to_clipboard(address_output_label.cget("text"), address_ROW))
+
     address_label.pack(side='left')
-    address_output_label.pack(side='left')
+    address_output_label.pack(side='left', padx=5)
+    copy_address_button.pack(side= 'left')
     address_ROW.pack(anchor='w', padx= INFO_ROW_X_SPACING, pady= INFO_ROW_Y_SPACING)
     
     # > ------ website link display ------
@@ -469,7 +483,7 @@ def updateOutputFrame():
                 
                 # Show labels
                 activityType_label.config(text="Type: ")
-                business_label.config(text="Business: ")
+                # business_label.config(text="Business: ")
                 address_label.config(text="Address: ")
                 website_label.config(text="Website: ")
                 price_label.config(text="Price: ")
@@ -477,7 +491,7 @@ def updateOutputFrame():
                 
                 # Show output
                 activityType_output_label.config(text=type_val)
-                business_output_label.config(text=business)
+                # business_output_label.config(text=business)
                 address_output_label.config(text=address)
                 website_output_label.config(text=website)
                 price_output_label.config(text=price)
@@ -486,7 +500,7 @@ def updateOutputFrame():
                 # Reset label values
                 infoTitle_label.config(text="Select a place to see more information")
                 activityType_label.config(text="")
-                business_label.config(text="")
+                # business_label.config(text="")
                 address_label.config(text="")
                 website_label.config(text="")
                 price_label.config(text="")
@@ -575,7 +589,7 @@ field_FRAME.pack(padx=25)
 finalSelection_FRAME = ttk.Frame(master= input_FRAME)
 # @TODO: Have the final selection display here
 
-finalSelection_FRAME.pack()
+finalSelection_FRAME.pack() 
 # > -----------------------------
 input_FRAME.pack(side='left', pady=50)
 

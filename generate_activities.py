@@ -2,9 +2,6 @@ from google_api import create_service
 from geopy.geocoders import Nominatim
 import math, json, csv, re, Event
 
-# @TODO: 
-#   - Go through the curr_city setting method and figure out why it's returning None
-
 event_dict= {}
 past_zipcodes = []
 curr_city= ""
@@ -65,8 +62,8 @@ def generate_activities(zipcode, dayPref, isTimeSetToDay):
         create_stop_dict(isTimeSetToDay, "Dessert", dayPref, finalStop_dict)
     else:
         # Dinner > Activity > Dessert
-        create_stop_dict(isTimeSetToDay, "Restaurant", dayPref, secondStop_dict)
-        create_stop_dict(isTimeSetToDay, "Activity", dayPref, firstStop_dict)
+        create_stop_dict(isTimeSetToDay, "Restaurant", dayPref, firstStop_dict)
+        create_stop_dict(isTimeSetToDay, "Activity", dayPref, secondStop_dict)
         create_stop_dict(isTimeSetToDay, "Dessert", dayPref, finalStop_dict)
 
     return firstStop_dict, secondStop_dict, finalStop_dict
